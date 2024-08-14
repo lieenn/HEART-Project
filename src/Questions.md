@@ -1,0 +1,3 @@
+- Would it be better with sequential (gradient) color scale?
+- Should we filter out the risk if it is 0.01?
+- Or should we only filter out if it is 0.0?

@@ -1,0 +1,56 @@
+[
+  {
+    "longName": "Short Length of Stay",
+    "shortName": "Short LoS",
+    "key": "slos",
+    "description": ""
+  },
+  {
+    "longName": "Prolonged Length of Stay",
+    "shortName": "Prolonged LoS",
+    "key": "plos",
+    "description": ""
+  },
+  {
+    "longName": "Stroke",
+    "shortName": "Stroke",
+    "key": "strk",
+    "description": ""
+  },
+  {
+    "longName": "Reoperation",
+    "shortName": "Re-op",
+    "key": "reop",
+    "description": ""
+  },
+  {
+    "longName": "Renal Failure",
+    "shortName": "Renal Failure",
+    "key": "reFail",
+    "description": ""
+  },
+  {
+    "longName": "Wound Infection",
+    "shortName": "Wound Infection",
+    "key": "woInf",
+    "description": ""
+  },
+  {
+    "longName": "Operative Mortality",
+    "shortName": "Operative Mortality",
+    "key": "opMort",
+    "description": ""
+  },
+  {
+    "longName": "Prolonged Ventilation",
+    "shortName": "Prolonged Ventilation",
+    "key": "proVent",
+    "description": ""
+  },
+  {
+    "longName": "Major Mortality/Morbidity",
+    "shortName": "Major Mortality/Morbidity",
+    "key": "morbid",
+    "description": ""
+  }
+]
