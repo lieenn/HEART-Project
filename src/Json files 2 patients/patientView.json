@@ -1,6 +1,7 @@
 [
   {
-    "PatientName": "J. Doe, # 2269",
+    "PatientName": "J. Doe",
+    "PID": "# 2269",
     "roomNumber": 12,
     "timeStamp": 1719509621307,
     "adverseEvents": [
@@ -144,7 +145,8 @@
   },
 
   {
-    "PatientName": "J. Smit, # 0",
+    "PatientName": "J. Smit",
+    "PID": "# 0",
     "roomNumber": 14,
     "timeStamp": 1719509621407,
     "adverseEvents": [

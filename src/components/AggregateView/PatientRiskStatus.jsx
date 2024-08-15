@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import calculateColor from "../Utils/colorScale";
+import { calculateColor } from "../Utils/Calculator";
 
 export default function PatientRiskStatus({ risk }) {
-  const [color, textColor] = calculateColor(risk.riskScore);
+  const [textColor, color] = calculateColor(risk.riskScore);
   // Calculate the width of the rectangle based on the title length
   const titleLength = risk.title.length;
   const rectWidth = Math.max(80, titleLength * 10);
@@ -25,7 +25,7 @@ export default function PatientRiskStatus({ risk }) {
           height="32"
           fill={color}
           stroke="black"
-          strokeWidth="4px"
+          strokeWidth="6px"
         />
         <text
           x="50%"

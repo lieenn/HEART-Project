@@ -1,7 +1,7 @@
 import React from "react";
-import { Box, TableCell } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import PatientRiskStatus from "./PatientRiskStatus";
-import { FilterNoRisk, FilterUnwantedAdverse } from "../Utils/FilterFunctions";
+import { FilterLowRisk, FilterUnwantedAdverse } from "../Utils/FilterFunctions";
 
 /**
  * Renders a list of risks for a patient.
@@ -22,20 +22,16 @@ export default function PatientRisks({ adverseEvents = [] }) {
     return <div>Error: Adverse Events data is not available.</div>;
   }
 
-  const risks = FilterUnwantedAdverse({
-    patientAdverseEvents: adverseEvents,
-    titles: ["Length of Stay", "Morbidity"],
-  });
+  const risks = FilterUnwantedAdverse(adverseEvents);
 
-  const filteredRisks = FilterNoRisk({ patientAdverseEvents: risks });
+  const filteredRisks = FilterLowRisk(risks);
   const sortedRisks = filteredRisks.sort((a, b) => b.riskScore - a.riskScore);
 
   return (
-    <TableCell sx={{ border: "none" }}>
+    <Container sx={{ border: "none" }}>
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
           alignItems: "center",
           gap: 2,
           width: "100%",
@@ -55,6 +51,6 @@ export default function PatientRisks({ adverseEvents = [] }) {
           ))
         )}
       </Box>
-    </TableCell>
+    </Container>
   );
 }

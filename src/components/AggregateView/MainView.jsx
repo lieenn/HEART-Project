@@ -1,5 +1,5 @@
 import React from "react";
-import { TableContainer, Table, Paper, Box } from "@mui/material";
+import { TableContainer, Table, Box, TableBody } from "@mui/material";
 import aggregate from "../../Json files 2 patients/aggregate.json";
 import Patient from "./Patient";
 import ColorLegend from "./ColorLegend";
@@ -14,11 +14,14 @@ export default function MainView() {
   return (
     <Box>
       <ColorLegend />
-      <TableContainer component={Paper}>
+      <TableContainer sx={{ border: "3px solid #000", mt: 4 }}>
         <Table aria-label="simple table" stickyHeader>
-          {aggregate.map((patient) => (
-            <Patient key={patient.roomNumber} patient={patient} />
-          ))}
+          {/* Wrap Patient components in a TableBody */}
+          <TableBody>
+            {aggregate.map((patient) => (
+              <Patient key={patient.roomNumber} patient={patient} />
+            ))}
+          </TableBody>
         </Table>
       </TableContainer>
     </Box>

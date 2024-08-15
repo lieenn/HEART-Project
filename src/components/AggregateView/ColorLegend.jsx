@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { colorScale } from "../Utils/colorScale";
+import { colorScale } from "../Utils/Calculator";
 
 /**
  * Color legend for the risk status of patients.
@@ -41,8 +41,8 @@ export default function ColorLegend() {
             sx={{
               width: 24,
               height: 24,
-              backgroundColor: colorScale(label),
-              border: "2px solid black",
+              backgroundColor: colorScale(label)[0],
+              border: "3px solid black",
             }}
           />
           <Typography
