@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import { Box, Typography } from "@mui/material";
 import { calculateColor } from "../Utils/Calculator";
 import { riskRange } from "../../App";
+import { colorScale } from "../Utils/Calculator";
 
 /**
  * Visualizes the risk scale for a low-risk adverse event.
@@ -20,18 +21,18 @@ export default function RiskScaleLow({ adverseEvent }) {
   const domain = [0, riskRange[0]];
   const xScale = d3.scaleLinear().domain(domain).range([0, width]);
 
-  // Colors for each segment (3 segments)
-  const colors = ["#cbfbf1", "#fff7c9"];
+  const colors = colorScale.domain().map((domainValue) => {
+    const colorArray = colorScale(domainValue);
+    return colorArray[2]; // Get the tertiary color (third in the array)
+  });
+
   const [textColor, color] = calculateColor(adverseEvent.riskScore);
   const isUncertain = adverseEvent.uncertaintyBand.high > domain[1];
-  const extraWidth = isUncertain
-    ? (adverseEvent.uncertaintyBand.high - domain[1]) * 400
-    : 0;
-
-  const svgWidth = width + extraWidth + 20;
+  const extraWidth = isUncertain ? 25 : 0;
+  const svgWidth = width + extraWidth;
 
   return (
-    <Box sx={{ mt: 0.8, display: "flex" }}>
+    <Box sx={{ mt: 0.8, display: "flex", gap: 2 }}>
       {/* Renders the segments with dot and uncertainty band */}
       <svg width={svgWidth} height={height + 20}>
         {/* Background Segments */}
@@ -75,7 +76,6 @@ export default function RiskScaleLow({ adverseEvent }) {
           fill="black"
         />
       </svg>
-      {/* Risk score in % */}
       <Typography fontWeight="bold" color="black">
         Risk: {Math.round(adverseEvent.riskScore * 100)}%
       </Typography>

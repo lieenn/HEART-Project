@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import { Box, Typography } from "@mui/material";
 import { calculateColor } from "../Utils/Calculator";
 import { riskRange } from "../../App";
+import { colorScale } from "../Utils/Calculator";
 
 /**
  * Visualizes the risk scale for a high-risk adverse event.
@@ -18,31 +19,25 @@ export default function RiskScaleHigh({ adverseEvent }) {
   const width = 160;
   const height = 24;
   const domain = [riskRange[0], riskRange[3]];
-  console.log(domain);
   const xScale = d3.scaleLinear().domain(domain).range([0, width]);
 
-  const colors = ["#cbfbf1", "#fff7c9", "#f7d1aa", "#fab5a8"];
+  const colors = colorScale.domain().map((domainValue) => {
+    const colorArray = colorScale(domainValue);
+    return colorArray[2]; // Get the tertiary color (third in the array)
+  });
+
   const [textColor, color] = calculateColor(adverseEvent.riskScore);
-
-  // Check if the uncertainty band extends below the domain minimum
   const isUncertain = adverseEvent.uncertaintyBand.low < domain[0];
-
-  // Calculate extra width needed for the uncertainty band
-  // if it extends below the domain minimum
-  const extraWidth = isUncertain
-    ? ((domain[0] - adverseEvent.uncertaintyBand.low) * width) /
-      (domain[1] - domain[0])
-    : 0;
-
-  const svgWidth = width + extraWidth + 20;
+  const extraWidth = isUncertain ? 25 : 0;
+  const svgWidth = width + extraWidth;
   const segmentWidth = width / 3;
 
   return (
-    <Box sx={{ mt: 0.8, display: "flex" }}>
+    <Box sx={{ mt: 0.8, display: "flex", gap: 2 }}>
       <svg width={svgWidth} height={height + 20}>
         {/* Background Segments */}
         <rect
-          x={extraWidth} // Start of the first segment is adjusted by extraWidth
+          x={extraWidth}
           y={0}
           width={segmentWidth}
           height={height}

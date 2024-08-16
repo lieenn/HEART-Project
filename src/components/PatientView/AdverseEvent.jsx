@@ -2,8 +2,8 @@ import React from "react";
 import { calculateColor, calculateRisk } from "../Utils/Calculator";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Box, Typography, IconButton, Avatar } from "@mui/material";
-import RiskScaleHigh from "./RiskScaleHigh";
-import RiskScaleLow from "./RiskScaleLow";
+import RiskScale from "./RiskScale";
+import { riskRange } from "../../App";
 
 /**
  * Display the adverse event with the risk scale.
@@ -15,6 +15,8 @@ export default function AdverseEvent({ adverseEvent }) {
   const recHeight = 36;
   const [textColor, color] = calculateColor(adverseEvent.riskScore);
   const riskLevel = calculateRisk(adverseEvent.riskScore);
+  const lowRiskDomain = [0, riskRange[0]];
+  const highRiskDomain = [riskRange[0], riskRange[3]];
 
   return (
     // Display the adverse event title and color
@@ -58,9 +60,17 @@ export default function AdverseEvent({ adverseEvent }) {
       </Box>
       {/* Display the risk scale */}
       {riskLevel === "Minimal" ? (
-        <RiskScaleLow adverseEvent={adverseEvent} />
+        <RiskScale
+          adverseEvent={adverseEvent}
+          domain={lowRiskDomain}
+          isHighRisk={false}
+        />
       ) : (
-        <RiskScaleHigh adverseEvent={adverseEvent} />
+        <RiskScale
+          adverseEvent={adverseEvent}
+          domain={highRiskDomain}
+          isHighRisk={true}
+        />
       )}
     </Box>
   );

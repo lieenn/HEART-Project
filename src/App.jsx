@@ -8,7 +8,7 @@ import DetailPage from "./components/PatientView/DetailPage";
 
 // Max range of risk values
 // [Mininal, Moderate, Moderate High, High]
-export const riskRange = [0.4, 0.6, 0.8, 1];
+export const riskRange = [0.3, 0.5, 0.7, 1];
 
 export default function App() {
   return (

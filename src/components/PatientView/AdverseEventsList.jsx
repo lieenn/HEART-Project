@@ -1,23 +1,27 @@
+import React from "react";
 import { List, ListItem, Box, Typography } from "@mui/material";
-import {
-  FilterHighRisk,
-  FilterUnwantedAdverse,
-} from "../Utils/FilterFunctions";
 import AdverseEvent from "./AdverseEvent";
+import { FilterUnwantedAdverse } from "../Utils/FilterFunctions";
 
 /**
- * A list of low risk adverse events.
+ * Displays a list of adverse events based on the provided
+ * risk filter and header information. It can be used to display both
+ * high-risk and low-risk adverse events.
  *
- * This component filters the patient's adverse events to display only
- * those with low risk. If no low-risk events are found,
- * it displays a message indicating this.
- *
- * @param {Array} param0 - The array of adverse events of the patient.
- * @returns {JSX.Element} - The rendered low-risk adverse events as a list.
+ * @param {Array} adverseEvents - The array of adverse events of the patient.
+ * @param {Function} riskFilter - The function to filter events by risk level.
+ * @param {String} header - The header title indicating the risk level.
+ * @param {String} bgColor - The background color for the header.
+ * @returns {JSX.Element} - The rendered adverse events list as a list.
  */
-export default function AdverseEventsLow({ adverseEvents }) {
+export default function AdverseEventsList({
+  adverseEvents,
+  riskFilter,
+  header,
+  bgColor,
+}) {
   const risks = FilterUnwantedAdverse(adverseEvents);
-  const filteredRisks = FilterHighRisk(risks);
+  const filteredRisks = riskFilter(risks);
   const sortedRisks = filteredRisks.sort((a, b) => b.riskScore - a.riskScore);
 
   return (
@@ -26,7 +30,7 @@ export default function AdverseEventsLow({ adverseEvents }) {
         <Typography
           gutterBottom
           sx={{
-            bgcolor: "#82c3f6",
+            bgcolor: bgColor,
             textAlign: "center",
             fontWeight: "bold",
             fontSize: "20px",
@@ -34,12 +38,12 @@ export default function AdverseEventsLow({ adverseEvents }) {
             width: "100%",
           }}
         >
-          Low Risk Adverse Events
+          {header}
         </Typography>
         <Typography sx={{ m: 2 }}>
           Patient is predicted{" "}
           <Typography component="span" sx={{ fontWeight: "bold" }}>
-            low risk
+            {header.toLowerCase()}
           </Typography>{" "}
           for these adverse events:
         </Typography>
@@ -55,7 +59,7 @@ export default function AdverseEventsLow({ adverseEvents }) {
         </List>
       ) : (
         <Typography sx={{ m: 2, fontStyle: "italic" }}>
-          No low-risk adverse events found.
+          No {header.toLowerCase()} found.
         </Typography>
       )}
     </Box>

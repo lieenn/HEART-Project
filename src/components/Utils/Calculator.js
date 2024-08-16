@@ -11,10 +11,10 @@ export const colorScale = d3
   .scaleOrdinal()
   .domain(["Minimal", "Moderate", "Moderate High", "High"])
   .range([
-    ["#08F4CB", "#80FAE5", "#C8FAF1"], // Minimal: [primary, secondary, tertiary]
-    ["#FEEA77", "#FEEF98", "#FEF8D8"], // Moderate: [primary, secondary, tertiary]
-    ["#EB8B2A", "#EBB176", "#EBC8A4"], // Moderate High: [primary, secondary, tertiary]
-    ["#F14725", "#F9A393", "#FBC8BE"], // High: [primary, secondary, tertiary]
+    ["#87E7FF", "#A6EDFF", "#CCF5FF"], // Minimal: [primary, secondary, tertiary]
+    ["#FEEA77", "#FEF1A5", "#FFF7CC"], // Moderate: [primary, secondary, tertiary]
+    ["#F7924A", "#F7AF7C", "#FAC7A2"], // Moderate High: [primary, secondary, tertiary]
+    ["#F16448", "#F99B89", "#FABBAF"], // High: [primary, secondary, tertiary]
   ]);
 
 /**

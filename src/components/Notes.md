@@ -1,0 +1,9 @@
+- Thinner borders & gray,
+- blue color,
+- short uncertaintcy band,
+- add back button,
+- add sorting and filtering
+- sort based on patient's risk
+- filter sepcific risks that the clinicians are looking for: keep every risk,
+- different types of filter for user to tests
+- sorting/filtering icons next to patient's name

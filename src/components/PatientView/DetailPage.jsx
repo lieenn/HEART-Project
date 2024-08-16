@@ -2,20 +2,24 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button, Typography, Box, Container } from "@mui/material";
 import patientView from "../../Json files 2 patients/patientView.json";
-import AdverseEventsHigh from "./AdverseEventsHigh";
-import AdverseEventsLow from "./AdverseEventsLow";
+import AdverseEventsList from "./AdverseEventsList";
+import { FilterLowRisk, FilterHighRisk } from "../Utils/FilterFunctions";
 
 /**
- * Renders patient view with their name, id, room number, and adverse events.
- * @returns {JSX.Element} - The detail page of a patient
+ * Renders a detailed view of a patient's information,
+ * including their name, ID, room number, and a list of their adverse events
+ * categorized by risk level (high and low).
+ *
+ * AdverseEventsList handles the rendering of both high-risk and low-risk events.
+ * @returns {JSX.Element} - The detail page for a specific patient.
  */
 export default function DetailPage() {
-  const { value } = useParams(); // Get the person's name from the URL
-  const person = patientView.find((item) => item.PatientName.includes(value));
+  const { value } = useParams(); // Extract the patient's name from the URL parameter
+  const person = patientView.find((item) => item.PatientName.includes(value)); // Find the patient data based on the name
 
   return (
     <Container mt={5} maxWidth="xl">
-      {/* Patient's general info */}
+      {/* Render patient's general information: name, PID, and room number */}
       <Box
         sx={{
           display: "flex",
@@ -32,7 +36,8 @@ export default function DetailPage() {
           <Typography variant="h6">Room # {person.roomNumber}</Typography>
         </Box>
       </Box>
-      {/* Renders list of high-risk and low-risk adverse events */}
+
+      {/* Render lists of high-risk and low-risk adverse events */}
       <Box
         sx={{
           display: "flex",
@@ -40,19 +45,36 @@ export default function DetailPage() {
           border: "3px solid #000",
         }}
       >
-        {/* AdverseEventsHigh component with more space */}
+        {/* High-risk adverse events list */}
         <Box sx={{ flex: 3 }}>
-          <AdverseEventsHigh adverseEvents={person.adverseEvents} />
+          <AdverseEventsList
+            adverseEvents={person.adverseEvents}
+            riskFilter={FilterLowRisk}
+            header="High Risk Adverse Events"
+            bgColor="#f7917d"
+          />
         </Box>
 
-        {/* Vertical line border */}
+        {/* Vertical separator between high-risk and low-risk lists */}
         <Box sx={{ borderLeft: "3px solid #000" }} />
 
-        {/* AdverseEventsLow component with less space */}
-        <Box sx={{ flex: 2 }}>
-          <AdverseEventsLow adverseEvents={person.adverseEvents} />
+        {/* Low-risk adverse events list */}
+        <Box sx={{ flex: 1.5 }}>
+          <AdverseEventsList
+            adverseEvents={person.adverseEvents}
+            riskFilter={FilterHighRisk}
+            header="Low Risk Adverse Events"
+            bgColor="#82c3f6"
+          />
         </Box>
       </Box>
+
+      {/* Back button to return to the previous page */}
+      <Link to="/">
+        <Button variant="contained" sx={{ mt: 2 }}>
+          Back
+        </Button>
+      </Link>
     </Container>
   );
 }
