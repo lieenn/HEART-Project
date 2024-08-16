@@ -2,6 +2,11 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import { calculateColor } from "../Utils/Calculator";
 
+/**
+ * Renders a risk status for a patient.
+ * @param {Object} param0 - The risk of the given patient
+ * @returns {JSX.Element} - The rendered risk status
+ */
 export default function PatientRiskStatus({ risk }) {
   const [textColor, color] = calculateColor(risk.riskScore);
   // Calculate the width of the rectangle based on the title length
@@ -40,9 +45,6 @@ export default function PatientRiskStatus({ risk }) {
           {risk.title}
         </text>
       </svg>
-      <Typography variant="body2" color="textSecondary">
-        {risk.riskScore.toFixed(2)}
-      </Typography>
     </Box>
   );
 }

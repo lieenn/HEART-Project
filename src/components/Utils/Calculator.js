@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import { FilterUnwantedAdverse } from "./FilterFunctions";
+import { riskRange } from "../../App";
 
 /**
  * Using d3 to define color scale,
@@ -16,15 +17,29 @@ export const colorScale = d3
     ["#F14725", "#F9A393", "#FBC8BE"], // High: [primary, secondary, tertiary]
   ]);
 
+/**
+ * Calculate risk level given a risk score
+ * @param {number} riskScore - The risk score of an adverse event.
+ * @returns {string} Possible values are "Minimal", "Moderate",
+ * "Moderate High", and "High"
+ */
 export function calculateRisk(riskScore) {
+  const [min, mod, modHigh, high] = riskRange;
   let riskLevel;
-  if (riskScore >= 0 && riskScore < 0.1) riskLevel = "Minimal";
-  else if (riskScore >= 0.1 && riskScore < 0.4) riskLevel = "Moderate";
-  else if (riskScore >= 0.4 && riskScore < 0.5) riskLevel = "Moderate High";
-  else if (riskScore >= 0.5 && riskScore <= 1) riskLevel = "High";
+  if (riskScore >= 0 && riskScore < min) riskLevel = "Minimal";
+  else if (riskScore >= min && riskScore < mod) riskLevel = "Moderate";
+  else if (riskScore >= mod && riskScore < modHigh) riskLevel = "Moderate High";
+  else if (riskScore >= modHigh && riskScore <= high) riskLevel = "High";
   return riskLevel;
 }
 
+/**
+ * Calculate text color and an array of background colors
+ * based on the risk score
+ * @param {number} riskScore - The risk score as a number
+ * @returns {Array<string>} An array where the first element
+ * is the text color, and the remaining elements are the background colors
+ */
 export function calculateColor(riskScore) {
   const riskLevel = calculateRisk(riskScore);
   // Get the array of colors from the scale
@@ -35,6 +50,14 @@ export function calculateColor(riskScore) {
   return [textColor, ...colors];
 }
 
+/**
+ * Get the secondary and tertiary colors corresponding to the
+ * highest risk score among a patient's adverse events
+ * @param {Object} patient - The patient object containing adverse events
+ * @param {Array<Object>} patient.adverseEvents - Array of adverse events
+ * @returns {Array<string>} An array containing the secondary
+ * and tertiary colors for the highest risk adverse event
+ */
 export function highestRiskColor(patient) {
   const risks = patient.adverseEvents;
   const filteredRisks = FilterUnwantedAdverse(risks);

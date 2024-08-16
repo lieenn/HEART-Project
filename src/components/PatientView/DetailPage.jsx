@@ -5,28 +5,17 @@ import patientView from "../../Json files 2 patients/patientView.json";
 import AdverseEventsHigh from "./AdverseEventsHigh";
 import AdverseEventsLow from "./AdverseEventsLow";
 
+/**
+ * Renders patient view with their name, id, room number, and adverse events.
+ * @returns {JSX.Element} - The detail page of a patient
+ */
 export default function DetailPage() {
   const { value } = useParams(); // Get the person's name from the URL
-  console.log(value);
-  // Find the person based on PatientName
   const person = patientView.find((item) => item.PatientName.includes(value));
-  console.log(person);
-
-  if (!person) {
-    return (
-      <Box textAlign="center" mt={5}>
-        <Typography variant="h4" gutterBottom>
-          No Details Found
-        </Typography>
-        <Link to="/">
-          <Button variant="contained">Back</Button>
-        </Link>
-      </Box>
-    );
-  }
 
   return (
     <Container mt={5} maxWidth="xl">
+      {/* Patient's general info */}
       <Box
         sx={{
           display: "flex",
@@ -43,7 +32,7 @@ export default function DetailPage() {
           <Typography variant="h6">Room # {person.roomNumber}</Typography>
         </Box>
       </Box>
-      {/* Flex container with different widths for left and right sides */}
+      {/* Renders list of high-risk and low-risk adverse events */}
       <Box
         sx={{
           display: "flex",
@@ -51,7 +40,7 @@ export default function DetailPage() {
           border: "3px solid #000",
         }}
       >
-        {/* AdverseEvents component with more space */}
+        {/* AdverseEventsHigh component with more space */}
         <Box sx={{ flex: 3 }}>
           <AdverseEventsHigh adverseEvents={person.adverseEvents} />
         </Box>
@@ -60,7 +49,7 @@ export default function DetailPage() {
         <Box sx={{ borderLeft: "3px solid #000" }} />
 
         {/* AdverseEventsLow component with less space */}
-        <Box sx={{ flex: 1.5 }}>
+        <Box sx={{ flex: 2 }}>
           <AdverseEventsLow adverseEvents={person.adverseEvents} />
         </Box>
       </Box>

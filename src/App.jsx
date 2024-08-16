@@ -6,6 +6,10 @@ import Box from "@mui/material/Box";
 import MainView from "./components/AggregateView/MainView";
 import DetailPage from "./components/PatientView/DetailPage";
 
+// Max range of risk values
+// [Mininal, Moderate, Moderate High, High]
+export const riskRange = [0.4, 0.6, 0.8, 1];
+
 export default function App() {
   return (
     <Container maxWidth="xl">

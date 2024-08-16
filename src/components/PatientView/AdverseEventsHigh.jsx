@@ -2,6 +2,16 @@ import { List, ListItem, Box, Container, Typography } from "@mui/material";
 import { FilterLowRisk, FilterUnwantedAdverse } from "../Utils/FilterFunctions";
 import AdverseEvent from "./AdverseEvent";
 
+/**
+ * A list of high risk adverse events.
+ *
+ * Filters the patient's adverse events to display only
+ * those with high risk. If no high-risk events are found,
+ * it displays a message indicating this.
+ *
+ * @param {Array} param0 - The array of adverse events of the patient.
+ * @returns {JSX.Element} - The rendered high-risk adverse events as a list.
+ */
 export default function AdverseEventsHigh({ adverseEvents }) {
   const risks = FilterUnwantedAdverse(adverseEvents);
   const filteredRisks = FilterLowRisk(risks);
@@ -9,6 +19,7 @@ export default function AdverseEventsHigh({ adverseEvents }) {
 
   return (
     <Box>
+      {/* Header */}
       <Box>
         <Typography
           gutterBottom
@@ -32,7 +43,6 @@ export default function AdverseEventsHigh({ adverseEvents }) {
         </Typography>
       </Box>
 
-      {/* Conditional rendering based on the length of sortedRisks */}
       {sortedRisks.length > 0 ? (
         <List>
           {sortedRisks.map((risk, index) => (

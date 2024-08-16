@@ -16,7 +16,7 @@ export default function MainView() {
       <ColorLegend />
       <TableContainer sx={{ border: "3px solid #000", mt: 4 }}>
         <Table aria-label="simple table" stickyHeader>
-          {/* Wrap Patient components in a TableBody */}
+          {/* Display a list of patients */}
           <TableBody>
             {aggregate.map((patient) => (
               <Patient key={patient.roomNumber} patient={patient} />

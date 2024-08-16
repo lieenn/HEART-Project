@@ -9,7 +9,7 @@ import { highestRiskColor } from "../Utils/Calculator";
  * Shows the patient's name room number.
  * and a component for the patient's risk status.
  * @param {Object} patient - Current patient's data
- * @returns Current patient's risk status
+ * @returns {JSX.Element} - The rendered table row
  */
 export default function Patient({ patient }) {
   const [nameColor, infoColor] = highestRiskColor(patient);
@@ -36,13 +36,13 @@ export default function Patient({ patient }) {
             {patient.PatientName}
           </Typography>
         </Link>
-        {/* Patient's other info */}
+        {/* Patient's id and room number */}
         <Container sx={{ bgcolor: infoColor, width: "80%", mt: "5px" }}>
           <Box sx={{ fontWeight: "bold" }}>{patient.PID}</Box>
           <Box sx={{ fontWeight: "bold" }}>Room {patient.roomNumber}</Box>
         </Container>
       </TableCell>
-      {/* Patient's statuses */}
+      {/* Adverse Risk Statuses */}
       <TableCell
         sx={{
           width: "100%",

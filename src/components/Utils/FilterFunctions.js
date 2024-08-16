@@ -1,9 +1,10 @@
 import { calculateRisk } from "./Calculator";
 
 /**
- * Helper function for filters out events where the riskScore is not 0.0.
- * @param {Array} patientAdverseEvents - The array of adverse events.
- * @returns {Array} - The filtered array of risks.
+ * Filters adverse events to return only those that are
+ * considered "Moderate," "Moderate High," or "High" risk.
+ * @param {Array<Object>} patientAdverseEvents - An array of adverse event objects
+ * @returns {Array<Object>} Adverse events that have a risk level other than "Minimal".
  */
 export function FilterLowRisk(patientAdverseEvents) {
   return patientAdverseEvents.filter(
@@ -11,6 +12,12 @@ export function FilterLowRisk(patientAdverseEvents) {
   );
 }
 
+/**
+ * Filters adverse events to return only those that are
+ * considered "Minimal" risk
+ * @param {Array} patientAdverseEvents - An array of adverse event objects
+ * @returns {Array} Adverse events that have a risk level of "Minimal".
+ */
 export function FilterHighRisk(patientAdverseEvents) {
   return patientAdverseEvents.filter(
     (event) => calculateRisk(event.riskScore) === "Minimal"
@@ -18,9 +25,13 @@ export function FilterHighRisk(patientAdverseEvents) {
 }
 
 /**
- * Helper function to filter out adverse events from the table.
- * @param {Array} patientAdverseEvents - The array of adverse events.
- * @returns {Array} - The filtered array of risks.
+ * Filters out adverse events that are considered unwanted based on their titles
+
+ * This function excludes events with titles that match any of the unwanted
+ * titles in the `titles` array, such as "Length of Stay" and "Morbidity".
+ *
+ * @param {Array<Object>} patientAdverseEvents - An array of adverse event objects, each containing a `title` property.
+ * @returns {Array<Object>} An array of adverse events that do not include the unwanted titles.
  */
 export function FilterUnwantedAdverse(patientAdverseEvents) {
   const titles = ["Length of Stay", "Morbidity"];

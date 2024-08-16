@@ -27,6 +27,7 @@ export default function ColorLegend() {
         Color Legend
       </Typography>
       {labels.map((label) => (
+        // Display the color and label
         <Box
           key={label}
           sx={{

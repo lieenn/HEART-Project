@@ -5,6 +5,16 @@ import {
 } from "../Utils/FilterFunctions";
 import AdverseEvent from "./AdverseEvent";
 
+/**
+ * A list of low risk adverse events.
+ *
+ * This component filters the patient's adverse events to display only
+ * those with low risk. If no low-risk events are found,
+ * it displays a message indicating this.
+ *
+ * @param {Array} param0 - The array of adverse events of the patient.
+ * @returns {JSX.Element} - The rendered low-risk adverse events as a list.
+ */
 export default function AdverseEventsLow({ adverseEvents }) {
   const risks = FilterUnwantedAdverse(adverseEvents);
   const filteredRisks = FilterHighRisk(risks);
@@ -21,7 +31,7 @@ export default function AdverseEventsLow({ adverseEvents }) {
             fontWeight: "bold",
             fontSize: "20px",
             color: "white",
-            width: "100%", // Ensure the Box takes full width of the Container
+            width: "100%",
           }}
         >
           Low Risk Adverse Events
@@ -34,13 +44,20 @@ export default function AdverseEventsLow({ adverseEvents }) {
           for these adverse events:
         </Typography>
       </Box>
-      <List>
-        {sortedRisks.map((item, index) => (
-          <ListItem key={index}>
-            <AdverseEvent adverseEvent={item} />
-          </ListItem>
-        ))}
-      </List>
+
+      {sortedRisks.length > 0 ? (
+        <List>
+          {sortedRisks.map((risk, index) => (
+            <ListItem key={index}>
+              <AdverseEvent adverseEvent={risk} />
+            </ListItem>
+          ))}
+        </List>
+      ) : (
+        <Typography sx={{ m: 2, fontStyle: "italic" }}>
+          No low-risk adverse events found.
+        </Typography>
+      )}
     </Box>
   );
 }
