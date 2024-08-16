@@ -42,7 +42,7 @@ export default function DetailPage() {
         sx={{
           display: "flex",
           mt: 4,
-          border: "3px solid #000",
+          border: "1.5px solid #000",
         }}
       >
         {/* High-risk adverse events list */}
@@ -56,7 +56,7 @@ export default function DetailPage() {
         </Box>
 
         {/* Vertical separator between high-risk and low-risk lists */}
-        <Box sx={{ borderLeft: "3px solid #000" }} />
+        <Box sx={{ borderLeft: "1.5px solid #000" }} />
 
         {/* Low-risk adverse events list */}
         <Box sx={{ flex: 1.5 }}>
@@ -70,11 +70,17 @@ export default function DetailPage() {
       </Box>
 
       {/* Back button to return to the previous page */}
-      <Link to="/">
-        <Button variant="contained" sx={{ mt: 2 }}>
-          Back
-        </Button>
-      </Link>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          mt: 2,
+        }}
+      >
+        <Link to="/">
+          <Button variant="contained">Back</Button>
+        </Link>
+      </Box>
     </Container>
   );
 }

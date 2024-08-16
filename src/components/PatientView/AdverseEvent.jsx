@@ -11,7 +11,7 @@ import { riskRange } from "../../App";
  * @returns {JSX.Element} - The rendered adverse event
  */
 export default function AdverseEvent({ adverseEvent }) {
-  const recWidth = 208;
+  const recWidth = 205;
   const recHeight = 36;
   const [textColor, color] = calculateColor(adverseEvent.riskScore);
   const riskLevel = calculateRisk(adverseEvent.riskScore);
@@ -28,7 +28,7 @@ export default function AdverseEvent({ adverseEvent }) {
             height={recHeight}
             fill={color}
             stroke="black"
-            strokeWidth="6px"
+            strokeWidth="3px"
           />
           <text
             x="10"

@@ -17,7 +17,7 @@ import { colorScale } from "../Utils/Calculator";
  * @returns {JSX.Element} - The rendered risk scale visualization.
  */
 export default function RiskScale({ adverseEvent, domain, isHighRisk }) {
-  const width = 160;
+  const width = 180;
   const height = 24;
   const xScale = d3.scaleLinear().domain(domain).range([0, width]);
 
@@ -34,6 +34,8 @@ export default function RiskScale({ adverseEvent, domain, isHighRisk }) {
   const extraWidthLow = isUncertainLow ? 25 : 0;
   const extraWidthHigh = isUncertainHigh ? 25 : 0;
   const svgWidth = width + extraWidthLow + extraWidthHigh;
+  const strokeColor = "black";
+  const strokeWidth = 1.5;
 
   return (
     <Box sx={{ mt: 0.8, display: "flex", gap: 2 }}>
@@ -47,8 +49,8 @@ export default function RiskScale({ adverseEvent, domain, isHighRisk }) {
               width={width / 3}
               height={height}
               fill={colors[1]}
-              stroke="black"
-              strokeWidth="3"
+              stroke={strokeColor}
+              strokeWidth={strokeWidth}
             />
             <rect
               x={extraWidthLow + width / 3}
@@ -56,8 +58,8 @@ export default function RiskScale({ adverseEvent, domain, isHighRisk }) {
               width={width / 3}
               height={height}
               fill={colors[2]}
-              stroke="black"
-              strokeWidth="3"
+              stroke={strokeColor}
+              strokeWidth={strokeWidth}
             />
             <rect
               x={extraWidthLow + (2 * width) / 3}
@@ -65,8 +67,8 @@ export default function RiskScale({ adverseEvent, domain, isHighRisk }) {
               width={width / 3}
               height={height}
               fill={colors[3]}
-              stroke="black"
-              strokeWidth="3"
+              stroke={strokeColor}
+              strokeWidth={strokeWidth}
             />
           </>
         ) : (
@@ -76,8 +78,8 @@ export default function RiskScale({ adverseEvent, domain, isHighRisk }) {
             width={width}
             height={height}
             fill={colors[0]}
-            stroke="black"
-            strokeWidth="3"
+            stroke={strokeColor}
+            strokeWidth={strokeWidth}
           />
         )}
 
@@ -89,8 +91,8 @@ export default function RiskScale({ adverseEvent, domain, isHighRisk }) {
             width={extraWidthLow}
             height={height}
             fill={colors[0]}
-            stroke="black"
-            strokeWidth="3"
+            stroke={strokeColor}
+            strokeWidth={strokeWidth}
             strokeDasharray="4 2"
           />
         )}
@@ -102,8 +104,8 @@ export default function RiskScale({ adverseEvent, domain, isHighRisk }) {
             width={extraWidthHigh}
             height={height}
             fill={colors[isHighRisk ? 3 : 1]}
-            stroke="black"
-            strokeWidth="3"
+            stroke={strokeColor}
+            strokeWidth={strokeWidth}
             strokeDasharray="4 2"
           />
         )}

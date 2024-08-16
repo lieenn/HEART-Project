@@ -287,5 +287,315 @@
         ]
       }
     ]
+  },
+  {
+    "PatientName": "A. Johnson",
+    "PID": "# 1234",
+    "roomNumber": 15,
+    "timeStamp": 1719510000000,
+    "adverseEvents": [
+      {
+        "title": "Short Length of Stay",
+        "riskScore": 0.72,
+        "uncertaintyBand": { "low": 0.6, "high": 0.85 },
+        "explanations": [
+          { "title": "age", "value": 45, "weight": 0.0045 },
+          {
+            "title": "Operative lowest hematocrit",
+            "value": 30.2,
+            "weight": 0.0023
+          }
+        ]
+      },
+      {
+        "title": "Prolonged Length of Stay",
+        "riskScore": 0.55,
+        "uncertaintyBand": { "low": 0.5, "high": 0.7 },
+        "explanations": [
+          { "title": "total albumin", "value": 3.8, "weight": -0.0017 },
+          {
+            "title": "Operative lowest hematocrit",
+            "value": 32.0,
+            "weight": -0.0013
+          }
+        ]
+      },
+      {
+        "title": "Stroke",
+        "riskScore": 0.65,
+        "uncertaintyBand": { "low": 0.5, "high": 0.7 },
+        "explanations": [
+          { "title": "OR Time", "value": 5.0, "weight": 0.0021 },
+          { "title": "age", "value": 62, "weight": 0.0018 }
+        ]
+      },
+      {
+        "title": "Reoperation",
+        "riskScore": 0.5,
+        "uncertaintyBand": { "low": 0.35, "high": 0.6 },
+        "explanations": [
+          {
+            "title": "intraop blood products - FFP units",
+            "value": 2,
+            "weight": 0.0023
+          },
+          { "title": "total albumin", "value": 3.2, "weight": 0.0017 }
+        ]
+      },
+      {
+        "title": "Prolonged Ventilation",
+        "riskScore": 0.82,
+        "uncertaintyBand": { "low": 0.6, "high": 0.9 },
+        "explanations": [
+          { "title": "iabp insertion", "value": "Yes", "weight": 0.0042 },
+          { "title": "cardiogentic shock", "value": "Yes", "weight": 0.0038 }
+        ]
+      },
+      {
+        "title": "Operative Mortality",
+        "riskScore": 0.34,
+        "uncertaintyBand": { "low": 0.2, "high": 0.5 },
+        "explanations": [
+          { "title": "cardiogentic shock", "value": "Yes", "weight": 0.0036 },
+          { "title": "total albumin", "value": 3.0, "weight": 0.0024 }
+        ]
+      },
+      {
+        "title": "Renal Failure",
+        "riskScore": 0.48,
+        "uncertaintyBand": { "low": 0.1, "high": 0.55 },
+        "explanations": [
+          {
+            "title": "Operative lowest hematocrit",
+            "value": 31.0,
+            "weight": 0.0014
+          },
+          {
+            "title": "highest PA systolic pressure",
+            "value": 24,
+            "weight": 0.0011
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "PatientName": "B. Williams",
+    "PID": "# 5678",
+    "roomNumber": 16,
+    "timeStamp": 1719510500000,
+    "adverseEvents": [
+      {
+        "title": "Reoperation",
+        "riskScore": 0.25,
+        "uncertaintyBand": { "low": 0.2, "high": 0.4 },
+        "explanations": [
+          { "title": "iabp insertion", "value": "Yes", "weight": 0.002 },
+          { "title": "total albumin", "value": 3.1, "weight": 0.0012 }
+        ]
+      },
+      {
+        "title": "Prolonged Ventilation",
+        "riskScore": 0.25,
+        "uncertaintyBand": { "low": 0.2, "high": 0.4 },
+        "explanations": [
+          {
+            "title": "iabp insertion",
+            "value": "No insertion",
+            "weight": -0.0011
+          },
+          {
+            "title": "Operative lowest hematocrit",
+            "value": 31.0,
+            "weight": -0.0009
+          }
+        ]
+      },
+      {
+        "title": "Short Length of Stay",
+        "riskScore": 0.7,
+        "uncertaintyBand": { "low": 0.6, "high": 0.8 },
+        "explanations": [
+          { "title": "age", "value": 47, "weight": 0.004 },
+          {
+            "title": "Operative lowest hematocrit",
+            "value": 29.5,
+            "weight": 0.0031
+          }
+        ]
+      },
+      {
+        "title": "Major Mortality/Morbidity",
+        "riskScore": 0.15,
+        "uncertaintyBand": { "low": 0.1, "high": 0.25 },
+        "explanations": [
+          {
+            "title": "iabp insertion",
+            "value": "No insertion",
+            "weight": -0.0015
+          },
+          {
+            "title": "Operative lowest hematocrit",
+            "value": 31.8,
+            "weight": -0.0012
+          }
+        ]
+      },
+      {
+        "title": "Stroke",
+        "riskScore": 0.45,
+        "uncertaintyBand": { "low": 0.2, "high": 0.6 },
+        "explanations": [
+          { "title": "age", "value": 60, "weight": 0.0028 },
+          {
+            "title": "Operative lowest temperature",
+            "value": "37 Celsius",
+            "weight": 0.0015
+          }
+        ]
+      },
+      {
+        "title": "Renal Failure",
+        "riskScore": 0.33,
+        "uncertaintyBand": { "low": 0.3, "high": 0.45 },
+        "explanations": [
+          {
+            "title": "highest PA systolic pressure",
+            "value": 25,
+            "weight": 0.0017
+          },
+          {
+            "title": "Operative lowest hematocrit",
+            "value": 32.2,
+            "weight": 0.0014
+          }
+        ]
+      },
+      {
+        "title": "Operative Mortality",
+        "riskScore": 0.4,
+        "uncertaintyBand": { "low": 0.35, "high": 0.55 },
+        "explanations": [
+          { "title": "cardiogentic shock", "value": "Yes", "weight": 0.0025 },
+          {
+            "title": "Appropriate Antibiotic Discontinuation",
+            "value": "Exclusion",
+            "weight": 0.0018
+          }
+        ]
+      },
+      {
+        "title": "Short Length of Stay",
+        "riskScore": 0.8,
+        "uncertaintyBand": { "low": 0.75, "high": 0.85 },
+        "explanations": [
+          { "title": "age", "value": 50, "weight": 0.0039 },
+          {
+            "title": "Operative lowest hematocrit",
+            "value": 29.0,
+            "weight": 0.0027
+          }
+        ]
+      },
+      {
+        "title": "Major Mortality/Morbidity",
+        "riskScore": 0.3,
+        "uncertaintyBand": { "low": 0.25, "high": 0.35 },
+        "explanations": [
+          {
+            "title": "iabp insertion",
+            "value": "No insertion",
+            "weight": -0.0012
+          },
+          {
+            "title": "Operative lowest hematocrit",
+            "value": 31.5,
+            "weight": -0.0008
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "PatientName": "C. Davis",
+    "PID": "# 9101",
+    "roomNumber": 17,
+    "timeStamp": 1719511000000,
+    "adverseEvents": [
+      {
+        "title": "Renal Failure",
+        "riskScore": 0.6,
+        "uncertaintyBand": { "low": 0.55, "high": 0.65 },
+        "explanations": [
+          {
+            "title": "Operative lowest hematocrit",
+            "value": 28.5,
+            "weight": 0.0023
+          },
+          {
+            "title": "highest PA systolic pressure",
+            "value": 30,
+            "weight": 0.0017
+          }
+        ]
+      },
+      {
+        "title": "Prolonged Ventilation",
+        "riskScore": 0.85,
+        "uncertaintyBand": { "low": 0.8, "high": 0.95 },
+        "explanations": [
+          { "title": "iabp insertion", "value": "Yes", "weight": 0.0042 },
+          {
+            "title": "Operative lowest hematocrit",
+            "value": 28.0,
+            "weight": 0.0029
+          }
+        ]
+      },
+      {
+        "title": "Major Mortality/Morbidity",
+        "riskScore": 0.9,
+        "uncertaintyBand": { "low": 0.85, "high": 0.95 },
+        "explanations": [
+          { "title": "iabp insertion", "value": "Yes", "weight": 0.0051 },
+          { "title": "cardiogentic shock", "value": "Yes", "weight": 0.004 }
+        ]
+      },
+      {
+        "title": "Stroke",
+        "riskScore": 0.78,
+        "uncertaintyBand": { "low": 0.7, "high": 0.85 },
+        "explanations": [
+          { "title": "age", "value": 70, "weight": 0.0035 },
+          {
+            "title": "Operative lowest temperature",
+            "value": "35 Celsius",
+            "weight": 0.0028
+          }
+        ]
+      },
+      {
+        "title": "Short Length of Stay",
+        "riskScore": 0.55,
+        "uncertaintyBand": { "low": 0.5, "high": 0.6 },
+        "explanations": [
+          { "title": "age", "value": 65, "weight": 0.0027 },
+          {
+            "title": "Operative lowest hematocrit",
+            "value": 30.5,
+            "weight": 0.0015
+          }
+        ]
+      },
+      {
+        "title": "Reoperation",
+        "riskScore": 0.4,
+        "uncertaintyBand": { "low": 0.35, "high": 0.5 },
+        "explanations": [
+          { "title": "total albumin", "value": 3.3, "weight": 0.0019 },
+          { "title": "iabp insertion", "value": "Yes", "weight": 0.0016 }
+        ]
+      }
+    ]
   }
 ]

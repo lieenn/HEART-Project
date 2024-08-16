@@ -21,7 +21,7 @@ export default function PatientRiskStatus({ risk }) {
         alignItems: "center",
         gap: 1,
         mb: 2,
-        mr: 5,
+        mr: 2,
       }}
     >
       <svg width={rectWidth} height="32">
@@ -30,7 +30,7 @@ export default function PatientRiskStatus({ risk }) {
           height="32"
           fill={color}
           stroke="black"
-          strokeWidth="6px"
+          strokeWidth="3px"
         />
         <text
           x="50%"

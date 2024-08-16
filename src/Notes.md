@@ -1,7 +1,7 @@
-- Thinner borders & gray,
-- blue color,
-- short uncertaintcy band,
-- add back button,
+- Thinner borders & gray, (done)
+- blue color, (done)
+- shorter uncertaintcy area, (done)
+- add back button, (done)
 - add sorting and filtering
 - sort based on patient's risk
 - filter sepcific risks that the clinicians are looking for: keep every risk,

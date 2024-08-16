@@ -46,7 +46,7 @@ export default function Patient({ patient }) {
       <TableCell
         sx={{
           width: "100%",
-          borderLeft: "3px solid #000",
+          borderLeft: "1.5px solid #000",
           borderBottom: "none",
         }}
       >

@@ -43,7 +43,7 @@ export default function ColorLegend() {
               width: 24,
               height: 24,
               backgroundColor: colorScale(label)[0],
-              border: "3px solid black",
+              border: "1.5px solid black",
             }}
           />
           <Typography
