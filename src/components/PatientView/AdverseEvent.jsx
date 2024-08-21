@@ -10,11 +10,11 @@ import { riskRange } from "../../App";
  * @param {*} param0 - The adverse event to render
  * @returns {JSX.Element} - The rendered adverse event
  */
-export default function AdverseEvent({ adverseEvent }) {
+export default function AdverseEvent({ adverseEvent, riskRange }) {
   const recWidth = 205;
   const recHeight = 36;
-  const [textColor, color] = calculateColor(adverseEvent.riskScore);
-  const riskLevel = calculateRisk(adverseEvent.riskScore);
+  const [textColor, color] = calculateColor(adverseEvent.riskScore, riskRange);
+  const riskLevel = calculateRisk(adverseEvent.riskScore, riskRange);
   const lowRiskDomain = [0, riskRange[0]];
   const highRiskDomain = [riskRange[0], riskRange[3]];
 
@@ -64,12 +64,14 @@ export default function AdverseEvent({ adverseEvent }) {
           adverseEvent={adverseEvent}
           domain={lowRiskDomain}
           isHighRisk={false}
+          riskRange={riskRange}
         />
       ) : (
         <RiskScale
           adverseEvent={adverseEvent}
           domain={highRiskDomain}
           isHighRisk={true}
+          riskRange={riskRange}
         />
       )}
     </Box>

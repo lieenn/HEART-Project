@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { Button, Typography, Box, Container } from "@mui/material";
-import patientView from "../../Json files 2 patients/patientView.json";
 import AdverseEventsList from "./AdverseEventsList";
 import { FilterLowRisk, FilterHighRisk } from "../Utils/FilterFunctions";
 
@@ -13,9 +12,9 @@ import { FilterLowRisk, FilterHighRisk } from "../Utils/FilterFunctions";
  * AdverseEventsList handles the rendering of both high-risk and low-risk events.
  * @returns {JSX.Element} - The detail page for a specific patient.
  */
-export default function DetailPage() {
+export default function DetailPage({ riskRange, patientData }) {
   const { value } = useParams(); // Extract the patient's name from the URL parameter
-  const person = patientView.find((item) => item.PatientName.includes(value)); // Find the patient data based on the name
+  const person = patientData.find((item) => item.PatientName.includes(value)); // Find the patient data based on the name
 
   return (
     <Container mt={5} maxWidth="xl">
@@ -52,6 +51,7 @@ export default function DetailPage() {
             riskFilter={FilterLowRisk}
             header="High Risk Adverse Events"
             bgColor="#f7917d"
+            riskRange={riskRange}
           />
         </Box>
 
@@ -65,6 +65,7 @@ export default function DetailPage() {
             riskFilter={FilterHighRisk}
             header="Low Risk Adverse Events"
             bgColor="#82c3f6"
+            riskRange={riskRange}
           />
         </Box>
       </Box>

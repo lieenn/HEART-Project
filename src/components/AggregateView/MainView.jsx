@@ -1,25 +1,32 @@
 import React from "react";
 import { TableContainer, Table, Box, TableBody } from "@mui/material";
-import patientView from "../../Json files 2 patients/patientView.json";
 import Patient from "./Patient";
 import ColorLegend from "./ColorLegend";
 
 /**
- * Renders an overall aggregate view of all patients.
- * Includes a color legend for risk status.
- * and a table of all patients.
- * @returns {JSX.Element} The rendered table component.
+ * Renders the main view of the application.
+ * Includes a color legend and a table that lists all patients.
+ * Passes the dynamic risk range to child components.
+ *
+ * @param {Object} props - Component props
+ * @param {Array<number>} props.riskRange - The dynamic range of risk scores.
+ * @returns {JSX.Element} The rendered main view component.
  */
-export default function MainView() {
+export default function MainView({ riskRange, patientData }) {
   return (
     <Box>
-      <ColorLegend />
+      {/* Renders the color legend component */}
+      <ColorLegend riskRange={riskRange} />
       <TableContainer sx={{ border: "1.5px solid #000", mt: 4 }}>
         <Table aria-label="simple table" stickyHeader>
           {/* Display a list of patients */}
           <TableBody>
-            {patientView.map((patient) => (
-              <Patient key={patient.roomNumber} patient={patient} />
+            {patientData.map((patient) => (
+              <Patient
+                key={patient.roomNumber}
+                patient={patient}
+                riskRange={riskRange}
+              />
             ))}
           </TableBody>
         </Table>

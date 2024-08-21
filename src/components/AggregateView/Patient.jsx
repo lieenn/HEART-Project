@@ -5,14 +5,17 @@ import PatientRisks from "./PatientRisks";
 import { highestRiskColor } from "../Utils/Calculator";
 
 /**
- * Represents each row of the table.
- * Shows the patient's name room number.
- * and a component for the patient's risk status.
- * @param {Object} patient - Current patient's data
- * @returns {JSX.Element} - The rendered table row
+ * Represents a single row in the patient table.
+ * Displays the patient's name, room number, and risk status.
+ *
+ * @param {Object} props - Component props
+ * @param {Object} props.patient - The data of the current patient.
+ * @param {Array<number>} props.riskRange - The dynamic range of risk scores.
+ * @returns {JSX.Element} The rendered patient row component.
  */
-export default function Patient({ patient }) {
-  const [nameColor, infoColor] = highestRiskColor(patient);
+export default function Patient({ patient, riskRange }) {
+  // Get colors based on the patient's highest risk score
+  const [nameColor, infoColor] = highestRiskColor(patient, riskRange);
 
   return (
     <TableRow>
@@ -36,13 +39,13 @@ export default function Patient({ patient }) {
             {patient.PatientName}
           </Typography>
         </Link>
-        {/* Patient's id and room number */}
+        {/* Patient's ID and room number */}
         <Container sx={{ bgcolor: infoColor, width: "80%", mt: "5px" }}>
           <Box sx={{ fontWeight: "bold" }}>{patient.PID}</Box>
           <Box sx={{ fontWeight: "bold" }}>Room {patient.roomNumber}</Box>
         </Container>
       </TableCell>
-      {/* Adverse Risk Statuses */}
+      {/* Renders the patient's adverse risk statuses */}
       <TableCell
         sx={{
           width: "100%",
@@ -50,7 +53,10 @@ export default function Patient({ patient }) {
           borderBottom: "none",
         }}
       >
-        <PatientRisks adverseEvents={patient.adverseEvents} />
+        <PatientRisks
+          adverseEvents={patient.adverseEvents}
+          riskRange={riskRange}
+        />
       </TableCell>
     </TableRow>
   );

@@ -16,7 +16,12 @@ import { colorScale } from "../Utils/Calculator";
  * @param {boolean} isHighRisk - Indicates if the scale is for a high-risk event.
  * @returns {JSX.Element} - The rendered risk scale visualization.
  */
-export default function RiskScale({ adverseEvent, domain, isHighRisk }) {
+export default function RiskScale({
+  adverseEvent,
+  domain,
+  isHighRisk,
+  riskRange,
+}) {
   const width = 180;
   const height = 24;
   const xScale = d3.scaleLinear().domain(domain).range([0, width]);
@@ -26,7 +31,7 @@ export default function RiskScale({ adverseEvent, domain, isHighRisk }) {
     return colorArray[2]; // Get the tertiary color (third in the array)
   });
 
-  const [textColor, color] = calculateColor(adverseEvent.riskScore);
+  const [textColor, color] = calculateColor(adverseEvent.riskScore, riskRange);
 
   const isUncertainLow = adverseEvent.uncertaintyBand.low < domain[0];
   const isUncertainHigh = adverseEvent.uncertaintyBand.high > domain[1];

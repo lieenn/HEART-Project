@@ -1,3 +1,4 @@
+import { riskRange } from "../../App";
 import { calculateRisk } from "./Calculator";
 
 /**
@@ -6,9 +7,9 @@ import { calculateRisk } from "./Calculator";
  * @param {Array<Object>} patientAdverseEvents - An array of adverse event objects
  * @returns {Array<Object>} Adverse events that have a risk level other than "Minimal".
  */
-export function FilterLowRisk(patientAdverseEvents) {
+export function FilterLowRisk(patientAdverseEvents, riskRange) {
   return patientAdverseEvents.filter(
-    (event) => calculateRisk(event.riskScore) !== "Minimal"
+    (event) => calculateRisk(event.riskScore, riskRange) !== "Minimal"
   );
 }
 
@@ -18,9 +19,9 @@ export function FilterLowRisk(patientAdverseEvents) {
  * @param {Array} patientAdverseEvents - An array of adverse event objects
  * @returns {Array} Adverse events that have a risk level of "Minimal".
  */
-export function FilterHighRisk(patientAdverseEvents) {
+export function FilterHighRisk(patientAdverseEvents, riskRange) {
   return patientAdverseEvents.filter(
-    (event) => calculateRisk(event.riskScore) === "Minimal"
+    (event) => calculateRisk(event.riskScore, riskRange) === "Minimal"
   );
 }
 

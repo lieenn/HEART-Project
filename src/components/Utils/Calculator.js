@@ -20,10 +20,11 @@ export const colorScale = d3
 /**
  * Calculate risk level given a risk score
  * @param {number} riskScore - The risk score of an adverse event.
+ * @param {Array<number>} riskRange - The current risk range used to define levels.
  * @returns {string} Possible values are "Minimal", "Moderate",
  * "Moderate High", and "High"
  */
-export function calculateRisk(riskScore) {
+export function calculateRisk(riskScore, riskRange) {
   const [min, mod, modHigh, high] = riskRange;
   let riskLevel;
   if (riskScore >= 0 && riskScore < min) riskLevel = "Minimal";
@@ -37,11 +38,12 @@ export function calculateRisk(riskScore) {
  * Calculate text color and an array of background colors
  * based on the risk score
  * @param {number} riskScore - The risk score as a number
+ * @param {Array<number>} riskRange - The current risk range used to define levels.
  * @returns {Array<string>} An array where the first element
  * is the text color, and the remaining elements are the background colors
  */
-export function calculateColor(riskScore) {
-  const riskLevel = calculateRisk(riskScore);
+export function calculateColor(riskScore, riskRange) {
+  const riskLevel = calculateRisk(riskScore, riskRange);
   // Get the array of colors from the scale
   const colors = colorScale(riskLevel);
   const textColor =
@@ -55,10 +57,11 @@ export function calculateColor(riskScore) {
  * highest risk score among a patient's adverse events
  * @param {Object} patient - The patient object containing adverse events
  * @param {Array<Object>} patient.adverseEvents - Array of adverse events
+ * @param {Array<number>} riskRange - The current risk range used to define levels.
  * @returns {Array<string>} An array containing the secondary
  * and tertiary colors for the highest risk adverse event
  */
-export function highestRiskColor(patient) {
+export function highestRiskColor(patient, riskRange) {
   const risks = patient.adverseEvents;
   const filteredRisks = FilterUnwantedAdverse(risks);
   const highestRisk = filteredRisks.reduce((highest, current) => {
@@ -67,7 +70,8 @@ export function highestRiskColor(patient) {
   console.log("highest", highestRisk);
 
   const [textColor, primary, secondary, tertiary] = calculateColor(
-    highestRisk.riskScore
+    highestRisk.riskScore,
+    riskRange
   );
   return [secondary, tertiary];
 }

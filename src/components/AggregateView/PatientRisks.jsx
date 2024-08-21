@@ -5,14 +5,17 @@ import { FilterLowRisk, FilterUnwantedAdverse } from "../Utils/FilterFunctions";
 
 /**
  * Renders a list of risks for a patient.
- * If there are no risks, it will display a message.
- * @param {Object} param0 - The adverse events of the patient
- * @returns {JSX.Element} The rendered list of risks
+ * Filters out low-risk events and unwanted adverse events.
+ *
+ * @param {Object} props - Component props
+ * @param {Array<Object>} props.adverseEvents - The adverse events of the patient.
+ * @param {Array<number>} props.riskRange - The dynamic range of risk scores.
+ * @returns {JSX.Element} The rendered list of patient risks.
  */
-export default function PatientRisks({ adverseEvents }) {
+export default function PatientRisks({ adverseEvents, riskRange }) {
   // Filter and sort adverse events
   const risks = FilterUnwantedAdverse(adverseEvents);
-  const filteredRisks = FilterLowRisk(risks);
+  const filteredRisks = FilterLowRisk(risks, riskRange);
   const sortedRisks = filteredRisks.sort((a, b) => b.riskScore - a.riskScore);
 
   return (
@@ -25,8 +28,7 @@ export default function PatientRisks({ adverseEvents }) {
           width: "100%",
         }}
       >
-        {/* Renders a list of risk status of the patient
-                Returns a message if there is no risk */}
+        {/* Render a list of risk statuses or a message if there are none */}
         {sortedRisks.length === 0 ? (
           <PatientRiskStatus
             risk={{
@@ -34,10 +36,11 @@ export default function PatientRisks({ adverseEvents }) {
                 "No adverse events predicted for this patient at this time.",
               riskScore: 0,
             }}
+            riskRange={riskRange}
           />
         ) : (
           filteredRisks.map((risk, index) => (
-            <PatientRiskStatus key={index} risk={risk} />
+            <PatientRiskStatus key={index} risk={risk} riskRange={riskRange} />
           ))
         )}
       </Box>
