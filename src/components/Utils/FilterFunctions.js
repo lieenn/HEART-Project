@@ -40,3 +40,18 @@ export function FilterUnwantedAdverse(patientAdverseEvents) {
     (event) => !titles.some((title) => event.title.includes(title))
   );
 }
+
+export function GetUniqueAdverseEvents(patientData) {
+  const adverseEvents = patientData.reduce((events, x) => {
+    const filteredEvents = FilterUnwantedAdverse(x.adverseEvents);
+    filteredEvents.forEach((event) => {
+      const title = event.title;
+      if (title && !events.includes(title)) {
+        events.push(title);
+      }
+    });
+    return events;
+  }, []);
+
+  return adverseEvents;
+}

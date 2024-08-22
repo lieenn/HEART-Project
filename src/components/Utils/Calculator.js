@@ -64,13 +64,13 @@ export function calculateColor(riskScore, riskRange) {
 export function highestRiskColor(patient, riskRange) {
   const risks = patient.adverseEvents;
   const filteredRisks = FilterUnwantedAdverse(risks);
-  const highestRisk = filteredRisks.reduce((highest, current) => {
-    return highest.riskScore > current.riskScore ? highest : current;
-  }, filteredRisks[0]);
-  console.log("highest", highestRisk);
+  const highestRisk = Math.max(
+    ...filteredRisks.map((event) => event.riskScore),
+    0
+  );
 
   const [textColor, primary, secondary, tertiary] = calculateColor(
-    highestRisk.riskScore,
+    highestRisk,
     riskRange
   );
   return [secondary, tertiary];

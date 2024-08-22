@@ -456,18 +456,18 @@
       },
       {
         "title": "Renal Failure",
-        "riskScore": 0.33,
-        "uncertaintyBand": { "low": 0.3, "high": 0.45 },
+        "riskScore": 0.6,
+        "uncertaintyBand": { "low": 0.55, "high": 0.65 },
         "explanations": [
           {
-            "title": "highest PA systolic pressure",
-            "value": 25,
-            "weight": 0.0017
+            "title": "Operative lowest hematocrit",
+            "value": 28.5,
+            "weight": 0.0023
           },
           {
-            "title": "Operative lowest hematocrit",
-            "value": 32.2,
-            "weight": 0.0014
+            "title": "highest PA systolic pressure",
+            "value": 30,
+            "weight": 0.0017
           }
         ]
       },
