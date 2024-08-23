@@ -55,3 +55,29 @@ export function GetUniqueAdverseEvents(patientData) {
 
   return adverseEvents;
 }
+
+// Returns [list of relevant adverse events, list of irrelevant adverse events]
+export function filterRelevantAndOtherEvents(
+  eventsToFilter,
+  adverseEvents,
+  riskRange
+) {
+  const filteredEvents = FilterUnwantedAdverse(adverseEvents);
+  const highRiskEvents = FilterLowRisk(filteredEvents, riskRange);
+
+  let relevantEvents = [];
+  let otherEvents = [];
+
+  if (eventsToFilter.length !== 0) {
+    relevantEvents = highRiskEvents.filter((event) =>
+      eventsToFilter.includes(event.title)
+    );
+    otherEvents = highRiskEvents.filter(
+      (event) => !eventsToFilter.includes(event.title)
+    );
+  } else {
+    relevantEvents = highRiskEvents; // Treat all as irrelevant if no filter criteria are provided
+  }
+
+  return [relevantEvents, otherEvents];
+}

@@ -18,13 +18,21 @@ const MenuProps = {
   },
 };
 
+/**
+ * A component that renders a multi-select dropdown for selecting adverse events.
+ *
+ * @param {Object} props - The properties passed to the component.
+ * @param {Array<string>} props.adverseEventsList - List of adverse events to select from.
+ * @param {Array<string>} props.selectedAdverseEvents - Currently selected adverse events.
+ * @param {Function} props.setSelectedAdverseEvents - Function to update selected adverse events.
+ *
+ * @returns {JSX.Element} The rendered multi-select dropdown component.
+ */
 export default function MultiSelect({
   adverseEventsList,
   selectedAdverseEvents,
   setSelectedAdverseEvents,
 }) {
-  console.log(adverseEventsList);
-
   const handleSelected = (event) => {
     const {
       target: { value },

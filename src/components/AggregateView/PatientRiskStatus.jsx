@@ -3,18 +3,21 @@ import { Box } from "@mui/material";
 import { calculateColor } from "../Utils/Calculator";
 
 /**
- * Renders a risk status for a patient as a colored rectangle.
+ * PatientRiskStatus Component
  *
- * @param {Object} props - Component props
- * @param {Object} props.risk - The risk data of the patient.
+ * This component renders a single risk status for a patient as a colored rectangle,
+ * with the color and text color dynamically calculated based on the risk score and range.
+ *
+ * @param {Object} props - The component properties.
+ * @param {Object} props.risk - The data representing the risk event.
  * @param {Array<number>} props.riskRange - The dynamic range of risk scores.
- * @returns {JSX.Element} The rendered risk status component.
+ * @returns {JSX.Element} - The rendered risk status component.
  */
 export default function PatientRiskStatus({ risk, riskRange }) {
-  // Calculate the color based on the risk score and range
+  // Calculate the text and background colors based on the risk score and range
   const [textColor, color] = calculateColor(risk.riskScore, riskRange);
 
-  // Calculate the width of the rectangle based on the title length
+  // Calculate the width of the rectangle based on the title length, ensuring a minimum width
   const titleLength = risk.title.length;
   const rectWidth = Math.max(80, titleLength * 10);
 

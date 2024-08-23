@@ -7,6 +7,18 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
+/**
+ * A component that renders filtering and sorting options for adverse events.
+ *
+ * @param {Object} props - The properties passed to the component.
+ * @param {Array<string>} props.adverseEventsList - List of adverse events to filter and sort by.
+ * @param {Array<string>} props.selectedAdverseEvents - Currently selected adverse events.
+ * @param {Function} props.setSelectedAdverseEvents - Function to update selected adverse events.
+ * @param {string} props.sortingOption - Currently selected sorting option.
+ * @param {Function} props.setSortingOption - Function to update the sorting option.
+ *
+ * @returns {JSX.Element} The rendered filter and sort options component.
+ */
 export default function FilterSortFunctions({
   adverseEventsList,
   selectedAdverseEvents,

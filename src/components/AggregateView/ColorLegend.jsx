@@ -3,8 +3,9 @@ import { Box, Typography } from "@mui/material";
 import { colorScale } from "../Utils/Calculator";
 
 /**
- * Color legend for the risk status of patients.
- * @returns {JSX.Element} - Color legend
+ * A component that displays a color legend representing the risk levels of patients.
+ *
+ * @returns {JSX.Element} The rendered color legend component.
  */
 export default function ColorLegend() {
   const labels = [
@@ -27,7 +28,6 @@ export default function ColorLegend() {
         Color Legend
       </Typography>
       {labels.map((label) => (
-        // Display the color and label
         <Box
           key={label}
           sx={{
