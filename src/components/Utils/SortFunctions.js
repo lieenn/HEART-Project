@@ -1,4 +1,4 @@
-import { FilterLowRisk } from "./FilterFunctions";
+import { FilterLowRisk, FilterUnwantedAdverse } from "./FilterFunctions";
 
 /**
  * Sort patients by the given adverse events, prioritizing those with more matching events
@@ -12,12 +12,14 @@ export function SortByGiven(EventsToSort, patientData, riskRange) {
   // Sort patients
   return patientData.sort((a, b) => {
     // Filter out minimal risk events
-    const relevantEventsA = FilterLowRisk(a.adverseEvents, riskRange).filter(
-      (event) => EventsToSort.includes(event.title)
-    );
-    const relevantEventsB = FilterLowRisk(b.adverseEvents, riskRange).filter(
-      (event) => EventsToSort.includes(event.title)
-    );
+    const relevantEventsA = FilterLowRisk(
+      FilterUnwantedAdverse(a.adverseEvents, riskRange),
+      riskRange
+    ).filter((event) => EventsToSort.includes(event.title));
+    const relevantEventsB = FilterLowRisk(
+      FilterUnwantedAdverse(b.adverseEvents, riskRange),
+      riskRange
+    ).filter((event) => EventsToSort.includes(event.title));
 
     // Count the number of matching adverse events
     const countA = relevantEventsA.length;
@@ -82,34 +84,20 @@ export function SortAndFilter(EventsToSort, patientData, riskRange) {
  * @param {*} riskRange
  */
 export function SortByHighest(EventsToSort, patientData, riskRange) {
-  return patientData.sort((a, b) => {
-    // Filter out minimal risk events
-    const relevantEventsA = FilterLowRisk(a.adverseEvents, riskRange).filter(
-      (event) => EventsToSort.includes(event.title)
-    );
-    const relevantEventsB = FilterLowRisk(b.adverseEvents, riskRange).filter(
-      (event) => EventsToSort.includes(event.title)
-    );
-
-    // Count the number of matching adverse events
-    const countA = relevantEventsA.length;
-    const countB = relevantEventsB.length;
-
-    // If counts are different, prioritize by the count of matching adverse events
-    if (countA !== countB) {
-      return countB - countA; // More matching events come first
-    }
-
-    // If counts are the same, sort by highest riskScore overall
+  const sortedData = patientData.sort((a, b) => {
+    const relevantEventsA = FilterUnwantedAdverse(a.adverseEvents, riskRange);
+    const relevantEventsB = FilterUnwantedAdverse(b.adverseEvents, riskRange);
     const maxRiskScoreA = Math.max(
-      ...a.adverseEvents.map((event) => event.riskScore),
+      ...relevantEventsA.map((event) => event.riskScore),
       0
     );
     const maxRiskScoreB = Math.max(
-      ...b.adverseEvents.map((event) => event.riskScore),
+      ...relevantEventsB.map((event) => event.riskScore),
       0
     );
 
-    return maxRiskScoreB - maxRiskScoreA; // Higher riskScore comes first
+    return maxRiskScoreB - maxRiskScoreA; // Higher riskScore should come first
   });
+
+  return sortedData;
 }

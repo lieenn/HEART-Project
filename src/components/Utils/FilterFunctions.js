@@ -76,7 +76,7 @@ export function filterRelevantAndOtherEvents(
       (event) => !eventsToFilter.includes(event.title)
     );
   } else {
-    relevantEvents = highRiskEvents; // Treat all as irrelevant if no filter criteria are provided
+    otherEvents = highRiskEvents; // Treat all as irrelevant if no filter criteria are provided
   }
 
   return [relevantEvents, otherEvents];

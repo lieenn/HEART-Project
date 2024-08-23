@@ -25,7 +25,7 @@ export default function Patient({ patient, riskRange, selectedAdverseEvents }) {
   );
 
   return (
-    <TableRow>
+    <TableRow sx={{}}>
       <TableCell
         sx={{
           width: "12%",
@@ -55,18 +55,20 @@ export default function Patient({ patient, riskRange, selectedAdverseEvents }) {
       {/* Renders the patient's adverse risk statuses */}
       <TableCell
         sx={{
-          width: "100%",
           borderLeft: "1.5px solid #000",
+          borderBottom: "none",
+          pr: 0,
+        }}
+      >
+        <PatientRisks adverseEvents={relevant} riskRange={riskRange} />
+      </TableCell>
+      <TableCell
+        sx={{
+          borderLeft: "1.5px dashed #000",
           borderBottom: "none",
         }}
       >
-        <Box
-          sx={{
-            display: "flex", // Flexbox only applied to this Box, not the TableCell
-            flexDirection: "row",
-          }}
-        >
-          <PatientRisks adverseEvents={relevant} riskRange={riskRange} />
+        <Box>
           <PatientRisks adverseEvents={others} riskRange={riskRange} />
         </Box>
       </TableCell>

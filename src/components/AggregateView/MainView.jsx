@@ -2,13 +2,14 @@ import React from "react";
 import { TableContainer, Table, Box, TableBody } from "@mui/material";
 import Patient from "./Patient";
 import ColorLegend from "./ColorLegend";
-import FilterSortFunctions from "./FilterSortFunctions";
+import MultiSelect from "./MultiSelect";
 import { GetUniqueAdverseEvents } from "../Utils/FilterFunctions";
 import {
   SortByGiven,
   SortAndFilter,
   SortByHighest,
 } from "../Utils/SortFunctions";
+import SortButtons from "./SortButtons";
 
 /**
  * The main view of the application that includes a color legend and a table listing all patients.
@@ -37,21 +38,29 @@ export default function MainView({ riskRange, patientData }) {
   } else {
     sortedData = patientData;
   }
+
+  if (sortingOption === "Overall highest") {
+    sortedData = SortByHighest(selectedAdverseEvents, patientData, riskRange);
+  } else if (sortingOption === "Filtered conditions") {
+    sortedData = SortByGiven(selectedAdverseEvents, patientData, riskRange);
+  } else {
+    sortedData = patientData;
+  }
+
   if (selectedAdverseEvents.length === 0) {
     sortedData = patientData;
   }
 
   return (
     <Box>
-      <FilterSortFunctions
+      <MultiSelect
         adverseEventsList={adverseEventsList}
         selectedAdverseEvents={selectedAdverseEvents}
         setSelectedAdverseEvents={setSelectedAdverseEvents}
-        sortingOption={sortingOption}
-        setSortingOption={setSortingOption}
       />
       <ColorLegend riskRange={riskRange} />
-      <TableContainer sx={{ border: "1.5px solid #000", mt: 4 }}>
+      <SortButtons setSortingOption={setSortingOption} />
+      <TableContainer sx={{ border: "1.5px solid #000", mt: 0 }}>
         <Table aria-label="simple table" stickyHeader>
           <TableBody>
             {sortedData.map((patient) => (

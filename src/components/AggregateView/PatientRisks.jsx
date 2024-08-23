@@ -26,12 +26,16 @@ export default function PatientRisks({ adverseEvents, riskRange }) {
   const sortedRisks = filteredRisks.sort((a, b) => b.riskScore - a.riskScore);
 
   return (
-    <Container sx={{ border: "none", display: "inline-flex", padding: 0 }}>
+    <Box
+      sx={{
+        display: "inline-flex",
+        padding: 0,
+      }}
+    >
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
-          gap: 2,
           flexWrap: "wrap",
         }}
       >
@@ -40,6 +44,6 @@ export default function PatientRisks({ adverseEvents, riskRange }) {
           <PatientRiskStatus key={index} risk={risk} riskRange={riskRange} />
         ))}
       </Box>
-    </Container>
+    </Box>
   );
 }

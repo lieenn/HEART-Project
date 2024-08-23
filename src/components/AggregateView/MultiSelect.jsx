@@ -6,6 +6,8 @@ import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -43,8 +45,21 @@ export default function MultiSelect({
     );
   };
 
+  const handleSelectAll = () => {
+    setSelectedAdverseEvents(adverseEventsList);
+  };
+
+  const handleDeselectAll = () => {
+    setSelectedAdverseEvents([]);
+  };
+
   return (
-    <div>
+    <Box>
+      <Box>
+        <Button onClick={handleSelectAll}>Select All</Button>
+        <Button onClick={handleDeselectAll}>Deselect All</Button>
+      </Box>
+
       <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-multiple-checkbox-label">
           Adverse Events
@@ -67,6 +82,6 @@ export default function MultiSelect({
           ))}
         </Select>
       </FormControl>
-    </div>
+    </Box>
   );
 }
