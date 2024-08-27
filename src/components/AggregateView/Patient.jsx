@@ -56,15 +56,17 @@ export default function Patient({ patient, riskRange, selectedAdverseEvents }) {
       <TableCell
         sx={{
           borderLeft: "1.5px solid #000",
+          borderRight: "1.5px dashed #000",
+
           borderBottom: "none",
           pr: 0,
+          m: 0,
         }}
       >
         <PatientRisks adverseEvents={relevant} riskRange={riskRange} />
       </TableCell>
       <TableCell
         sx={{
-          borderLeft: "1.5px dashed #000",
           borderBottom: "none",
         }}
       >

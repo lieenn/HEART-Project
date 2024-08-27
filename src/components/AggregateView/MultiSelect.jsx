@@ -6,7 +6,6 @@ import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 const ITEM_HEIGHT = 48;
@@ -20,16 +19,10 @@ const MenuProps = {
   },
 };
 
-/**
- * A component that renders a multi-select dropdown for selecting adverse events.
- *
- * @param {Object} props - The properties passed to the component.
- * @param {Array<string>} props.adverseEventsList - List of adverse events to select from.
- * @param {Array<string>} props.selectedAdverseEvents - Currently selected adverse events.
- * @param {Function} props.setSelectedAdverseEvents - Function to update selected adverse events.
- *
- * @returns {JSX.Element} The rendered multi-select dropdown component.
- */
+// Special values for "Select All" and "Deselect All"
+const SELECT_ALL = "Select All";
+const DESELECT_ALL = "Deselect All";
+
 export default function MultiSelect({
   adverseEventsList,
   selectedAdverseEvents,
@@ -39,27 +32,20 @@ export default function MultiSelect({
     const {
       target: { value },
     } = event;
-    setSelectedAdverseEvents(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
 
-  const handleSelectAll = () => {
-    setSelectedAdverseEvents(adverseEventsList);
-  };
-
-  const handleDeselectAll = () => {
-    setSelectedAdverseEvents([]);
+    if (value.includes(SELECT_ALL)) {
+      setSelectedAdverseEvents(adverseEventsList);
+    } else if (value.includes(DESELECT_ALL)) {
+      setSelectedAdverseEvents([]);
+    } else {
+      setSelectedAdverseEvents(
+        typeof value === "string" ? value.split(",") : value
+      );
+    }
   };
 
   return (
     <Box>
-      <Box>
-        <Button onClick={handleSelectAll}>Select All</Button>
-        <Button onClick={handleDeselectAll}>Deselect All</Button>
-      </Box>
-
       <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-multiple-checkbox-label">
           Adverse Events
@@ -74,6 +60,18 @@ export default function MultiSelect({
           renderValue={(selected) => selected.join(", ")}
           MenuProps={MenuProps}
         >
+          <MenuItem value={SELECT_ALL}>
+            <Checkbox
+              checked={
+                selectedAdverseEvents.length === adverseEventsList.length
+              }
+            />
+            <ListItemText primary={SELECT_ALL} />
+          </MenuItem>
+          <MenuItem value={DESELECT_ALL}>
+            <Checkbox checked={selectedAdverseEvents.length === 0} />
+            <ListItemText primary={DESELECT_ALL} />
+          </MenuItem>
           {adverseEventsList.map((name) => (
             <MenuItem key={name} value={name}>
               <Checkbox checked={selectedAdverseEvents.indexOf(name) > -1} />

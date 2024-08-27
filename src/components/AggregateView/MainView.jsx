@@ -59,10 +59,10 @@ export default function MainView({ riskRange, patientData }) {
         setSelectedAdverseEvents={setSelectedAdverseEvents}
       />
       <ColorLegend riskRange={riskRange} />
-      <SortButtons setSortingOption={setSortingOption} />
       <TableContainer sx={{ border: "1.5px solid #000", mt: 0 }}>
         <Table aria-label="simple table" stickyHeader>
           <TableBody>
+            <SortButtons setSortingOption={setSortingOption} />
             {sortedData.map((patient) => (
               <Patient
                 key={patient.roomNumber}
