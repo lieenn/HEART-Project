@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Popover, Typography } from "@mui/material";
 import { calculateColor } from "../Utils/Calculator";
 
 /**
@@ -21,6 +21,19 @@ export default function PatientRiskStatus({ risk, riskRange }) {
   const titleLength = risk.title.length;
   const rectWidth = Math.max(80, titleLength * 10);
 
+  // Popover state management
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handlePopoverOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+
   return (
     <Box
       sx={{
@@ -30,9 +43,15 @@ export default function PatientRiskStatus({ risk, riskRange }) {
         gap: 1,
         mb: 2,
         mr: 2,
+        position: "relative",
       }}
     >
-      <svg width={rectWidth} height="32">
+      <svg
+        width={rectWidth}
+        height="32"
+        onMouseEnter={handlePopoverOpen}
+        onMouseLeave={handlePopoverClose}
+      >
         <rect
           width={rectWidth}
           height="32"
@@ -42,7 +61,7 @@ export default function PatientRiskStatus({ risk, riskRange }) {
         />
         <text
           x="50%"
-          y="55%"
+          y="50%"
           dominantBaseline="middle"
           textAnchor="middle"
           fontSize="16"
@@ -53,6 +72,26 @@ export default function PatientRiskStatus({ risk, riskRange }) {
           {risk.title}
         </text>
       </svg>
+
+      {/* Popover */}
+      <Popover
+        id="risk-popover"
+        open={open}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+        sx={{ pointerEvents: "none" }}
+      >
+        <Typography sx={{ p: 2 }}>Risk: {risk.riskScore * 100}%</Typography>
+      </Popover>
     </Box>
   );
 }

@@ -25,7 +25,7 @@ export default function Patient({ patient, riskRange, selectedAdverseEvents }) {
   );
 
   return (
-    <TableRow sx={{}}>
+    <TableRow>
       <TableCell
         sx={{
           width: "12%",
@@ -57,12 +57,12 @@ export default function Patient({ patient, riskRange, selectedAdverseEvents }) {
         sx={{
           borderLeft: "1.5px solid #000",
           borderRight: "1.5px dashed #000",
-
           borderBottom: "none",
-          pr: 0,
-          m: 0,
+          width: "20%",
+          pr: 0, // Remove any padding
         }}
       >
+        {/* Ensure content is not stretched */}
         <PatientRisks adverseEvents={relevant} riskRange={riskRange} />
       </TableCell>
       <TableCell

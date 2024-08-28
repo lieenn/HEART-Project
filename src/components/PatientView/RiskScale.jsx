@@ -117,8 +117,8 @@ export default function RiskScale({
 
         {/* Uncertainty Band Line */}
         <line
-          x1={xScale(adverseEvent.uncertaintyBand.low) + extraWidthLow}
-          x2={xScale(adverseEvent.uncertaintyBand.high) + extraWidthLow}
+          x1={xScale(adverseEvent.uncertaintyBand.low)}
+          x2={xScale(adverseEvent.uncertaintyBand.high)}
           y1={height / 2}
           y2={height / 2}
           stroke={color}

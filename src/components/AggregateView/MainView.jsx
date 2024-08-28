@@ -1,5 +1,11 @@
 import React from "react";
-import { TableContainer, Table, Box, TableBody } from "@mui/material";
+import {
+  TableContainer,
+  Table,
+  Box,
+  TableBody,
+  TableHead,
+} from "@mui/material";
 import Patient from "./Patient";
 import ColorLegend from "./ColorLegend";
 import MultiSelect from "./MultiSelect";
@@ -61,8 +67,10 @@ export default function MainView({ riskRange, patientData }) {
       <ColorLegend riskRange={riskRange} />
       <TableContainer sx={{ border: "1.5px solid #000", mt: 0 }}>
         <Table aria-label="simple table" stickyHeader>
-          <TableBody>
+          <TableHead>
             <SortButtons setSortingOption={setSortingOption} />
+          </TableHead>
+          <TableBody>
             {sortedData.map((patient) => (
               <Patient
                 key={patient.roomNumber}
