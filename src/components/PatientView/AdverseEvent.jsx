@@ -1,48 +1,38 @@
 import React from "react";
 import { calculateColor, calculateRisk } from "../Utils/Calculator";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-import { Box, Typography, IconButton, Avatar } from "@mui/material";
+import { Box, IconButton, Avatar } from "@mui/material";
 import RiskScale from "./RiskScale";
-import { riskRange } from "../../App";
+import SvgRectangle from "../SvgRectangle";
 
-/**
- * Display the adverse event with the risk scale.
- * @param {*} param0 - The adverse event to render
- * @returns {JSX.Element} - The rendered adverse event
- */
 export default function AdverseEvent({ adverseEvent, riskRange }) {
-  const recWidth = 205;
-  const recHeight = 36;
+  const rectWidth = 205;
+  const rectHeight = 36;
   const [textColor, color] = calculateColor(adverseEvent.riskScore, riskRange);
   const riskLevel = calculateRisk(adverseEvent.riskScore, riskRange);
   const lowRiskDomain = [0, riskRange[0]];
   const highRiskDomain = [riskRange[0], riskRange[3]];
 
   return (
-    // Display the adverse event title and color
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
       <Box sx={{ flexShrink: 0, mr: 3 }}>
-        <svg width={recWidth} height={recHeight}>
-          <rect
-            width={recWidth}
-            height={recHeight}
-            fill={color}
-            stroke="black"
-            strokeWidth="3px"
-          />
-          <text
-            x="10"
-            y="55%"
-            dominantBaseline="middle"
-            fontSize="16"
-            fontFamily="Roboto"
-            fontWeight="500"
-            fill={textColor}
-          >
-            {adverseEvent.title}
-          </text>
+        <SvgRectangle
+          width={rectWidth}
+          height={rectHeight}
+          fill={color}
+          stroke="black"
+          strokeWidth={1.5}
+          textColor={textColor}
+          text={adverseEvent.title}
+          textAnchor="start" // Align text to the left
+        >
           {/* Question mark button */}
-          <foreignObject x={recWidth - 32} y="6" width="40" height={recHeight}>
+          <foreignObject
+            x={rectWidth - 32}
+            y="5"
+            width="40"
+            height={rectHeight}
+          >
             <Avatar
               size="small"
               sx={{ width: 24, height: 24, bgcolor: "#414bb2" }}
@@ -56,9 +46,8 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
               </IconButton>
             </Avatar>
           </foreignObject>
-        </svg>
+        </SvgRectangle>
       </Box>
-      {/* Display the risk scale */}
       {riskLevel === "Minimal" ? (
         <RiskScale
           adverseEvent={adverseEvent}

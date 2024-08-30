@@ -1,11 +1,5 @@
-import React from "react";
-import {
-  TableContainer,
-  Table,
-  Box,
-  TableBody,
-  TableHead,
-} from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Box, Grid } from "@mui/material";
 import Patient from "./Patient";
 import ColorLegend from "./ColorLegend";
 import MultiSelect from "./MultiSelect";
@@ -16,35 +10,16 @@ import {
   SortByHighest,
 } from "../Utils/SortFunctions";
 import SortButtons from "./SortButtons";
+import { filterRelevantAndOtherEvents } from "../Utils/FilterFunctions";
 
-/**
- * The main view of the application that includes a color legend and a table listing all patients.
- * The view allows filtering and sorting of patient data based on selected options.
- *
- * @param {Object} props - The properties passed to the component.
- * @param {Array<number>} props.riskRange - The dynamic range of risk scores.
- * @param {Array<Object>} props.patientData - The patient data to display.
- *
- * @returns {JSX.Element} The rendered main view component.
- */
 export default function MainView({ riskRange, patientData }) {
-  const [selectedAdverseEvents, setSelectedAdverseEvents] = React.useState([]);
-  const [sortingOption, setSortingOption] = React.useState("");
+  const [selectedAdverseEvents, setSelectedAdverseEvents] = useState([]);
+  const [sortingOption, setSortingOption] = useState("");
+  const [showFilteredOutcomes, setShowFilteredOutcomes] = useState(false);
 
   const adverseEventsList = GetUniqueAdverseEvents(patientData);
 
-  // Determine the sorted data based on the selected sorting option
   let sortedData = [];
-  if (sortingOption === "Sort") {
-    sortedData = SortByGiven(selectedAdverseEvents, patientData, riskRange);
-  } else if (sortingOption === "Sort + Filter") {
-    sortedData = SortAndFilter(selectedAdverseEvents, patientData, riskRange);
-  } else if (sortingOption === "Sort by highest") {
-    sortedData = SortByHighest(selectedAdverseEvents, patientData, riskRange);
-  } else {
-    sortedData = patientData;
-  }
-
   if (sortingOption === "Overall highest") {
     sortedData = SortByHighest(selectedAdverseEvents, patientData, riskRange);
   } else if (sortingOption === "Filtered conditions") {
@@ -57,6 +32,12 @@ export default function MainView({ riskRange, patientData }) {
     sortedData = patientData;
   }
 
+  // Recalculate showFilteredOutcomes when selectedAdverseEvents or patientData changes
+  useEffect(() => {
+    const hasRelevantOutcomes = selectedAdverseEvents.length > 0;
+    setShowFilteredOutcomes(hasRelevantOutcomes);
+  }, [selectedAdverseEvents, sortedData, riskRange, patientData]);
+
   return (
     <Box>
       <MultiSelect
@@ -65,23 +46,24 @@ export default function MainView({ riskRange, patientData }) {
         setSelectedAdverseEvents={setSelectedAdverseEvents}
       />
       <ColorLegend riskRange={riskRange} />
-      <TableContainer sx={{ border: "1.5px solid #000", mt: 0 }}>
-        <Table aria-label="simple table" stickyHeader>
-          <TableHead>
-            <SortButtons setSortingOption={setSortingOption} />
-          </TableHead>
-          <TableBody>
-            {sortedData.map((patient) => (
-              <Patient
-                key={patient.roomNumber}
-                patient={patient}
-                riskRange={riskRange}
-                selectedAdverseEvents={selectedAdverseEvents}
-              />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+
+      <Box sx={{ border: "1.5px solid #000", mt: 0 }}>
+        <Grid container spacing={2}>
+          <SortButtons
+            setSortingOption={setSortingOption}
+            showFilteredOutcomes={showFilteredOutcomes}
+          />
+          {sortedData.map((patient) => (
+            <Patient
+              key={patient.roomNumber}
+              patient={patient}
+              riskRange={riskRange}
+              selectedAdverseEvents={selectedAdverseEvents}
+              showFilteredOutcomes={showFilteredOutcomes}
+            />
+          ))}
+        </Grid>
+      </Box>
     </Box>
   );
 }
