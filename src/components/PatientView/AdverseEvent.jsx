@@ -49,12 +49,14 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
         </SvgRectangle>
       </Box>
       {riskLevel === "Minimal" ? (
-        <RiskScale
-          adverseEvent={adverseEvent}
-          domain={lowRiskDomain}
-          isHighRisk={false}
-          riskRange={riskRange}
-        />
+        <Box sx={{ ml: -3.2 }}>
+          <RiskScale
+            adverseEvent={adverseEvent}
+            domain={lowRiskDomain}
+            isHighRisk={false}
+            riskRange={riskRange}
+          />
+        </Box>
       ) : (
         <RiskScale
           adverseEvent={adverseEvent}

@@ -44,7 +44,7 @@ export default function AdverseEventsList({
         <Typography sx={{ m: 2 }}>
           Patient is predicted{" "}
           <Typography component="span" sx={{ fontWeight: "bold" }}>
-            {header.toLowerCase()}
+            {header.replace("Adverse Events", "").toLowerCase()}
           </Typography>{" "}
           for these adverse events:
         </Typography>

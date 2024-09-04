@@ -8,6 +8,7 @@ import MainView from "./components/AggregateView/MainView";
 import DetailPage from "./components/PatientView/DetailPage";
 import RiskRangeInput from "./components/RiskRangeInput";
 
+//** [mininmal, moderate, moderate high, high] */
 export const riskRange = [0.4, 0.6, 0.8, 1];
 
 export default function App() {
