@@ -25,7 +25,7 @@ export default function RiskScale({
   const width = 180;
   const height = 23;
   const svgHeight = 25;
-  const extraWidth = 20;
+  const extraWidth = 25;
   const svgWidth = width + extraWidth + 2; // +2 for stroke width
   const strokeColor = "black";
   const strokeWidth = 1.5;
@@ -40,7 +40,7 @@ export default function RiskScale({
   const [textColor, color] = calculateColor(adverseEvent.riskScore, riskRange);
 
   const isUncertainLow = adverseEvent.uncertaintyBand.low < domain[0];
-  const isUncertainHigh = adverseEvent.uncertaintyBand.high > domain[1];
+  const isUncertainHigh = adverseEvent.uncertaintyBand.high >= domain[1];
 
   const renderBackgroundSegments = () => {
     if (isHighRisk) {
@@ -98,12 +98,12 @@ export default function RiskScale({
       )}
       <line
         x1={
-          isUncertainLow
+          isUncertainLow && isHighRisk
             ? xScale(adverseEvent.uncertaintyBand.low)
             : xScale(adverseEvent.uncertaintyBand.low) + extraWidth
         }
         x2={
-          isUncertainHigh
+          isUncertainHigh && isHighRisk
             ? xScale(adverseEvent.uncertaintyBand.high)
             : xScale(adverseEvent.uncertaintyBand.high) + extraWidth
         }
@@ -121,7 +121,11 @@ export default function RiskScale({
         {renderBackgroundSegments()}
         {renderUncertaintyBand()}
         <circle
-          cx={xScale(adverseEvent.riskScore) + extraWidth}
+          cx={
+            isUncertainHigh && isHighRisk
+              ? xScale(adverseEvent.riskScore)
+              : xScale(adverseEvent.riskScore) + extraWidth
+          }
           cy={svgHeight / 2}
           r={5}
           fill="black"

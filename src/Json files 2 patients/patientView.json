@@ -331,8 +331,8 @@
       },
       {
         "title": "Reoperation",
-        "riskScore": 0.5,
-        "uncertaintyBand": { "low": 0.35, "high": 0.6 },
+        "riskScore": 0.28,
+        "uncertaintyBand": { "low": 0.2, "high": 0.35 },
         "explanations": [
           {
             "title": "intraop blood products - FFP units",
@@ -353,7 +353,7 @@
       },
       {
         "title": "Operative Mortality",
-        "riskScore": 0.34,
+        "riskScore": 0.3,
         "uncertaintyBand": { "low": 0.2, "high": 0.5 },
         "explanations": [
           { "title": "cardiogentic shock", "value": "Yes", "weight": 0.0036 },
@@ -387,7 +387,7 @@
     "adverseEvents": [
       {
         "title": "Reoperation",
-        "riskScore": 0.25,
+        "riskScore": 0.2,
         "uncertaintyBand": { "low": 0.2, "high": 0.4 },
         "explanations": [
           { "title": "iabp insertion", "value": "Yes", "weight": 0.002 },
@@ -456,8 +456,8 @@
       },
       {
         "title": "Renal Failure",
-        "riskScore": 0.6,
-        "uncertaintyBand": { "low": 0.55, "high": 0.65 },
+        "riskScore": 0.5,
+        "uncertaintyBand": { "low": 0.4, "high": 0.65 },
         "explanations": [
           {
             "title": "Operative lowest hematocrit",
@@ -559,6 +559,15 @@
         "explanations": [
           { "title": "iabp insertion", "value": "Yes", "weight": 0.0051 },
           { "title": "cardiogentic shock", "value": "Yes", "weight": 0.004 }
+        ]
+      },
+      {
+        "title": "Operative Mortality",
+        "riskScore": 0.34,
+        "uncertaintyBand": { "low": 0.2, "high": 0.5 },
+        "explanations": [
+          { "title": "cardiogentic shock", "value": "Yes", "weight": 0.0036 },
+          { "title": "total albumin", "value": 3.0, "weight": 0.0024 }
         ]
       },
       {

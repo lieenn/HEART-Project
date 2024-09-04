@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { colorScale } from "../Utils/Calculator";
+import { colorScale } from "./Utils/Calculator";
 
 /**
  * A component that displays a color legend representing the risk levels of patients.
@@ -22,6 +22,7 @@ export default function ColorLegend() {
         flexDirection: "row",
         alignItems: "flex-start",
         gap: 2,
+        mt: 2,
       }}
     >
       <Typography variant="h6" gutterBottom>

@@ -14,7 +14,7 @@ import { FilterLowRisk, FilterHighRisk } from "../Utils/FilterFunctions";
  */
 export default function DetailPage({ riskRange, patientData }) {
   const { value } = useParams(); // Extract the patient's name from the URL parameter
-  const person = patientData.find((item) => item.PatientName.includes(value)); // Find the patient data based on the name
+  const person = patientData.find((item) => item.PID.includes(value)); // Find the patient data based on the name
 
   return (
     <Container mt={5} maxWidth="xl">

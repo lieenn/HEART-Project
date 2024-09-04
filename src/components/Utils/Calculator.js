@@ -11,7 +11,7 @@ export const colorScale = d3
   .scaleOrdinal()
   .domain(["Minimal", "Moderate", "Moderate High", "High"])
   .range([
-    ["#87E7FF", "#A6EDFF", "#CCF5FF"], // Minimal: [primary, secondary, tertiary]
+    ["#97C5F6", "#99CDF6", "#B8DBF6"], // Minimal: [primary, secondary, tertiary]
     ["#FEEA77", "#FEF1A5", "#FFF7CC"], // Moderate: [primary, secondary, tertiary]
     ["#F7924A", "#F7AF7C", "#FAC7A2"], // Moderate High: [primary, secondary, tertiary]
     ["#F16448", "#F99B89", "#FABBAF"], // High: [primary, secondary, tertiary]
@@ -73,5 +73,5 @@ export function highestRiskColor(patient, riskRange) {
     highestRisk,
     riskRange
   );
-  return [secondary, tertiary];
+  return [primary];
 }

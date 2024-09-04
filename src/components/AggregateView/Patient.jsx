@@ -1,83 +1,89 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box, Typography, IconButton } from "@mui/material";
 import PatientRisks from "./PatientRisks";
 import { highestRiskColor } from "../Utils/Calculator";
 import { filterRelevantAndOtherEvents } from "../Utils/FilterFunctions";
+import CircleIcon from "@mui/icons-material/Circle";
+import StarIcon from "@mui/icons-material/Star";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 
-/**
- * A component that represents a single row in the patient grid.
- * Displays the patient's name, room number, and risk status.
- *
- * @param {Object} props - The properties passed to the component.
- * @param {Object} props.patient - The data of the patient to be displayed.
- * @param {Array<number>} props.riskRange - The dynamic range of risk scores.
- *
- * @returns {JSX.Element} The rendered patient component.
- */
 export default function Patient({
   patient,
   riskRange,
   selectedAdverseEvents,
   showFilteredOutcomes,
+  isFavorite,
+  onToggleFavorite,
 }) {
-  const [nameColor, infoColor] = highestRiskColor(patient, riskRange);
+  const [color] = highestRiskColor(patient, riskRange);
   const [relevant, others] = filterRelevantAndOtherEvents(
     selectedAdverseEvents,
     patient.adverseEvents,
     riskRange
   );
 
+  const displayPID = patient.PID.replace("# ", "").trim();
+
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} md={2} sx={{ borderRight: " 1.5px solid #000" }}>
-        <Box sx={{ m: 2 }}>
-          <Box sx={{ textAlign: "center", m: 2 }}>
+      <Grid item xs={12} md={2} sx={{ borderRight: "1.5px solid #000" }}>
+        <Box
+          sx={{
+            m: 2,
+            ml: 5,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <CircleIcon sx={{ color, marginRight: 1 }} />
             <Link
-              to={`/${patient.PatientName}`}
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              <Typography
-                variant="h5"
-                sx={{ bgcolor: nameColor, fontWeight: "bold" }}
-              >
-                {patient.PatientName}
-              </Typography>
-            </Link>
-            <Box
-              sx={{
-                bgcolor: infoColor,
-                mt: 1,
-                width: "70%",
-                pr: 2,
-                pl: 2,
-                mx: "auto",
+              to={`/${displayPID}`}
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-                {patient.PID}
+              <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                {displayPID}
               </Typography>
-              <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-                Room {patient.roomNumber}
-              </Typography>
-            </Box>
+            </Link>
           </Box>
+          <IconButton
+            onClick={() => onToggleFavorite(patient.PID)}
+            color={isFavorite ? "primary" : "default"}
+            sx={{ padding: 0 }}
+          >
+            {isFavorite ? <StarIcon /> : <StarBorderIcon />}
+          </IconButton>
         </Box>
       </Grid>
 
       {showFilteredOutcomes && (
-        <Grid item xs={12} md={4} sx={{ borderRight: " 1.5px dashed #000" }}>
+        <Grid
+          item
+          xs={12}
+          md={showFilteredOutcomes ? 10 : 4}
+          sx={{
+            borderRight: !showFilteredOutcomes ? "1.5px dashed #000" : "none",
+          }}
+        >
           <Box sx={{ p: 2 }}>
             <PatientRisks adverseEvents={relevant} riskRange={riskRange} />
           </Box>
         </Grid>
       )}
-
-      <Grid item xs={12} md={showFilteredOutcomes ? 6 : 10}>
-        <Box sx={{ p: 2 }}>
-          <PatientRisks adverseEvents={others} riskRange={riskRange} />
-        </Box>
-      </Grid>
+      {!showFilteredOutcomes && (
+        <Grid item xs={12} md={showFilteredOutcomes ? 6 : 10}>
+          <Box sx={{ p: 2 }}>
+            <PatientRisks adverseEvents={others} riskRange={riskRange} />
+          </Box>
+        </Grid>
+      )}
     </Grid>
   );
 }

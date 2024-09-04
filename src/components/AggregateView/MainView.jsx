@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Box, Grid } from "@mui/material";
 import Patient from "./Patient";
-import ColorLegend from "./ColorLegend";
-import MultiSelect from "./MultiSelect";
+import ColorLegend from "../ColorLegend";
 import { GetUniqueAdverseEvents } from "../Utils/FilterFunctions";
-import {
-  SortByGiven,
-  SortAndFilter,
-  SortByHighest,
-} from "../Utils/SortFunctions";
-import SortButtons from "./SortButtons";
-import { filterRelevantAndOtherEvents } from "../Utils/FilterFunctions";
+import { SortByGiven, SortByHighest } from "../Utils/SortFunctions";
+import TableHeader from "./TableHeader";
 
 export default function MainView({ riskRange, patientData }) {
   const [selectedAdverseEvents, setSelectedAdverseEvents] = useState([]);
   const [sortingOption, setSortingOption] = useState("");
   const [showFilteredOutcomes, setShowFilteredOutcomes] = useState(false);
+  const [favoritePatients, setFavoritePatients] = useState([]);
 
   const adverseEventsList = GetUniqueAdverseEvents(patientData);
+
+  const handleToggleFavorite = (patientId) => {
+    setFavoritePatients((prev) => {
+      if (prev.includes(patientId)) {
+        return prev.filter((id) => id !== patientId);
+      } else {
+        return [...prev, patientId];
+      }
+    });
+  };
 
   let sortedData = [];
   if (sortingOption === "Overall highest") {
@@ -32,38 +37,42 @@ export default function MainView({ riskRange, patientData }) {
     sortedData = patientData;
   }
 
-  // Recalculate showFilteredOutcomes when selectedAdverseEvents or patientData changes
+  // Sort patients, putting favorited patients at the top
+  const finalSortedData = [
+    ...sortedData.filter((patient) => favoritePatients.includes(patient.PID)),
+    ...sortedData.filter((patient) => !favoritePatients.includes(patient.PID)),
+  ];
+
   useEffect(() => {
     const hasRelevantOutcomes = selectedAdverseEvents.length > 0;
     setShowFilteredOutcomes(hasRelevantOutcomes);
-  }, [selectedAdverseEvents, sortedData, riskRange, patientData]);
+  }, [selectedAdverseEvents]);
 
   return (
     <Box>
-      <MultiSelect
-        adverseEventsList={adverseEventsList}
-        selectedAdverseEvents={selectedAdverseEvents}
-        setSelectedAdverseEvents={setSelectedAdverseEvents}
-      />
-      <ColorLegend riskRange={riskRange} />
-
       <Box sx={{ border: "1.5px solid #000", mt: 0 }}>
         <Grid container spacing={2}>
-          <SortButtons
+          <TableHeader
             setSortingOption={setSortingOption}
             showFilteredOutcomes={showFilteredOutcomes}
+            adverseEventsList={adverseEventsList}
+            selectedAdverseEvents={selectedAdverseEvents}
+            setSelectedAdverseEvents={setSelectedAdverseEvents}
           />
-          {sortedData.map((patient) => (
+          {finalSortedData.map((patient) => (
             <Patient
-              key={patient.roomNumber}
+              key={patient.PID}
               patient={patient}
               riskRange={riskRange}
               selectedAdverseEvents={selectedAdverseEvents}
               showFilteredOutcomes={showFilteredOutcomes}
+              isFavorite={favoritePatients.includes(patient.PID)}
+              onToggleFavorite={handleToggleFavorite}
             />
           ))}
         </Grid>
       </Box>
+      <ColorLegend riskRange={riskRange} />
     </Box>
   );
 }
