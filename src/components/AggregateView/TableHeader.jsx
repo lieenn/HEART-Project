@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Typography, Box, ToggleButton } from "@mui/material";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import SortIcon from "@mui/icons-material/Sort";
 import FilterButton from "./FilterButton";
 
 export default function TableHeader({
@@ -19,9 +18,14 @@ export default function TableHeader({
   };
 
   const commonButtonStyles = {
-    borderRadius: 0,
-    padding: "4px 6px",
+    borderRadius: "50%",
     m: 1,
+    padding: "6px",
+    minWidth: "auto",
+    width: "32px",
+    height: "32px",
+    border: "none",
+    outline: "none",
     "&.Mui-selected": {
       backgroundColor: "primary.main",
       color: "primary.contrastText",
@@ -29,12 +33,11 @@ export default function TableHeader({
         backgroundColor: "primary.dark",
       },
     },
-    "&:not(.Mui-selected)": {
-      border: "none",
-      outline: "none",
-    },
     "&:hover": {
       backgroundColor: "action.hover",
+    },
+    "&:focus": {
+      outline: "none",
     },
   };
 
@@ -60,9 +63,8 @@ export default function TableHeader({
               sx={commonButtonStyles}
             >
               <SwapVertIcon />
-              <SortIcon />
             </ToggleButton>
-            <Typography variant="h6" sx={{ mt: 0.5, m: 1 }}>
+            <Typography variant="h5" sx={{ mt: 0.5, m: 1, fontWeight: 600 }}>
               Patient
             </Typography>
           </Box>
@@ -87,14 +89,16 @@ export default function TableHeader({
               sx={commonButtonStyles}
             >
               <SwapVertIcon />
-              <SortIcon />
             </ToggleButton>
             <FilterButton
               adverseEventsList={adverseEventsList}
               selectedAdverseEvents={selectedAdverseEvents}
               setSelectedAdverseEvents={setSelectedAdverseEvents}
             />
-            <Typography variant="h6" sx={{ mt: 0.5, m: 1, mr: 2 }}>
+            <Typography
+              variant="h5"
+              sx={{ mt: 0.5, m: 1, mr: 2, fontWeight: 600 }}
+            >
               Predicted Adverse Events
             </Typography>
           </Box>

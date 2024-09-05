@@ -14,21 +14,27 @@ import {
   InputAdornment,
   styled,
 } from "@mui/material";
-import FilterListIcon from "@mui/icons-material/FilterList";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import SearchIcon from "@mui/icons-material/Search";
+import { grey } from "@mui/material/colors";
 
 const SELECT_ALL = "Select All";
 const DESELECT_ALL = "Deselect All";
 
+// Styled IconButton to be small and round like the ToggleButton
 const StyledIconButton = styled(IconButton)(({ theme, isactive }) => ({
   backgroundColor: isactive === "true" ? theme.palette.primary.main : "inherit",
-  color: isactive === "true" ? theme.palette.primary.contrastText : "inherit",
+  color: isactive === "true" ? theme.palette.primary.contrastText : "grey",
   "&:hover": {
     backgroundColor:
       isactive === "true"
         ? theme.palette.primary.dark
         : theme.palette.action.hover,
   },
+  borderRadius: "50%",
+  padding: "6px",
+  width: "32px",
+  height: "32px",
 }));
 
 export default function FilterButton({
@@ -122,7 +128,7 @@ export default function FilterButton({
         aria-describedby={id}
         isactive={isFilterActive.toString()}
       >
-        <FilterListIcon />
+        <FilterAltIcon fontSize="small" />
       </StyledIconButton>
       <Popover
         id={id}
@@ -136,12 +142,6 @@ export default function FilterButton({
         transformOrigin={{
           vertical: "top",
           horizontal: "left",
-        }}
-        slotProps={{
-          paper: {
-            "aria-hidden": undefined,
-            tabIndex: -1,
-          },
         }}
       >
         <List sx={{ width: 1000, bgcolor: "background.paper" }}>

@@ -1,21 +1,33 @@
 import React from "react";
-import { Box, Container } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import PatientRiskStatus from "./PatientRiskStatus";
 import { FilterLowRisk, FilterUnwantedAdverse } from "../Utils/FilterFunctions";
 
-/**
- * PatientRisks Component
- *
- * This component filters, sorts, and displays a list of adverse events for a patient.
- * It filters out low-risk events and unwanted adverse events, then displays each event
- * as a colored rectangle, with the highest risk events shown first.
- *
- * @param {Object} props - The component properties.
- * @param {Array<Object>} props.adverseEvents - Array of adverse events associated with the patient.
- * @param {Array<number>} props.riskRange - The dynamic range [min, max] of risk scores used to filter events.
- * @returns {JSX.Element} - The rendered list of filtered and sorted patient risks.
- */
 export default function PatientRisks({ adverseEvents, riskRange }) {
+  if (
+    adverseEvents.length === 1 &&
+    adverseEvents[0].title ===
+      "          No adverse events predicted for this patient at this time."
+  ) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        {/* <Typography
+          variant="body1"
+          sx={{ fontStyle: "italic", color: "text.secondary" }}
+        >
+          No adverse events predicted for this patient at this time.
+        </Typography> */}
+        <PatientRiskStatus risk={adverseEvents[0]} riskRange={riskRange} />
+      </Box>
+    );
+  }
+
   // Filter out unwanted and low-risk adverse events
   const filteredRisks = FilterLowRisk(
     FilterUnwantedAdverse(adverseEvents),
@@ -39,7 +51,6 @@ export default function PatientRisks({ adverseEvents, riskRange }) {
           flexWrap: "wrap",
         }}
       >
-        {/* Display a message if no adverse events meet the criteria, otherwise render the risk statuses */}
         {sortedRisks.map((risk, index) => (
           <PatientRiskStatus key={index} risk={risk} riskRange={riskRange} />
         ))}

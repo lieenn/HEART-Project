@@ -25,6 +25,16 @@ export default function Patient({
 
   const displayPID = patient.PID.replace("# ", "").trim();
 
+  const isLowRisk = relevant.length === 0 && others.length === 0;
+
+  const noAdverseEventsObject = [
+    {
+      title:
+        "          No adverse events predicted for this patient at this time.",
+      riskScore: 0,
+    },
+  ];
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={12} md={2} sx={{ borderRight: "1.5px solid #000" }}>
@@ -38,7 +48,14 @@ export default function Patient({
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <CircleIcon sx={{ color, marginRight: 1 }} />
+            <CircleIcon
+              sx={{
+                color,
+                marginRight: 1,
+                stroke: "black",
+                strokeWidth: 1.5,
+              }}
+            />
             <Link
               to={`/${displayPID}`}
               style={{
@@ -64,23 +81,20 @@ export default function Patient({
       </Grid>
 
       {showFilteredOutcomes && (
-        <Grid
-          item
-          xs={12}
-          md={showFilteredOutcomes ? 10 : 4}
-          sx={{
-            borderRight: !showFilteredOutcomes ? "1.5px dashed #000" : "none",
-          }}
-        >
+        <Grid item xs={12} md={10}>
           <Box sx={{ p: 2 }}>
             <PatientRisks adverseEvents={relevant} riskRange={riskRange} />
           </Box>
         </Grid>
       )}
+
       {!showFilteredOutcomes && (
-        <Grid item xs={12} md={showFilteredOutcomes ? 6 : 10}>
+        <Grid item xs={12} md={10}>
           <Box sx={{ p: 2 }}>
-            <PatientRisks adverseEvents={others} riskRange={riskRange} />
+            <PatientRisks
+              adverseEvents={isLowRisk ? noAdverseEventsObject : others}
+              riskRange={riskRange}
+            />
           </Box>
         </Grid>
       )}

@@ -47,7 +47,7 @@ export function calculateColor(riskScore, riskRange) {
   // Get the array of colors from the scale
   const colors = colorScale(riskLevel);
   const textColor =
-    riskLevel === "Moderate High" || riskLevel === "High" ? "white" : "black";
+    riskLevel === "Moderate High" || riskLevel === "High" ? "black" : "black";
 
   return [textColor, ...colors];
 }

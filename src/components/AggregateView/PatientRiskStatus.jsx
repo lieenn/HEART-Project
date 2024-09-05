@@ -36,8 +36,6 @@ export default function PatientRiskStatus({ risk, riskRange }) {
           width={rectWidth}
           height={rectHeight}
           fill={color}
-          stroke="black"
-          strokeWidth={1.5}
           textColor={textColor}
           text={risk.title}
         />

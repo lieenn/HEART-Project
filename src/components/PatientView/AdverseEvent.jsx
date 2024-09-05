@@ -20,8 +20,6 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
           width={rectWidth}
           height={rectHeight}
           fill={color}
-          stroke="black"
-          strokeWidth={1.5}
           textColor={textColor}
           text={adverseEvent.title}
           textAnchor="start" // Align text to the left
