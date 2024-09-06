@@ -4,49 +4,44 @@ import { Button, Typography, Grid, Container, Box } from "@mui/material";
 import AdverseEventsList from "./AdverseEventsList";
 import { FilterLowRisk, FilterHighRisk } from "../Utils/FilterFunctions";
 
-/**
- * Renders a detailed view of a patient's information,
- * including their name, ID, room number, and a list of their adverse events
- * categorized by risk level (high and low).
- *
- * AdverseEventsList handles the rendering of both high-risk and low-risk events.
- * @returns {JSX.Element} - The detail page for a specific patient.
- */
 export default function DetailPage({ riskRange, patientData }) {
-  const { value } = useParams(); // Extract the patient's name from the URL parameter
-  const person = patientData.find((item) => item.PID.includes(value)); // Find the patient data based on the name
+  const { value } = useParams();
+  const person = patientData.find((item) => item.PID.includes(value));
 
   return (
-    <Container mt={5} maxWidth="xl">
-      {/* Render patient's general information: name, PID, and room number */}
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={10.5}>
+    <Container maxWidth="xl" sx={{ mt: { xs: 2, sm: 3, md: 5 } }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={8} md={9} lg={10}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
             {person.PatientName}
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={6} md={1.5}>
+        <Grid item xs={12} sm={4} md={3} lg={2}>
           <Typography variant="h6">PID: {person.PID}</Typography>
           <Typography variant="h6">Room # {person.roomNumber}</Typography>
         </Grid>
       </Grid>
 
-      {/* Render lists of high-risk and low-risk adverse events */}
       <Grid
         container
         sx={{
-          mt: 4,
+          mt: { xs: 2, sm: 3, md: 4 },
           border: "1.5px solid #000",
         }}
       >
-        {/* High-risk adverse events list */}
         <Grid
           item
           xs={12}
-          sm={8}
+          sm={12}
+          md={8}
+          lg={9}
           sx={{
-            borderRight: "1.5px solid #000", // Add border between the high-risk and low-risk sections
-            padding: 2,
+            borderRight: { xs: "none", sm: "none", md: "1.5px solid #000" },
+            borderBottom: {
+              xs: "1.5px solid #000",
+              sm: "1.5px solid #000",
+              md: "none",
+            },
           }}
         >
           <AdverseEventsList
@@ -58,15 +53,7 @@ export default function DetailPage({ riskRange, patientData }) {
           />
         </Grid>
 
-        {/* Low-risk adverse events list */}
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          sx={{
-            padding: 2,
-          }}
-        >
+        <Grid item xs={12} sm={12} md={4} lg={3}>
           <AdverseEventsList
             adverseEvents={person.adverseEvents}
             riskFilter={FilterHighRisk}
@@ -77,8 +64,11 @@ export default function DetailPage({ riskRange, patientData }) {
         </Grid>
       </Grid>
 
-      {/* Back button to return to the previous page */}
-      <Grid container justifyContent="center" sx={{ mt: 2 }}>
+      <Grid
+        container
+        justifyContent="center"
+        sx={{ mt: { xs: 2, sm: 3, md: 4 } }}
+      >
         <Grid item>
           <Link to="/">
             <Button variant="contained">Back</Button>

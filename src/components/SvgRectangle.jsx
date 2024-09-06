@@ -41,11 +41,12 @@ export default function SvgRectangle({
         mb: 1,
         mr: 2,
         position: "relative",
-        border: "2px solid black",
-        borderRadius: "8px",
+        // border: "2px solid black",
+        borderRadius: "3px",
         overflow: "hidden",
         width: `${width}px`,
         height: `${height}px`,
+        boxShadow: 1,
       }}
     >
       <svg width={width} height={height}>

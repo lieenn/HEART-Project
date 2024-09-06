@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import {
   Box,
   IconButton,
@@ -13,28 +13,39 @@ import {
   TextField,
   InputAdornment,
   styled,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import SearchIcon from "@mui/icons-material/Search";
-import { grey } from "@mui/material/colors";
 
 const SELECT_ALL = "Select All";
 const DESELECT_ALL = "Deselect All";
 
-// Styled IconButton to be small and round like the ToggleButton
 const StyledIconButton = styled(IconButton)(({ theme, isactive }) => ({
-  backgroundColor: isactive === "true" ? theme.palette.primary.main : "inherit",
-  color: isactive === "true" ? theme.palette.primary.contrastText : "grey",
+  color:
+    isactive === "true"
+      ? theme.palette.primary.main
+      : theme.palette.action.active,
+  backgroundColor: "transparent",
   "&:hover": {
-    backgroundColor:
-      isactive === "true"
-        ? theme.palette.primary.dark
-        : theme.palette.action.hover,
+    backgroundColor: "transparent",
   },
   borderRadius: "50%",
-  padding: "6px",
-  width: "32px",
-  height: "32px",
+  minWidth: "auto",
+  width: "24px",
+  height: "24px",
+  border: "none",
+  outline: "none",
+  "&:focus": {
+    outline: "none",
+  },
+  "& .MuiTouchRipple-root": {
+    display: "none",
+  },
+  "&.Mui-focusVisible": {
+    backgroundColor: "transparent",
+  },
 }));
 
 export default function FilterButton({
@@ -45,11 +56,8 @@ export default function FilterButton({
   const [anchorEl, setAnchorEl] = useState(null);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-
-  useEffect(() => {
-    console.log("adverseEventsList:", adverseEventsList);
-    console.log("selectedAdverseEvents:", selectedAdverseEvents);
-  }, [adverseEventsList, selectedAdverseEvents]);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const stableAdverseEvents = useMemo(() => {
     if (!Array.isArray(adverseEventsList)) {
@@ -144,44 +152,22 @@ export default function FilterButton({
           horizontal: "left",
         }}
       >
-        <List sx={{ width: 1000, bgcolor: "background.paper" }}>
+        <List
+          sx={{
+            width: isMobile ? "100vw" : "min(1000px, 90vw)",
+            maxWidth: "100%",
+            bgcolor: "background.paper",
+          }}
+        >
           <Box
             sx={{
               display: "flex",
+              flexDirection: isMobile ? "column" : "row",
               flexWrap: "wrap",
               alignItems: "center",
+              padding: theme.spacing(1),
             }}
           >
-            <ListItem
-              onClick={() => handleChange(SELECT_ALL)}
-              sx={{ width: "20%" }}
-            >
-              <ListItemIcon>
-                <Checkbox
-                  edge="start"
-                  checked={
-                    selectedAdverseEvents?.length === adverseEventsList?.length
-                  }
-                  tabIndex={-1}
-                  disableRipple
-                />
-              </ListItemIcon>
-              <ListItemText primary={SELECT_ALL} />
-            </ListItem>
-            <ListItem
-              onClick={() => handleChange(DESELECT_ALL)}
-              sx={{ width: "20%" }}
-            >
-              <ListItemIcon>
-                <Checkbox
-                  edge="start"
-                  checked={selectedAdverseEvents?.length === 0}
-                  tabIndex={-1}
-                  disableRipple
-                />
-              </ListItemIcon>
-              <ListItemText primary={DESELECT_ALL} />
-            </ListItem>
             <TextField
               placeholder="Find..."
               value={searchTerm}
@@ -191,19 +177,50 @@ export default function FilterButton({
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SearchIcon style={{ marginRight: "8px" }} />
+                    <SearchIcon />
                   </InputAdornment>
                 ),
               }}
-              sx={{ ml: 2 }}
+              sx={{
+                width: isMobile ? "100%" : "39%",
+                ml: 1,
+              }}
             />
+            <ListItem
+              onClick={() => handleChange(SELECT_ALL)}
+              sx={{ width: isMobile ? "100%" : "auto", minWidth: "150px" }}
+            >
+              <ListItemIcon>
+                <Checkbox
+                  edge="start"
+                  checked={
+                    selectedAdverseEvents?.length === adverseEventsList?.length
+                  }
+                  tabIndex={-1}
+                />
+              </ListItemIcon>
+              <ListItemText primary={SELECT_ALL} />
+            </ListItem>
+            <ListItem
+              onClick={() => handleChange(DESELECT_ALL)}
+              sx={{ width: isMobile ? "100%" : "auto", minWidth: "150px" }}
+            >
+              <ListItemIcon>
+                <Checkbox
+                  edge="start"
+                  checked={selectedAdverseEvents?.length === 0}
+                  tabIndex={-1}
+                />
+              </ListItemIcon>
+              <ListItemText primary={DESELECT_ALL} />
+            </ListItem>
           </Box>
           <Divider />
           <Box
             sx={{
               display: "flex",
               flexWrap: "wrap",
-              maxHeight: 400,
+              maxHeight: isMobile ? "calc(100vh - 200px)" : 400,
               overflowY: "auto",
             }}
           >
@@ -211,14 +228,16 @@ export default function FilterButton({
               <ListItem
                 key={id}
                 onClick={() => handleChange(name)}
-                sx={{ width: "20%" }}
+                sx={{
+                  width: isMobile ? "100%" : "20%",
+                  minWidth: isMobile ? "auto" : "200px",
+                }}
               >
                 <ListItemIcon>
                   <Checkbox
                     edge="start"
                     checked={selectedAdverseEvents?.includes(name)}
                     tabIndex={-1}
-                    disableRipple
                   />
                 </ListItemIcon>
                 <ListItemText

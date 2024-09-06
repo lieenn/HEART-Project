@@ -7,7 +7,7 @@ export default function PatientRisks({ adverseEvents, riskRange }) {
   if (
     adverseEvents.length === 1 &&
     adverseEvents[0].title ===
-      "          No adverse events predicted for this patient at this time."
+      "No adverse events predicted for this patient at this time."
   ) {
     return (
       <Box
@@ -17,12 +17,6 @@ export default function PatientRisks({ adverseEvents, riskRange }) {
           flexWrap: "wrap",
         }}
       >
-        {/* <Typography
-          variant="body1"
-          sx={{ fontStyle: "italic", color: "text.secondary" }}
-        >
-          No adverse events predicted for this patient at this time.
-        </Typography> */}
         <PatientRiskStatus risk={adverseEvents[0]} riskRange={riskRange} />
       </Box>
     );
@@ -41,13 +35,11 @@ export default function PatientRisks({ adverseEvents, riskRange }) {
     <Box
       sx={{
         display: "inline-flex",
-        padding: 0,
       }}
     >
       <Box
         sx={{
           display: "flex",
-          alignItems: "center",
           flexWrap: "wrap",
         }}
       >

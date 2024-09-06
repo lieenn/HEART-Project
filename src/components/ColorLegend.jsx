@@ -1,13 +1,12 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { colorScale } from "./Utils/Calculator";
 
-/**
- * A component that displays a color legend representing the risk levels of patients.
- *
- * @returns {JSX.Element} The rendered color legend component.
- */
 export default function ColorLegend() {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   const labels = [
     "Minimal Risk",
     "Moderate Risk",
@@ -19,8 +18,9 @@ export default function ColorLegend() {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
-        alignItems: "flex-start",
+        flexDirection: isSmallScreen ? "column" : "row",
+        alignItems: isSmallScreen ? "flex-start" : "center",
+        flexWrap: isMediumScreen ? "wrap" : "nowrap",
         gap: 2,
         mt: 2,
       }}
@@ -28,33 +28,41 @@ export default function ColorLegend() {
       <Typography variant="h6" gutterBottom>
         Color Legend
       </Typography>
-      {labels.map((label) => (
-        <Box
-          key={label}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            mt: 0.5,
-            justifyContent: "center",
-            gap: 1,
-          }}
-        >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: isSmallScreen ? "column" : "row",
+          flexWrap: isMediumScreen ? "wrap" : "nowrap",
+          gap: 2,
+        }}
+      >
+        {labels.map((label) => (
           <Box
+            key={label}
             sx={{
-              width: 24,
-              height: 24,
-              backgroundColor: colorScale(label)[0],
-              border: "1.5px solid black",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-start",
+              gap: 1,
             }}
-          />
-          <Typography
-            variant="body2"
-            sx={{ fontSize: "16px", fontWeight: "500" }}
           >
-            {label}
-          </Typography>
-        </Box>
-      ))}
+            <Box
+              sx={{
+                width: 24,
+                height: 24,
+                backgroundColor: colorScale(label)[0],
+                border: "1.5px solid black",
+              }}
+            />
+            <Typography
+              variant="body2"
+              sx={{ fontSize: { xs: "14px", sm: "16px" }, fontWeight: "500" }}
+            >
+              {label}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
     </Box>
   );
 }

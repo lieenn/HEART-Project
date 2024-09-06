@@ -51,26 +51,24 @@ export default function MainView({ riskRange, patientData }) {
   return (
     <Box>
       <Box sx={{ border: "1.5px solid #000", mt: 0 }}>
-        <Grid container spacing={2}>
-          <TableHeader
-            setSortingOption={setSortingOption}
-            showFilteredOutcomes={showFilteredOutcomes}
-            adverseEventsList={adverseEventsList}
+        <TableHeader
+          setSortingOption={setSortingOption}
+          showFilteredOutcomes={showFilteredOutcomes}
+          adverseEventsList={adverseEventsList}
+          selectedAdverseEvents={selectedAdverseEvents}
+          setSelectedAdverseEvents={setSelectedAdverseEvents}
+        />
+        {finalSortedData.map((patient) => (
+          <Patient
+            key={patient.PID}
+            patient={patient}
+            riskRange={riskRange}
             selectedAdverseEvents={selectedAdverseEvents}
-            setSelectedAdverseEvents={setSelectedAdverseEvents}
+            showFilteredOutcomes={showFilteredOutcomes}
+            isFavorite={favoritePatients.includes(patient.PID)}
+            onToggleFavorite={handleToggleFavorite}
           />
-          {finalSortedData.map((patient) => (
-            <Patient
-              key={patient.PID}
-              patient={patient}
-              riskRange={riskRange}
-              selectedAdverseEvents={selectedAdverseEvents}
-              showFilteredOutcomes={showFilteredOutcomes}
-              isFavorite={favoritePatients.includes(patient.PID)}
-              onToggleFavorite={handleToggleFavorite}
-            />
-          ))}
-        </Grid>
+        ))}
       </Box>
       <ColorLegend riskRange={riskRange} />
     </Box>

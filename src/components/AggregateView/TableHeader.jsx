@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import { Grid, Typography, Box, ToggleButton } from "@mui/material";
+import {
+  Typography,
+  Box,
+  IconButton,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import FilterButton from "./FilterButton";
+import TableRow from "./TableRow";
 
 export default function TableHeader({
   setSortingOption,
@@ -11,6 +18,8 @@ export default function TableHeader({
   setSelectedAdverseEvents,
 }) {
   const [activeButton, setActiveButton] = useState(null);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleToggle = (option) => {
     setActiveButton(activeButton === option ? null : option);
@@ -19,91 +28,80 @@ export default function TableHeader({
 
   const commonButtonStyles = {
     borderRadius: "50%",
-    m: 1,
     padding: "6px",
     minWidth: "auto",
-    width: "32px",
-    height: "32px",
+    width: "24px",
+    height: "24px",
     border: "none",
     outline: "none",
-    "&.Mui-selected": {
-      backgroundColor: "primary.main",
-      color: "primary.contrastText",
-      "&:hover": {
-        backgroundColor: "primary.dark",
-      },
-    },
+    color: "action.active",
+    backgroundColor: "transparent",
     "&:hover": {
-      backgroundColor: "action.hover",
+      backgroundColor: "transparent",
     },
     "&:focus": {
       outline: "none",
     },
   };
 
-  return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} md={2}>
-        <Box
-          sx={{
-            mt: 2,
-            pt: 2,
-            pl: 3,
-            borderRight: "1.5px solid #000",
-            overflow: "hidden",
-          }}
-        >
-          <Box
-            sx={{ display: "flex", alignItems: "center", overflow: "hidden" }}
-          >
-            <ToggleButton
-              value="Overall highest"
-              selected={activeButton === "Overall highest"}
-              onChange={() => handleToggle("Overall highest")}
-              sx={commonButtonStyles}
-            >
-              <SwapVertIcon />
-            </ToggleButton>
-            <Typography variant="h5" sx={{ mt: 0.5, m: 1, fontWeight: 600 }}>
-              Patient
-            </Typography>
-          </Box>
-        </Box>
-      </Grid>
+  const SortButton = ({ value }) => (
+    <IconButton
+      onClick={() => handleToggle(value)}
+      sx={{
+        ...commonButtonStyles,
+        ...(activeButton === value && {
+          color: "primary.main",
+        }),
+      }}
+    >
+      <SwapVertIcon />
+    </IconButton>
+  );
 
-      <Grid item xs={12} md={showFilteredOutcomes ? 10 : 10}>
-        <Box
-          sx={{
-            mt: 2,
-            pt: 2,
-            ml: 1,
-            borderRight: "none",
-            overflow: "hidden",
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <ToggleButton
-              value="Filtered conditions"
-              selected={activeButton === "Filtered conditions"}
-              onChange={() => handleToggle("Filtered conditions")}
-              sx={commonButtonStyles}
-            >
-              <SwapVertIcon />
-            </ToggleButton>
-            <FilterButton
-              adverseEventsList={adverseEventsList}
-              selectedAdverseEvents={selectedAdverseEvents}
-              setSelectedAdverseEvents={setSelectedAdverseEvents}
-            />
-            <Typography
-              variant="h5"
-              sx={{ mt: 0.5, m: 1, mr: 2, fontWeight: 600 }}
-            >
-              Predicted Adverse Events
-            </Typography>
-          </Box>
-        </Box>
-      </Grid>
-    </Grid>
+  const leftContent = (
+    <Box sx={{ display: "flex", alignItems: "center", overflow: "hidden" }}>
+      <SortButton value="Overall highest" />
+      <Typography
+        variant="h6"
+        sx={{
+          fontWeight: 600,
+          ml: 1,
+          fontSize: isMobile ? "1.25rem" : "1.5rem",
+        }}
+      >
+        Patient
+      </Typography>
+    </Box>
+  );
+
+  const rightContent = (
+    <Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
+      {showFilteredOutcomes && <SortButton value="Filtered conditions" />}
+      <Box sx={{ ml: showFilteredOutcomes ? 0 : 1 }}>
+        <FilterButton
+          adverseEventsList={adverseEventsList}
+          selectedAdverseEvents={selectedAdverseEvents}
+          setSelectedAdverseEvents={setSelectedAdverseEvents}
+        />
+      </Box>
+      <Typography
+        variant="h6"
+        sx={{
+          fontWeight: 600,
+          ml: 1,
+          fontSize: isMobile ? "1.25rem" : "1.5rem",
+        }}
+      >
+        Predicted Adverse Events
+      </Typography>
+    </Box>
+  );
+
+  return (
+    <TableRow
+      leftContent={leftContent}
+      rightContent={rightContent}
+      isHeader={true}
+    />
   );
 }
