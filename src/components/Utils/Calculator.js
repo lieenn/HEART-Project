@@ -52,6 +52,12 @@ export function calculateColor(riskScore, riskRange) {
   return [textColor, ...colors];
 }
 
+export function borderLineColor(riskScore, riskRange) {
+  const riskLevel = calculateRisk(riskScore, riskRange);
+  const colors = riskLevel === "Minimal" ? ["#fecc5c"] : ["#97C5F6"];
+  return colors[0];
+}
+
 /**
  * Get the secondary and tertiary colors corresponding to the
  * highest risk score among a patient's adverse events

@@ -7,7 +7,7 @@ import {
   useTheme,
 } from "@mui/material";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import FilterButton from "./FilterButton";
+import FilterButton from "./Buttons/FilterButton";
 import TableRow from "./TableRow";
 
 export default function TableHeader({

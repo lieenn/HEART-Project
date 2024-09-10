@@ -4,11 +4,10 @@ import { calculateColor } from "../Utils/Calculator";
 import SvgRectangle from "../SvgRectangle";
 
 export default function PatientRiskStatus({ risk, riskRange }) {
-  const [textColor, color] = calculateColor(risk.riskScore, riskRange);
-  const titleLength = risk.title.length;
-  const rectWidth = Math.max(80, titleLength * 10);
-  const rectHeight = 32;
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const titleLength = risk.title.length;
+  const width = Math.max(80, titleLength * 10);
+  const height = 32;
 
   const handlePopoverOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -33,10 +32,10 @@ export default function PatientRiskStatus({ risk, riskRange }) {
     >
       <div onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
         <SvgRectangle
-          width={rectWidth}
-          height={rectHeight}
-          fill={color}
-          textColor={textColor}
+          risk={risk}
+          riskRange={riskRange}
+          width={width}
+          height={height}
           text={risk.title}
         />
       </div>

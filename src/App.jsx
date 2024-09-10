@@ -8,10 +8,20 @@ import MainView from "./components/AggregateView/MainView";
 import DetailPage from "./components/PatientView/DetailPage";
 import RiskRangeInput from "./components/RiskRangeInput";
 
-//** [mininmal, moderate, moderate high, high] */
+/**
+ * @constant {Array<number>} riskRange - Defines risk thresholds [minimal, moderate, moderate high, high].
+ */
 export const riskRange = [0.4, 0.6, 0.8, 1];
 
+/**
+ * Main application component.
+ * @returns {JSX.Element} The rendered application
+ */
 export default function App() {
+  /**
+   * @constant {Array<number>} currentRiskRange - Current risk range state.
+   * @constant {function} setCurrentRiskRange - Function to update currentRiskRange.
+   */
   const [currentRiskRange, setCurrentRiskRange] = useState(riskRange);
 
   return (

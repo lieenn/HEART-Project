@@ -1,4 +1,4 @@
-import { FilterLowRisk, FilterUnwantedAdverse } from "./FilterFunctions";
+import { GetHighRisks, FilterUnwantedAdverse } from "./FilterFunctions";
 
 /**
  * Sort patients by the given adverse events, prioritizing those with more matching events
@@ -12,11 +12,11 @@ export function SortByGiven(EventsToSort, patientData, riskRange) {
   // Sort patients
   return patientData.sort((a, b) => {
     // Filter out minimal risk events
-    const relevantEventsA = FilterLowRisk(
+    const relevantEventsA = GetHighRisks(
       FilterUnwantedAdverse(a.adverseEvents, riskRange),
       riskRange
     ).filter((event) => EventsToSort.includes(event.title));
-    const relevantEventsB = FilterLowRisk(
+    const relevantEventsB = GetHighRisks(
       FilterUnwantedAdverse(b.adverseEvents, riskRange),
       riskRange
     ).filter((event) => EventsToSort.includes(event.title));

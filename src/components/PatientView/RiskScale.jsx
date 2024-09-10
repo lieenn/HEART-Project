@@ -32,8 +32,8 @@ export default function RiskScale({
 
   const [textColor, color] = calculateColor(adverseEvent.riskScore, riskRange);
 
-  const isUncertainLow = adverseEvent.uncertaintyBand.low < domain[0];
-  const isUncertainHigh = adverseEvent.uncertaintyBand.high > domain[1];
+  const isUncertainLow = adverseEvent.confidenceInterval.low < domain[0];
+  const isUncertainHigh = adverseEvent.confidenceInterval.high > domain[1];
 
   const renderBackgroundSegments = () => {
     if (isHighRisk) {
@@ -66,10 +66,10 @@ export default function RiskScale({
   const renderUncertaintyBand = () => {
     const bandStart = isUncertainLow
       ? padding
-      : xScale(adverseEvent.uncertaintyBand.low);
+      : xScale(adverseEvent.confidenceInterval.low);
     const bandEnd = isUncertainHigh
       ? svgWidth - padding
-      : xScale(adverseEvent.uncertaintyBand.high);
+      : xScale(adverseEvent.confidenceInterval.high);
 
     return (
       <>

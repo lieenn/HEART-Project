@@ -8,7 +8,6 @@ import SvgRectangle from "../SvgRectangle";
 export default function AdverseEvent({ adverseEvent, riskRange }) {
   const rectWidth = 205;
   const rectHeight = 36;
-  const [textColor, color] = calculateColor(adverseEvent.riskScore, riskRange);
   const riskLevel = calculateRisk(adverseEvent.riskScore, riskRange);
   const lowRiskDomain = [0, riskRange[0]];
   const highRiskDomain = [riskRange[0], riskRange[3]];
@@ -17,10 +16,10 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
       <Box sx={{ flexShrink: 0, mr: 3 }}>
         <SvgRectangle
+          risk={adverseEvent}
+          riskRange={riskRange}
           width={rectWidth}
           height={rectHeight}
-          fill={color}
-          textColor={textColor}
           text={adverseEvent.title}
           textAnchor="start" // Align text to the left
         >

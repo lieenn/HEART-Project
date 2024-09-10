@@ -21,7 +21,7 @@ export default function Patient({
     riskRange
   );
 
-  const displayPID = patient.PID.replace("# ", "").trim();
+  const displayPID = patient.patientId;
   const isLowRisk = relevant.length === 0 && others.length === 0;
   // if (isLowRisk && !showFilteredOutcomes) {
   //   console.log("No adverse events predicted for this patient at this time.");
@@ -32,7 +32,7 @@ export default function Patient({
       displayPID={displayPID}
       color={color}
       isFavorite={isFavorite}
-      onToggleFavorite={() => onToggleFavorite(patient.PID)}
+      onToggleFavorite={() => onToggleFavorite(patient.patientId)}
     />
   );
 
@@ -59,6 +59,10 @@ function getAdverseEvents(showFilteredOutcomes, relevant, others, isLowRisk) {
       {
         title: "No adverse events predicted for this patient at this time.",
         riskScore: 0,
+        confidenceInterval: {
+          low: 0.0,
+          high: 0.0,
+        },
       },
     ];
   }

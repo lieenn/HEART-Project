@@ -1,7 +1,11 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import PatientRiskStatus from "./PatientRiskStatus";
-import { FilterLowRisk, FilterUnwantedAdverse } from "../Utils/FilterFunctions";
+import {
+  GetHighRisks,
+  FilterUnwantedAdverse,
+  GetLowRisks,
+} from "../Utils/FilterFunctions";
 
 export default function PatientRisks({ adverseEvents, riskRange }) {
   if (
@@ -22,14 +26,8 @@ export default function PatientRisks({ adverseEvents, riskRange }) {
     );
   }
 
-  // Filter out unwanted and low-risk adverse events
-  const filteredRisks = FilterLowRisk(
-    FilterUnwantedAdverse(adverseEvents),
-    riskRange
-  );
-
   // Sort filtered adverse events by descending risk score
-  const sortedRisks = filteredRisks.sort((a, b) => b.riskScore - a.riskScore);
+  const sortedRisks = adverseEvents.sort((a, b) => b.riskScore - a.riskScore);
 
   return (
     <Box

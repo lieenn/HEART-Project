@@ -7,7 +7,7 @@ import { calculateRisk } from "./Calculator";
  * @param {Array<Object>} patientAdverseEvents - An array of adverse event objects
  * @returns {Array<Object>} Adverse events that have a risk level other than "Minimal".
  */
-export function FilterLowRisk(patientAdverseEvents, riskRange) {
+export function GetHighRisks(patientAdverseEvents, riskRange) {
   return patientAdverseEvents.filter(
     (event) => calculateRisk(event.riskScore, riskRange) !== "Minimal"
   );
@@ -19,9 +19,12 @@ export function FilterLowRisk(patientAdverseEvents, riskRange) {
  * @param {Array} patientAdverseEvents - An array of adverse event objects
  * @returns {Array} Adverse events that have a risk level of "Minimal".
  */
-export function FilterHighRisk(patientAdverseEvents, riskRange) {
+export function GetLowRisks(patientAdverseEvents, riskRange) {
+  console.log("filtering low risks");
   return patientAdverseEvents.filter(
-    (event) => calculateRisk(event.riskScore, riskRange) === "Minimal"
+    (event) =>
+      calculateRisk(event.riskScore, riskRange) === "Minimal" &&
+      calculateRisk(event.confidenceInterval.high, riskRange) !== "Minimal"
   );
 }
 
@@ -35,7 +38,7 @@ export function FilterHighRisk(patientAdverseEvents, riskRange) {
  * @returns {Array<Object>} An array of adverse events that do not include the unwanted titles.
  */
 export function FilterUnwantedAdverse(patientAdverseEvents) {
-  const titles = ["Length of Stay", "Morbidity"];
+  const titles = ["Length of Stay", "Morbidity", "Mortality Rate"];
   return patientAdverseEvents.filter(
     (event) => !titles.some((title) => event.title.includes(title))
   );
@@ -63,20 +66,22 @@ export function filterRelevantAndOtherEvents(
   riskRange
 ) {
   const filteredEvents = FilterUnwantedAdverse(adverseEvents);
-  const highRiskEvents = FilterLowRisk(filteredEvents, riskRange);
+  const highRiskEvents = GetHighRisks(filteredEvents, riskRange);
+  const lowRiskEvents = GetLowRisks(filteredEvents, riskRange);
+  const allEvents = highRiskEvents.concat(lowRiskEvents);
 
   let relevantEvents = [];
   let otherEvents = [];
 
   if (eventsToFilter.length !== 0) {
-    relevantEvents = highRiskEvents.filter((event) =>
+    relevantEvents = allEvents.filter((event) =>
       eventsToFilter.includes(event.title)
     );
-    otherEvents = highRiskEvents.filter(
+    otherEvents = allEvents.filter(
       (event) => !eventsToFilter.includes(event.title)
     );
   } else {
-    otherEvents = highRiskEvents; // Treat all as irrelevant if no filter criteria are provided
+    otherEvents = allEvents; // Treat all as irrelevant if no filter criteria are provided
   }
 
   return [relevantEvents, otherEvents];
