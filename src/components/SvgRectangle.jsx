@@ -58,8 +58,8 @@ export default function SvgRectangle({
   const mainRectWidth = isLowRisk
     ? width
     : isModerateRisk
-    ? width + smallBoxWidth
-    : totalWidth;
+      ? width + smallBoxWidth
+      : totalWidth;
 
   const getBackground = () => {
     if (isLowRisk) {
@@ -100,8 +100,8 @@ export default function SvgRectangle({
             dominantBaseline="middle"
             textAnchor={textAnchor}
             fontSize="16"
-            fontFamily="Roboto"
-            fontWeight="500"
+            fontFamily="sans-serif"
+            fontWeight="800"
             fill={textColor}
           >
             {text}
@@ -109,142 +109,144 @@ export default function SvgRectangle({
           {children}
         </svg>
       </Box>
-      {(isLowRisk || isModerateRisk) && (
-        <>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1,
-              mb: 1,
-              mr: 2,
-              position: "relative",
-              borderRadius: "3px",
-              overflow: "hidden",
-              width: `${totalWidth}px`,
-              height: `${height}px`,
-              boxShadow: 1,
-              background: getBackground(),
-            }}
-          >
-            <svg width={totalWidth} height={height}>
-              <text
-                x={xPosition}
-                y="55%"
-                dominantBaseline="middle"
-                textAnchor={textAnchor}
-                fontSize="16"
-                fontFamily="Roboto"
-                fontWeight="500"
-                fill={textColor}
-              >
-                {text}
-              </text>
-              {children}
-            </svg>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1,
-              mb: 1,
-              mr: 2,
-              position: "relative",
-              borderRadius: "3px",
-              overflow: "hidden",
-              width: `${totalWidth}px`,
-              height: `${height}px`,
-              boxShadow: 1,
-            }}
-          >
-            <svg width={totalWidth} height={height}>
-              {/* Main rectangle */}
-              <rect
-                x={isModerateRisk ? smallBoxWidth : 0}
-                width={mainRectWidth}
-                height={height}
-                fill={color}
-                rx="3"
-                ry="3"
-              />
-              {/* Small box for low or moderate risk */}
-              <rect
-                x={isLowRisk ? width : 0}
-                y={0}
-                width={smallBoxWidth}
-                height={height}
-                fill={gradient}
-                stroke="black" // Add a stroke with the same color as the main rectangle
-                strokeWidth="2" // Set the width of the stroke
-                strokeDasharray="5,5" // Create a dashed effect: 5px dash, 5px gap
-              />
+      {
+        (isLowRisk || isModerateRisk) && (
+          <>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 1,
+                mb: 1,
+                mr: 2,
+                position: "relative",
+                borderRadius: "3px",
+                overflow: "hidden",
+                width: `${totalWidth}px`,
+                height: `${height}px`,
+                boxShadow: 1,
+                background: getBackground(),
+              }}
+            >
+              <svg width={totalWidth} height={height}>
+                <text
+                  x={xPosition}
+                  y="55%"
+                  dominantBaseline="middle"
+                  textAnchor={textAnchor}
+                  fontSize="16"
+                  fontFamily="Roboto"
+                  fontWeight="500"
+                  fill={textColor}
+                >
+                  {text}
+                </text>
+                {children}
+              </svg>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 1,
+                mb: 1,
+                mr: 2,
+                position: "relative",
+                borderRadius: "3px",
+                overflow: "hidden",
+                width: `${totalWidth}px`,
+                height: `${height}px`,
+                boxShadow: 1,
+              }}
+            >
+              <svg width={totalWidth} height={height}>
+                {/* Main rectangle */}
+                <rect
+                  x={isModerateRisk ? smallBoxWidth : 0}
+                  width={mainRectWidth}
+                  height={height}
+                  fill={color}
+                  rx="3"
+                  ry="3"
+                />
+                {/* Small box for low or moderate risk */}
+                <rect
+                  x={isLowRisk ? width : 0}
+                  y={0}
+                  width={smallBoxWidth}
+                  height={height}
+                  fill={gradient}
+                  stroke="black" // Add a stroke with the same color as the main rectangle
+                  strokeWidth="2" // Set the width of the stroke
+                  strokeDasharray="5,5" // Create a dashed effect: 5px dash, 5px gap
+                />
 
-              {/* Text */}
-              <text
-                x={xPosition + (isModerateRisk ? smallBoxWidth : 0)}
-                y="55%"
-                dominantBaseline="middle"
-                textAnchor={textAnchor}
-                fontSize="16"
-                fontFamily="Roboto"
-                fontWeight="500"
-                fill={textColor}
-              >
-                {text}
-              </text>
-              {children}
-            </svg>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 1,
-              mb: 1,
-              mr: 2,
-              position: "relative",
-              borderRadius: "3px",
-              overflow: "hidden",
-              width: `${width}px`,
-              height: `${height}px`,
-              boxShadow: 1,
-            }}
-          >
-            <svg width={width} height={height}>
-              {/* Main rectangle */}
-              <rect width={width} height={height} fill={color} rx="3" ry="3" />
+                {/* Text */}
+                <text
+                  x={xPosition + (isModerateRisk ? smallBoxWidth : 0)}
+                  y="55%"
+                  dominantBaseline="middle"
+                  textAnchor={textAnchor}
+                  fontSize="16"
+                  fontFamily="Roboto"
+                  fontWeight="500"
+                  fill={textColor}
+                >
+                  {text}
+                </text>
+                {children}
+              </svg>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 1,
+                mb: 1,
+                mr: 2,
+                position: "relative",
+                borderRadius: "3px",
+                overflow: "hidden",
+                width: `${width}px`,
+                height: `${height}px`,
+                boxShadow: 1,
+              }}
+            >
+              <svg width={width} height={height}>
+                {/* Main rectangle */}
+                <rect width={width} height={height} fill={color} rx="3" ry="3" />
 
-              {/* Small box for low or moderate risk */}
-              <rect
-                x={isLowRisk ? width - smallBoxWidth : 0}
-                y={0}
-                width={smallBoxWidth}
-                height={height}
-                fill={gradient}
-              />
+                {/* Small box for low or moderate risk */}
+                <rect
+                  x={isLowRisk ? width - smallBoxWidth : 0}
+                  y={0}
+                  width={smallBoxWidth}
+                  height={height}
+                  fill={gradient}
+                />
 
-              {/* Text */}
-              <text
-                x={xPosition}
-                y="55%"
-                dominantBaseline="middle"
-                textAnchor={textAnchor}
-                fontSize="16"
-                fontFamily="Roboto"
-                fontWeight="500"
-                fill={textColor}
-              >
-                {text}
-              </text>
-              {children}
-            </svg>
-          </Box>
-        </>
-      )}
-    </Box>
+                {/* Text */}
+                <text
+                  x={xPosition}
+                  y="55%"
+                  dominantBaseline="middle"
+                  textAnchor={textAnchor}
+                  fontSize="16"
+                  fontFamily="Roboto"
+                  fontWeight="500"
+                  fill={textColor}
+                >
+                  {text}
+                </text>
+                {children}
+              </svg>
+            </Box>
+          </>
+        )
+      }
+    </Box >
   );
 }

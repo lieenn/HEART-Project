@@ -41,6 +41,7 @@ export default function TableRow({
             display: "flex",
             justifyContent: "flex-start",
             flexWrap: "wrap",
+            backgroundColor: '#fafafa'
           }}
         >
           {rightContent}
