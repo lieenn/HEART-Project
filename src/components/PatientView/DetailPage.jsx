@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { Button, Typography, Grid, Container, Box } from "@mui/material";
+import { Button, Typography, Grid, Container, Box, Card, CardContent, CardHeader } from "@mui/material";
 import AdverseEventsList from "./AdverseEventsList";
 import { GetHighRisks, GetLowRisks } from "../Utils/FilterFunctions";
 
@@ -23,73 +23,89 @@ export default function DetailPage({ riskRange, patientData }) {
    */
   const person = patientData.find((item) => item.patientId == value);
 
-  return (
-    <Container maxWidth="xl" sx={{ mt: { xs: 2, sm: 3, md: 5 } }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={8} md={9} lg={10}>
-          <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
-            {person.patientName}
-          </Typography>
-        </Grid>
-        <Grid item xs={12} sm={4} md={3} lg={2}>
-          <Typography variant="h6">PID: {person.PID}</Typography>
-          <Typography variant="h6">Room # {person.roomNumber}</Typography>
-        </Grid>
+  const riskViews = [
+    {
+      type: "High",
+      bgColor: "#f7917d", // is there a way to make this not constant and say, primary etc? 
+      fontColor: "black",
+      riskFilterFn: GetHighRisks,
+      size: {
+        xs: "12",
+        sm: "12",
+        md: "7",
+        lg: "8"
+      }
+    },
+    {
+      type: "Low",
+      bgColor: "#99CDF6", // is there a way to make this not constant and say, primary etc? 
+      fontColor: "black",
+      riskFilterFn: GetLowRisks,
+      size: {
+        xs: "12",
+        sm: "12",
+        md: "5",
+        lg: "4"
+      }
+    }
+  ];
+
+  let detailCardGrids = riskViews.map(view => {
+    return (
+      <Grid item {...view.size}>
+        <Card
+          elevation={4}
+        >
+          <CardHeader title={view.type + " Risk Adverse Events"}
+            sx={{ backgroundColor: view.bgColor, textAlign: "center", padding: 1, fontWeight: 600, color: view.fontColor }} />
+
+          <CardContent>
+            <Typography variant="p">
+              Patient is predicted <b>{view.type.toLowerCase()} risk</b> for these adverse events:
+            </Typography>
+            <AdverseEventsList
+              adverseEvents={person.adverseEvents}
+              riskFilter={view.riskFilterFn}
+              riskRange={riskRange}
+            />
+          </CardContent>
+        </Card>
       </Grid>
+    )
+  })
+
+  return (
+    // <Container maxWidth="xl" sx={{ mt: { xs: 2, sm: 3, md: 5 } }}>
+    <React.Fragment>
+      {/* <Grid container spacing={2}> */}
+
+      {/* </Grid> */}
 
       <Grid
         container
         sx={{
           mt: { xs: 2, sm: 3, md: 4 },
-          border: "1.5px solid #000",
+          // border: "1.5px solid #000",
         }}
+        spacing={3}
       >
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={7}
-          lg={8}
-          sx={{
-            borderRight: { xs: "none", sm: "none", md: "1.5px solid #000" },
-            borderBottom: {
-              xs: "1.5px solid #000",
-              sm: "1.5px solid #000",
-              md: "none",
-            },
-          }}
-        >
-          <AdverseEventsList
-            adverseEvents={person.adverseEvents}
-            riskFilter={GetHighRisks}
-            header="High Risk Adverse Events"
-            bgColor="#f7917d"
-            riskRange={riskRange}
-          />
+        <Grid item xs={12} sm={8} md={9} lg={10}>
+          <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
+            {person.patientName}
+          </Typography>
         </Grid>
 
-        <Grid item xs={12} sm={12} md={5} lg={4}>
-          <AdverseEventsList
-            adverseEvents={person.adverseEvents}
-            riskFilter={GetLowRisks}
-            header="Low Risk Adverse Events"
-            bgColor="#82c3f6"
-            riskRange={riskRange}
-          />
+        <Grid item xs={12} sm={4} md={3} lg={2}>
+          <Typography variant="h6">PID: {person.patientId}</Typography>
+          <Typography variant="h6">Room # {person.roomNumber}</Typography>
         </Grid>
-      </Grid>
-
-      <Grid
-        container
-        justifyContent="center"
-        sx={{ mt: { xs: 2, sm: 3, md: 4 } }}
-      >
+        {detailCardGrids}
         <Grid item>
           <Link to="/">
             <Button variant="contained">Back</Button>
           </Link>
         </Grid>
       </Grid>
-    </Container>
+    </React.Fragment>
   );
 }

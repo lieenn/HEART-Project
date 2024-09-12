@@ -27,7 +27,7 @@ export default function AdverseEventsList({
 
   return (
     <Box>
-      <Box>
+      {/* <Box>
         <Typography
           gutterBottom
           sx={{
@@ -44,11 +44,11 @@ export default function AdverseEventsList({
         <Typography sx={{ m: 2 }}>
           Patient is predicted{" "}
           <Typography component="span" sx={{ fontWeight: "bold" }}>
-            {header.replace("Adverse Events", "").toLowerCase()}
+            {header && header.replace("Adverse Events", "").toLowerCase()}
           </Typography>{" "}
           for these adverse events:
         </Typography>
-      </Box>
+      </Box> */}
 
       {sortedRisks.length > 0 ? (
         <List>
@@ -60,7 +60,7 @@ export default function AdverseEventsList({
         </List>
       ) : (
         <Typography sx={{ m: 2, fontStyle: "italic" }}>
-          No {header.toLowerCase()} found.
+          No {header && header.toLowerCase()} found.
         </Typography>
       )}
     </Box>
