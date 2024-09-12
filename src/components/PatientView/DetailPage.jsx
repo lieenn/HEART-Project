@@ -75,37 +75,30 @@ export default function DetailPage({ riskRange, patientData }) {
   })
 
   return (
-    // <Container maxWidth="xl" sx={{ mt: { xs: 2, sm: 3, md: 5 } }}>
-    <React.Fragment>
-      {/* <Grid container spacing={2}> */}
-
-      {/* </Grid> */}
-
-      <Grid
-        container
-        sx={{
-          mt: { xs: 2, sm: 3, md: 4 },
-          // border: "1.5px solid #000",
-        }}
-        spacing={3}
-      >
-        <Grid item xs={12} sm={8} md={9} lg={10}>
-          <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
-            {person.patientName}
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12} sm={4} md={3} lg={2}>
-          <Typography variant="h6">PID: {person.patientId}</Typography>
-          <Typography variant="h6">Room # {person.roomNumber}</Typography>
-        </Grid>
-        {detailCardGrids}
-        <Grid item>
-          <Link to="/">
-            <Button variant="contained">Back</Button>
-          </Link>
-        </Grid>
+    <Grid
+      container
+      sx={{
+        mt: { xs: 2, sm: 3, md: 4 },
+        // border: "1.5px solid #000",
+      }}
+      spacing={3}
+    >
+      <Grid item xs={12} sm={8} md={9} lg={10}>
+        <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
+          {person.patientName}
+        </Typography>
       </Grid>
-    </React.Fragment>
+
+      <Grid item xs={12} sm={4} md={3} lg={2}>
+        <Typography variant="h6">PID: {person.patientId}</Typography>
+        <Typography variant="h6">Room # {person.roomNumber}</Typography>
+      </Grid>
+      {detailCardGrids}
+      <Grid item>
+        <Link to="/">
+          <Button variant="contained">Back</Button>
+        </Link>
+      </Grid>
+    </Grid>
   );
 }
