@@ -27,7 +27,7 @@ export default function RiskScale({
 
   const colors = colorScale.domain().map((domainValue) => {
     const colorArray = colorScale(domainValue);
-    return colorArray[2];
+    return colorArray[1];
   });
 
   const [textColor, color] = calculateColor(adverseEvent.riskScore, riskRange);

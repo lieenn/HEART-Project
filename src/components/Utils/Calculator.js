@@ -11,14 +11,11 @@ export const colorScale = d3
   .scaleOrdinal()
   .domain(["Minimal", "Moderate", "Moderate High", "High"])
   .range([
-    ["#d0e7fe", "#99CDF6", "#d0e7fe"], // Minimal: [primary, secondary, tertiary]
-    ["#ffea6f", "#FEF1A5", "#ffea6f"], // Moderate: [primary, secondary, tertiary]
-    ["#FFA500", "#F7AF7C", "#FFA500"], // Moderate High: [primary, secondary, tertiary]
-    ["#ff7043", "#F99B89", "#ff7043"], // High: [primary, secondary, tertiary]
+    ["#97C5F6", "#99CDF6", "#B8DBF6"], // Minimal: [primary, secondary, tertiary]
+    ["#fecc5c", "#FEF1A5", "#FFF7CC"], // Moderate: [primary, secondary, tertiary]
+    ["#fc8d59", "#F7AF7C", "#FAC7A2"], // Moderate High: [primary, secondary, tertiary]
+    ["#F16448", "#F99B89", "#FABBAF"], // High: [primary, secondary, tertiary]
   ]);
-
-//#ff624f
-// #E23D28 --> alternative color -- cute chili red -- but needs white font
 
 /**
  * Calculate risk level given a risk score
@@ -50,15 +47,9 @@ export function calculateColor(riskScore, riskRange) {
   // Get the array of colors from the scale
   const colors = colorScale(riskLevel);
   const textColor =
-    riskLevel === "Moderate High" || riskLevel === "High" ? "white" : "black";
+    riskLevel === "Moderate High" || riskLevel === "High" ? "black" : "black";
 
   return [textColor, ...colors];
-}
-
-export function borderLineColor(riskScore, riskRange) {
-  const riskLevel = calculateRisk(riskScore, riskRange);
-  const colors = riskLevel === "Minimal" ? ["#ffea6f"] : ["#97C5F6"];
-  return colors[0];
 }
 
 /**
