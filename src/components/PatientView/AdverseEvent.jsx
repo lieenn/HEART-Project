@@ -6,11 +6,15 @@ import RiskScale from "./RiskScale";
 import SvgRectangle from "../SharedComponents/SvgRectangle";
 
 export default function AdverseEvent({ adverseEvent, riskRange }) {
-  const rectWidth = 205;
+  const rectWidth = 216;
   const rectHeight = 36;
   const riskLevel = calculateRisk(adverseEvent.riskScore, riskRange);
   const lowRiskDomain = [0, riskRange[0]];
-  const highRiskDomain = [riskRange[0], riskRange[3]];
+  const highRiskDomain = [
+    [riskRange[0], riskRange[1]],
+    [riskRange[1], riskRange[2]],
+    [riskRange[2], riskRange[3]],
+  ];
 
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
@@ -21,12 +25,13 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
           width={rectWidth}
           height={rectHeight}
           text={adverseEvent.title}
-          textAnchor="start" // Align text to the left
+          textAnchor="start"
+          isPatientSpecific={true}
         >
           {/* Question mark button */}
           <foreignObject
-            x={rectWidth - 32}
-            y="5"
+            x={rectWidth - 30}
+            y="7"
             width="40"
             height={rectHeight}
           >

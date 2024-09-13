@@ -14,7 +14,7 @@ export default function RiskScale({
   const height = 23;
   const svgHeight = 25;
   const extraWidth = 25;
-  const padding = 2; // Padding on each side
+  const padding = 2;
   const totalWidth = mainWidth + extraWidth * 2;
   const svgWidth = totalWidth + padding * 2;
   const strokeColor = "black";
@@ -22,7 +22,7 @@ export default function RiskScale({
 
   const xScale = d3
     .scaleLinear()
-    .domain(domain)
+    .domain(isHighRisk ? [domain[0][0], domain[2][1]] : domain)
     .range([padding + extraWidth, padding + extraWidth + mainWidth]);
 
   const colors = colorScale.domain().map((domainValue) => {
@@ -30,21 +30,28 @@ export default function RiskScale({
     return colorArray[1];
   });
 
-  const [textColor, color] = calculateColor(adverseEvent.riskScore, riskRange);
+  const [textColor, color, bgcolor, lineColor] = calculateColor(
+    adverseEvent.riskScore,
+    riskRange
+  );
 
-  const isUncertainLow = adverseEvent.confidenceInterval.low < domain[0];
-  const isUncertainHigh = adverseEvent.confidenceInterval.high > domain[1];
+  const isUncertainLow =
+    adverseEvent.confidenceInterval.low <=
+    (isHighRisk ? domain[0][0] : domain[0]);
+  const isUncertainHigh =
+    adverseEvent.confidenceInterval.high >=
+    (isHighRisk ? domain[2][1] : domain[1]);
 
   const renderBackgroundSegments = () => {
     if (isHighRisk) {
-      return [1, 2, 3].map((index) => (
+      return domain.map((range, index) => (
         <rect
           key={index}
-          x={padding + extraWidth + ((index - 1) * mainWidth) / 3}
+          x={xScale(range[0])}
           y={(svgHeight - height) / 2}
-          width={mainWidth / 3}
+          width={xScale(range[1]) - xScale(range[0])}
           height={height}
-          fill={colors[index]}
+          fill={colors[index + 1]}
           stroke={strokeColor}
           strokeWidth={strokeWidth}
         />
@@ -102,7 +109,7 @@ export default function RiskScale({
           x2={bandEnd}
           y1={svgHeight / 2}
           y2={svgHeight / 2}
-          stroke={color}
+          stroke={lineColor}
           strokeWidth={4}
         />
       </>
@@ -110,9 +117,15 @@ export default function RiskScale({
   };
 
   const getRiskScorePosition = () => {
-    if (adverseEvent.riskScore < domain[0]) return padding + extraWidth;
-    if (adverseEvent.riskScore > domain[1])
-      return padding + extraWidth + mainWidth;
+    if (isHighRisk) {
+      if (adverseEvent.riskScore < domain[0][0]) return padding + extraWidth;
+      if (adverseEvent.riskScore > domain[2][1])
+        return padding + extraWidth + mainWidth;
+    } else {
+      if (adverseEvent.riskScore < domain[0]) return padding + extraWidth;
+      if (adverseEvent.riskScore > domain[1])
+        return padding + extraWidth + mainWidth;
+    }
     return xScale(adverseEvent.riskScore);
   };
 

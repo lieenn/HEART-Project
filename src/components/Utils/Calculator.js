@@ -5,23 +5,27 @@ import { riskRange } from "../../App";
 // Central color configuration
 const color = {
   minimal: {
-    primary: "#d0e7fe",
-    secondary: "#99CDF6",
+    primary: "#b1d6fa",
+    secondary: "#d0e7fe",
+    tertiary: "#5aabfa",
     text: "black",
   },
   moderate: {
     primary: "#ffea6f",
-    secondary: "#FEF1A5",
+    secondary: "#fcf2b6",
+    tertiary: "#ffd900",
     text: "black",
   },
   moderateHigh: {
     primary: "#FFA500",
-    secondary: "#F7AF7C",
+    secondary: "#f5bc93",
+    tertiary: "#ff7700",
     text: "white",
   },
   high: {
     primary: "#ff7043",
-    secondary: "#F99B89",
+    secondary: "#fc7668",
+    tertiary: "#fa2205",
     text: "white",
   },
 };
@@ -39,10 +43,14 @@ export const colorScale = d3
   .scaleOrdinal()
   .domain(["Minimal", "Moderate", "Moderate High", "High"])
   .range([
-    [color.minimal.primary, color.minimal.secondary],
-    [color.moderate.primary, color.moderate.secondary],
-    [color.moderateHigh.primary, color.moderateHigh.secondary],
-    [color.high.primary, color.high.secondary],
+    [color.minimal.primary, color.minimal.secondary, color.minimal.tertiary],
+    [color.moderate.primary, color.moderate.secondary, color.moderate.tertiary],
+    [
+      color.moderateHigh.primary,
+      color.moderateHigh.secondary,
+      color.moderateHigh.tertiary,
+    ],
+    [color.high.primary, color.high.secondary, color.high.tertiary],
   ]);
 
 /**

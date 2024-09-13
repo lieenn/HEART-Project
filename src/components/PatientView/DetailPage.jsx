@@ -1,6 +1,15 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { Button, Typography, Grid, Container, Box, Card, CardContent, CardHeader } from "@mui/material";
+import {
+  Button,
+  Typography,
+  Grid,
+  Container,
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+} from "@mui/material";
 import AdverseEventsList from "./AdverseEventsList";
 import { GetHighRisks, GetLowRisks } from "../Utils/FilterFunctions";
 
@@ -26,42 +35,49 @@ export default function DetailPage({ riskRange, patientData }) {
   const riskViews = [
     {
       type: "High",
-      bgColor: "#f7917d", // is there a way to make this not constant and say, primary etc? 
+      bgColor: "#f7917d", // is there a way to make this not constant and say, primary etc?
       fontColor: "black",
       riskFilterFn: GetHighRisks,
       size: {
         xs: "12",
         sm: "12",
         md: "7",
-        lg: "8"
-      }
+        lg: "8",
+      },
     },
     {
       type: "Low",
-      bgColor: "#99CDF6", // is there a way to make this not constant and say, primary etc? 
+      bgColor: "#99CDF6", // is there a way to make this not constant and say, primary etc?
       fontColor: "black",
       riskFilterFn: GetLowRisks,
       size: {
         xs: "12",
         sm: "12",
         md: "5",
-        lg: "4"
-      }
-    }
+        lg: "4",
+      },
+    },
   ];
 
-  let detailCardGrids = riskViews.map(view => {
+  let detailCardGrids = riskViews.map((view) => {
     return (
       <Grid item {...view.size}>
-        <Card
-          elevation={4}
-        >
-          <CardHeader title={view.type + " Risk Adverse Events"}
-            sx={{ backgroundColor: view.bgColor, textAlign: "center", padding: 1, fontWeight: 600, color: view.fontColor }} />
+        <Card elevation={4}>
+          <CardHeader
+            title={view.type + " Risk Adverse Events"}
+            sx={{
+              backgroundColor: view.bgColor,
+              textAlign: "center",
+              padding: 1,
+              fontWeight: 600,
+              color: view.fontColor,
+            }}
+          />
 
           <CardContent>
             <Typography variant="p">
-              Patient is predicted <b>{view.type.toLowerCase()} risk</b> for these adverse events:
+              Patient is predicted <b>{view.type.toLowerCase()} risk</b> for
+              these adverse events:
             </Typography>
             <AdverseEventsList
               adverseEvents={person.adverseEvents}
@@ -71,8 +87,8 @@ export default function DetailPage({ riskRange, patientData }) {
           </CardContent>
         </Card>
       </Grid>
-    )
-  })
+    );
+  });
 
   return (
     <Grid
