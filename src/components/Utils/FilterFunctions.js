@@ -20,7 +20,6 @@ export function GetHighRisks(patientAdverseEvents, riskRange) {
  * @returns {Array} Adverse events that have a risk level of "Minimal".
  */
 export function GetLowRisks(patientAdverseEvents, riskRange) {
-  console.log("filtering low risks");
   return patientAdverseEvents.filter(
     (event) =>
       calculateRisk(event.riskScore, riskRange) === "Minimal" &&

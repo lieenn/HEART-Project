@@ -6,7 +6,7 @@ import patientView from "./Json files 2 patients/patientView.json";
 import Box from "@mui/material/Box";
 import MainView from "./components/AggregateView/MainView";
 import DetailPage from "./components/PatientView/DetailPage";
-import RiskRangeInput from "./components/RiskRangeInput";
+import RiskRangeInput from "./components/SharedComponents/RiskRangeInput";
 
 /**
  * @constant {Array<number>} riskRange - Defines risk thresholds [minimal, moderate, moderate high, high].

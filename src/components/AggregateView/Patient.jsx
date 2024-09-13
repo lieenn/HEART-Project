@@ -14,18 +14,20 @@ export default function Patient({
   isFavorite,
   onToggleFavorite,
 }) {
-  const [color] = highestRiskColor(patient, riskRange);
+  const color = highestRiskColor(patient, riskRange);
   const [relevant, others] = filterRelevantAndOtherEvents(
     selectedAdverseEvents,
     patient.adverseEvents,
     riskRange
   );
 
+  // If there are selected adverse events and no relevant risks, don't render the patient
+  if (selectedAdverseEvents.length > 0 && relevant.length === 0) {
+    return null;
+  }
+
   const displayPID = patient.patientId;
   const isLowRisk = relevant.length === 0 && others.length === 0;
-  // if (isLowRisk && !showFilteredOutcomes) {
-  //   console.log("No adverse events predicted for this patient at this time.");
-  // }
 
   const leftContent = (
     <PatientInfo
@@ -37,17 +39,15 @@ export default function Patient({
   );
 
   const rightContent = (
-    <Box sx={{ p: 2 }}>
-      <PatientRisks
-        adverseEvents={getAdverseEvents(
-          showFilteredOutcomes,
-          relevant,
-          others,
-          isLowRisk
-        )}
-        riskRange={riskRange}
-      />
-    </Box>
+    <PatientRisks
+      adverseEvents={getAdverseEvents(
+        showFilteredOutcomes,
+        relevant,
+        others,
+        isLowRisk
+      )}
+      riskRange={riskRange}
+    />
   );
 
   return <TableRow leftContent={leftContent} rightContent={rightContent} />;

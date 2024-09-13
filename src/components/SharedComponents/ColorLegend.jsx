@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
-import { colorScale } from "./Utils/Calculator";
+import { colorScale } from "../Utils/Calculator";
 
 export default function ColorLegend() {
   const theme = useTheme();

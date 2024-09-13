@@ -33,6 +33,7 @@ export default function PatientInfo({
       <Box
         sx={{
           display: "flex",
+          pl: 1,
           alignItems: "center",
           flexGrow: 1,
           overflow: "hidden",

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Popover, Typography } from "@mui/material";
 import { calculateColor } from "../Utils/Calculator";
-import SvgRectangle from "../SvgRectangle";
+import SvgRectangle from "../SharedComponents/SvgRectangle";
 
 export default function PatientRiskStatus({ risk, riskRange }) {
   const [anchorEl, setAnchorEl] = React.useState(null);

@@ -3,7 +3,7 @@ import { calculateColor, calculateRisk } from "../Utils/Calculator";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Box, IconButton, Avatar } from "@mui/material";
 import RiskScale from "./RiskScale";
-import SvgRectangle from "../SvgRectangle";
+import SvgRectangle from "../SharedComponents/SvgRectangle";
 
 export default function AdverseEvent({ adverseEvent, riskRange }) {
   const rectWidth = 205;

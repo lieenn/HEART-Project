@@ -1,48 +1,34 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import PatientRiskStatus from "./PatientRiskStatus";
-import {
-  GetHighRisks,
-  FilterUnwantedAdverse,
-  GetLowRisks,
-} from "../Utils/FilterFunctions";
 
 export default function PatientRisks({ adverseEvents, riskRange }) {
+  // Always sort the adverse events by descending risk score
+  const sortedRisks = [...adverseEvents].sort(
+    (a, b) => b.riskScore - a.riskScore
+  );
+
   if (
-    adverseEvents.length === 1 &&
-    adverseEvents[0].title ===
+    sortedRisks.length === 1 &&
+    sortedRisks[0].title ===
       "No adverse events predicted for this patient at this time."
   ) {
     return (
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-      >
-        <PatientRiskStatus risk={adverseEvents[0]} riskRange={riskRange} />
+      <Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
+        <PatientRiskStatus risk={sortedRisks[0]} riskRange={riskRange} />
       </Box>
     );
   }
 
-  // Sort filtered adverse events by descending risk score
-  const sortedRisks = adverseEvents.sort((a, b) => b.riskScore - a.riskScore);
-
   return (
-    <Box
-      sx={{
-        display: "inline-flex",
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-        }}
-      >
+    <Box sx={{ display: "inline-flex" }}>
+      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
         {sortedRisks.map((risk, index) => (
-          <PatientRiskStatus key={index} risk={risk} riskRange={riskRange} />
+          <PatientRiskStatus
+            key={risk.title || index}
+            risk={risk}
+            riskRange={riskRange}
+          />
         ))}
       </Box>
     </Box>

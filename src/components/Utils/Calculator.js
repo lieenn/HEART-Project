@@ -2,19 +2,47 @@ import * as d3 from "d3";
 import { FilterUnwantedAdverse } from "./FilterFunctions";
 import { riskRange } from "../../App";
 
+// Central color configuration
+const color = {
+  minimal: {
+    primary: "#d0e7fe",
+    secondary: "#99CDF6",
+    text: "black",
+  },
+  moderate: {
+    primary: "#ffea6f",
+    secondary: "#FEF1A5",
+    text: "black",
+  },
+  moderateHigh: {
+    primary: "#FFA500",
+    secondary: "#F7AF7C",
+    text: "white",
+  },
+  high: {
+    primary: "#ff7043",
+    secondary: "#F99B89",
+    text: "white",
+  },
+};
+
+// #ff624f
+// #E23D28 --> alternative color -- cute chili red -- but needs white font
+// #97C5F6 --> light blue
+
 /**
  * Using d3 to define color scale,
  * ordinal so there is no gradient.
- * Each risk level maps to an array of three colors: [primary, secondary, tertiary].
+ * Each risk level maps to an array of three colors: [primary, secondary].
  */
 export const colorScale = d3
   .scaleOrdinal()
   .domain(["Minimal", "Moderate", "Moderate High", "High"])
   .range([
-    ["#97C5F6", "#99CDF6", "#B8DBF6"], // Minimal: [primary, secondary, tertiary]
-    ["#fecc5c", "#FEF1A5", "#FFF7CC"], // Moderate: [primary, secondary, tertiary]
-    ["#fc8d59", "#F7AF7C", "#FAC7A2"], // Moderate High: [primary, secondary, tertiary]
-    ["#F16448", "#F99B89", "#FABBAF"], // High: [primary, secondary, tertiary]
+    [color.minimal.primary, color.minimal.secondary],
+    [color.moderate.primary, color.moderate.secondary],
+    [color.moderateHigh.primary, color.moderateHigh.secondary],
+    [color.high.primary, color.high.secondary],
   ]);
 
 /**
@@ -26,12 +54,11 @@ export const colorScale = d3
  */
 export function calculateRisk(riskScore, riskRange) {
   const [min, mod, modHigh, high] = riskRange;
-  let riskLevel;
-  if (riskScore >= 0 && riskScore < min) riskLevel = "Minimal";
-  else if (riskScore >= min && riskScore < mod) riskLevel = "Moderate";
-  else if (riskScore >= mod && riskScore < modHigh) riskLevel = "Moderate High";
-  else if (riskScore >= modHigh && riskScore <= high) riskLevel = "High";
-  return riskLevel;
+  if (riskScore >= 0 && riskScore < min) return "Minimal";
+  if (riskScore >= min && riskScore < mod) return "Moderate";
+  if (riskScore >= mod && riskScore < modHigh) return "Moderate High";
+  if (riskScore >= modHigh && riskScore <= high) return "High";
+  return "Unknown";
 }
 
 /**
@@ -44,22 +71,29 @@ export function calculateRisk(riskScore, riskRange) {
  */
 export function calculateColor(riskScore, riskRange) {
   const riskLevel = calculateRisk(riskScore, riskRange);
-  // Get the array of colors from the scale
   const colors = colorScale(riskLevel);
   const textColor =
-    riskLevel === "Moderate High" || riskLevel === "High" ? "black" : "black";
+    riskLevel === "Moderate High" || riskLevel === "High"
+      ? color.moderateHigh.text
+      : color.minimal.text;
 
   return [textColor, ...colors];
 }
 
+export function borderLineColor(riskScore, riskRange) {
+  const riskLevel = calculateRisk(riskScore, riskRange);
+  return riskLevel === "Minimal"
+    ? color.moderate.primary
+    : color.minimal.primary;
+}
+
 /**
- * Get the secondary and tertiary colors corresponding to the
+ * Get the primary colors corresponding to the
  * highest risk score among a patient's adverse events
  * @param {Object} patient - The patient object containing adverse events
  * @param {Array<Object>} patient.adverseEvents - Array of adverse events
  * @param {Array<number>} riskRange - The current risk range used to define levels.
- * @returns {Array<string>} An array containing the secondary
- * and tertiary colors for the highest risk adverse event
+ * @returns {string} primary color
  */
 export function highestRiskColor(patient, riskRange) {
   const risks = patient.adverseEvents;
@@ -69,9 +103,6 @@ export function highestRiskColor(patient, riskRange) {
     0
   );
 
-  const [textColor, primary, secondary, tertiary] = calculateColor(
-    highestRisk,
-    riskRange
-  );
-  return [primary];
+  const [textColor, primary] = calculateColor(highestRisk, riskRange);
+  return primary;
 }

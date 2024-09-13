@@ -11,11 +11,10 @@ export default function TableRow({
   const isSmScreen = useMediaQuery(theme.breakpoints.only("sm"));
 
   return (
-    <Grid container spacing={2}>
+    <Grid container>
       <Grid item xs={4} sm={4} md={3} lg={2} xl={2}>
         <Box
           sx={{
-            mt: 0,
             pt: { xs: 1, sm: 2 },
             pl: isHeader ? { xs: 1, sm: 2, md: 3 } : { xs: 1, sm: 2 },
             pr: { xs: 1, sm: 2 },
@@ -32,16 +31,15 @@ export default function TableRow({
       <Grid item xs={8} sm={8} md={9} lg={10} xl={10}>
         <Box
           sx={{
-            mt: 0,
             pt: { xs: 1, sm: 2 },
-            pl: { xs: 1, sm: 2 },
+            pl: { xs: 2, sm: 4 },
             pr: { xs: 1, sm: 2 },
             overflow: "hidden",
             height: "100%",
             display: "flex",
             justifyContent: "flex-start",
             flexWrap: "wrap",
-            backgroundColor: '#fafafa'
+            backgroundColor: "#fafafa",
           }}
         >
           {rightContent}
