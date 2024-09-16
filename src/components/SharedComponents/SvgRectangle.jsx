@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
   calculateColor,
   borderLineColor,
@@ -12,9 +12,9 @@ const SvgRectangle = ({
   width,
   height,
   text,
-  textAnchor = "middle",
   isPatientSpecific = false,
   children,
+  textAlign,
 }) => {
   const [textColor, color] = calculateColor(risk.riskScore, riskRange);
   const gradient = borderLineColor(risk.riskScore, riskRange);
@@ -22,113 +22,69 @@ const SvgRectangle = ({
   const isLowRisk =
     risk.riskScore < riskRange[0] &&
     calculateRisk(risk.confidenceInterval.high, riskRange) !== "Minimal";
-  const isModerateRisk =
-    risk.riskScore >= riskRange[0] &&
-    risk.riskScore < riskRange[1] &&
-    calculateRisk(risk.confidenceInterval.low, riskRange) === "Minimal";
 
   const smallBoxWidth = 12;
-  const totalWidth =
-    isLowRisk || isModerateRisk ? width + smallBoxWidth : width;
-  const mainRectWidth = isLowRisk ? width : totalWidth;
+  const gradientWidth = 12;
 
-  const getGradientId = () => {
-    if (isLowRisk) return "gradientLowRisk";
-    if (isModerateRisk) return "gradientModerateRisk";
-    return "";
+  const mainBoxStyle = {
+    width: isPatientSpecific ? width : width - smallBoxWidth,
+    height,
+    backgroundColor: color,
+    display: "flex",
+    alignItems: "center",
+    position: "relative",
+    padding: "0 8px",
+    justifyContent: textAlign === "center" ? "center" : "flex-start",
   };
 
-  const renderGradient = () => (
-    <defs>
-      <linearGradient
-        id={getGradientId()}
-        x1={isLowRisk ? "0%" : "100%"}
-        y1="0%"
-        x2={isLowRisk ? "100%" : "0%"}
-        y2="0%"
-      >
-        <stop offset="80%" stopColor={color} />
-        <stop offset={isLowRisk ? "100%" : "90%"} stopColor={gradient} />
-      </linearGradient>
-    </defs>
-  );
-
-  const renderMainRect = () => (
-    <rect
-      x={0}
-      y={0}
-      width={isPatientSpecific ? width : mainRectWidth}
-      height={height}
-      fill={
-        isPatientSpecific
-          ? color
-          : isLowRisk || isModerateRisk
-          ? `url(#${getGradientId()})`
-          : color
-      }
-    />
-  );
-
-  const renderSmallBox = () => {
-    if (isPatientSpecific || (!isLowRisk && !isModerateRisk)) return null;
-    return (
-      <rect
-        x={isLowRisk ? width : 0}
-        y={0}
-        width={smallBoxWidth}
-        height={height}
-        fill={gradient}
-      />
-    );
+  const textStyle = {
+    flexGrow: 1,
+    textAlign,
+    paddingRight: children ? "30px" : "0", // Add padding if there's an icon
   };
 
-  const renderText = () => (
-    <text
-      x={
-        isPatientSpecific
-          ? "5%"
-          : mainRectWidth / 2 + (isModerateRisk ? smallBoxWidth / 2 : 0)
-      }
-      y="50%"
-      dominantBaseline="central"
-      textAnchor={isPatientSpecific ? "start" : textAnchor}
-      fontSize="16"
-      fontFamily="sans-serif"
-      fontWeight="800"
-      fill={textColor}
-    >
-      {text}
-    </text>
-  );
+  const iconStyle = {
+    position: "absolute",
+    right: 8,
+  };
 
-  const renderSvgContent = () => (
-    <>
-      {!isPatientSpecific && renderGradient()}
-      {renderMainRect()}
-      {renderSmallBox()}
-      {renderText()}
-      {children}
-    </>
-  );
+  const smallBoxStyle = {
+    width: smallBoxWidth,
+    height,
+    backgroundColor: gradient,
+    flexShrink: 0,
+  };
 
   return (
     <Box
-      sx={{
-        display: "flex",
-        mb: 1,
-        borderRadius: "3px",
-        overflow: "hidden",
-        boxShadow: 1,
-      }}
+      display="flex"
+      mb={1}
+      borderRadius="8px"
+      overflow="hidden"
+      border="1.5px solid"
     >
-      <svg
-        width={isPatientSpecific ? width : totalWidth}
-        height={height}
-        viewBox={`0 0 ${isPatientSpecific ? width : totalWidth} ${height}`}
-        style={{ display: "block" }}
-      >
-        {renderSvgContent()}
-      </svg>
+      <Box sx={mainBoxStyle}>
+        <Typography
+          variant="body1"
+          fontWeight="bold"
+          color={textColor}
+          sx={textStyle}
+        >
+          {text}
+        </Typography>
+        {children && <Box sx={iconStyle}>{children}</Box>}
+      </Box>
+      {!isPatientSpecific && isLowRisk && (
+        <>
+          <Box
+            sx={{
+              width: `${gradientWidth}px`,
+              background: `linear-gradient(to right, ${color}, ${gradient})`,
+            }}
+          />
+          <Box sx={smallBoxStyle} />
+        </>
+      )}
     </Box>
   );
 };

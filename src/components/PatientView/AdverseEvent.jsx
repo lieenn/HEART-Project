@@ -25,29 +25,20 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
           width={rectWidth}
           height={rectHeight}
           text={adverseEvent.title}
-          textAnchor="start"
           isPatientSpecific={true}
         >
-          {/* Question mark button */}
-          <foreignObject
-            x={rectWidth - 30}
-            y="7"
-            width="40"
-            height={rectHeight}
+          <Avatar
+            size="small"
+            sx={{ width: 24, height: 24, bgcolor: "#414bb2" }}
           >
-            <Avatar
+            <IconButton
+              aria-label="question"
               size="small"
-              sx={{ width: 24, height: 24, bgcolor: "#414bb2" }}
+              sx={{ color: "white" }}
             >
-              <IconButton
-                aria-label="question"
-                size="small"
-                sx={{ color: "white" }}
-              >
-                <QuestionMarkIcon fontSize="inherit" />
-              </IconButton>
-            </Avatar>
-          </foreignObject>
+              <QuestionMarkIcon fontSize="inherit" />
+            </IconButton>
+          </Avatar>
         </SvgRectangle>
       </Box>
       {riskLevel === "Minimal" ? (

@@ -1,7 +1,6 @@
 import React, { useState, useMemo, useCallback } from "react";
 import {
   Box,
-  IconButton,
   Popover,
   List,
   ListItem,
@@ -12,41 +11,15 @@ import {
   Typography,
   TextField,
   InputAdornment,
-  styled,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import SearchIcon from "@mui/icons-material/Search";
+import StyledIconButton from "./StyledIconButton";
 
 const SELECT_ALL = "Select All";
 const DESELECT_ALL = "Deselect All";
-
-const StyledIconButton = styled(IconButton)(({ theme, isactive }) => ({
-  color:
-    isactive === "true"
-      ? theme.palette.primary.main
-      : theme.palette.action.active,
-  backgroundColor: "transparent",
-  "&:hover": {
-    backgroundColor: "transparent",
-  },
-  borderRadius: "50%",
-  minWidth: "auto",
-  width: "24px",
-  height: "24px",
-  border: "none",
-  outline: "none",
-  "&:focus": {
-    outline: "none",
-  },
-  "& .MuiTouchRipple-root": {
-    display: "none",
-  },
-  "&.Mui-focusVisible": {
-    backgroundColor: "transparent",
-  },
-}));
 
 export default function FilterButton({
   adverseEventsList,
@@ -130,13 +103,13 @@ export default function FilterButton({
   }
 
   return (
-    <Box>
+    <>
       <StyledIconButton
         onClick={handleClick}
         aria-describedby={id}
         isactive={isFilterActive.toString()}
       >
-        <FilterAltIcon fontSize="small" />
+        <FilterAltIcon fontSize="medium" />
       </StyledIconButton>
       <Popover
         id={id}
@@ -254,6 +227,6 @@ export default function FilterButton({
           </Box>
         </List>
       </Popover>
-    </Box>
+    </>
   );
 }

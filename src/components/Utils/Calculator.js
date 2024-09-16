@@ -17,13 +17,13 @@ const color = {
     text: "black",
   },
   moderateHigh: {
-    primary: "#FFA500",
+    primary: "#f7924a",
     secondary: "#f5bc93",
     tertiary: "#ff7700",
     text: "white",
   },
   high: {
-    primary: "#ff7043",
+    primary: "#f16547",
     secondary: "#fc7668",
     tertiary: "#fa2205",
     text: "white",

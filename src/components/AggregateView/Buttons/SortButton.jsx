@@ -1,30 +1,14 @@
 import React from "react";
-import { IconButton } from "@mui/material";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
+import StyledIconButton from "./StyledIconButton";
 
-export default function SortButton({ value, onSort }) {
+export default function SortButton({ value, onSort, isActive }) {
   return (
-    <IconButton
+    <StyledIconButton
       onClick={() => onSort(value)}
-      sx={{
-        borderRadius: "50%",
-        padding: "6px",
-        minWidth: "auto",
-        width: "24px",
-        height: "24px",
-        border: "none",
-        outline: "none",
-        color: "action.active",
-        backgroundColor: "transparent",
-        "&:hover": {
-          backgroundColor: "transparent",
-        },
-        "&:focus": {
-          outline: "none",
-        },
-      }}
+      isactive={isActive.toString()}
     >
-      <SwapVertIcon />
-    </IconButton>
+      <SwapVertIcon fontSize="large" />
+    </StyledIconButton>
   );
 }

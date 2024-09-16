@@ -5,8 +5,8 @@ export default function TableRow({ leftContent, rightContent }) {
   const commonBoxStyles = {
     display: "flex",
     alignItems: "center",
-    minHeight: 64, // Adjust this value as needed
-    p: 2,
+    minHeight: 64,
+    p: 1,
   };
 
   return (

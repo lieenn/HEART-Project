@@ -26,7 +26,7 @@ export default function AdverseEventsList({
   const sortedRisks = filteredRisks.sort((a, b) => b.riskScore - a.riskScore);
 
   return (
-    <Box>
+    <>
       {/* <Box>
         <Typography
           gutterBottom
@@ -63,6 +63,6 @@ export default function AdverseEventsList({
           No {header && header.toLowerCase()} found.
         </Typography>
       )}
-    </Box>
+    </>
   );
 }

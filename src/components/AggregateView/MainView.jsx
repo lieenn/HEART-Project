@@ -53,7 +53,9 @@ export default function MainView({ riskRange, patientData }) {
   }, [selectedAdverseEvents]);
 
   return (
-    <Box>
+    <>
+      <ColorLegend riskRange={riskRange} />
+
       <Box sx={{ border: "1.5px solid #000", mt: 0 }}>
         <TableHeader
           setSortingOption={setSortingOption}
@@ -74,7 +76,6 @@ export default function MainView({ riskRange, patientData }) {
           />
         ))}
       </Box>
-      <ColorLegend riskRange={riskRange} />
-    </Box>
+    </>
   );
 }

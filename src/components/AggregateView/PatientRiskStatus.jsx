@@ -6,7 +6,10 @@ import SvgRectangle from "../SharedComponents/SvgRectangle";
 export default function PatientRiskStatus({ risk, riskRange }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const titleLength = risk.title.length;
-  const width = Math.max(80, titleLength * 10);
+  const width = Math.max(
+    80,
+    titleLength <= 12 ? titleLength * 12 : titleLength * 10
+  );
   const height = 32;
 
   const handlePopoverOpen = (event) => {
@@ -37,6 +40,7 @@ export default function PatientRiskStatus({ risk, riskRange }) {
           width={width}
           height={height}
           text={risk.title}
+          textAlign="center" // Set text alignment to center
         />
       </div>
       <Popover

@@ -5,37 +5,30 @@ function RiskRangeInput({ onChange }) {
   const [minValue, setMinValue] = useState(0.4);
   const [modValue, setModValue] = useState(0.6);
   const [modHighValue, setModHighValue] = useState(0.8);
-  const [highValue, setHighValue] = useState(1);
 
   const handleUpdate = () => {
-    onChange([minValue, modValue, modHighValue, highValue]);
+    onChange([minValue, modValue, modHighValue, 1]);
   };
 
   return (
     <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
       <TextField
-        label="Minimal"
+        label="Minimal -> Moderate"
         type="number"
         value={minValue}
         onChange={(e) => setMinValue(parseFloat(e.target.value))}
       />
       <TextField
-        label="Moderate"
+        label="Moderate -> Moderate High"
         type="number"
         value={modValue}
         onChange={(e) => setModValue(parseFloat(e.target.value))}
       />
       <TextField
-        label="Moderate High"
+        label="Moderate High -> High"
         type="number"
         value={modHighValue}
         onChange={(e) => setModHighValue(parseFloat(e.target.value))}
-      />
-      <TextField
-        label="High"
-        type="number"
-        value={highValue}
-        onChange={(e) => setHighValue(parseFloat(e.target.value))}
       />
       <Button onClick={handleUpdate}>Update</Button>
     </Box>

@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import {
-  Typography,
-  Box,
-  IconButton,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-import SwapVertIcon from "@mui/icons-material/SwapVert";
+import { Typography, Box, useMediaQuery, useTheme, Paper } from "@mui/material";
+import SortButton from "./Buttons/SortButton";
 import FilterButton from "./Buttons/FilterButton";
 import TableRow from "./TableRow";
+import SelectedChips from "./SelectedChips";
 
 export default function TableHeader({
   setSortingOption,
@@ -26,41 +21,13 @@ export default function TableHeader({
     setSortingOption(option);
   };
 
-  const commonButtonStyles = {
-    borderRadius: "50%",
-    padding: "6px",
-    minWidth: "auto",
-    width: "24px",
-    height: "24px",
-    border: "none",
-    outline: "none",
-    color: "action.active",
-    backgroundColor: "transparent",
-    "&:hover": {
-      backgroundColor: "transparent",
-    },
-    "&:focus": {
-      outline: "none",
-    },
-  };
-
-  const SortButton = ({ value }) => (
-    <IconButton
-      onClick={() => handleToggle(value)}
-      sx={{
-        ...commonButtonStyles,
-        ...(activeButton === value && {
-          color: "primary.main",
-        }),
-      }}
-    >
-      <SwapVertIcon />
-    </IconButton>
-  );
-
   const leftContent = (
     <Box sx={{ display: "flex", alignItems: "center", overflow: "hidden" }}>
-      <SortButton value="Overall highest" />
+      <SortButton
+        value="Overall highest"
+        onSort={handleToggle}
+        isActive={activeButton === "Overall highest"}
+      />
       <Typography
         variant="h6"
         sx={{
@@ -76,24 +43,41 @@ export default function TableHeader({
 
   const rightContent = (
     <Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
-      {showFilteredOutcomes && <SortButton value="Filtered conditions" />}
-      <Box sx={{ ml: showFilteredOutcomes ? 0 : 1 }}>
-        <FilterButton
-          adverseEventsList={adverseEventsList}
-          selectedAdverseEvents={selectedAdverseEvents}
-          setSelectedAdverseEvents={setSelectedAdverseEvents}
+      {showFilteredOutcomes && (
+        <SortButton
+          value="Filtered conditions"
+          onSort={handleToggle}
+          isActive={activeButton === "Filtered conditions"}
         />
-      </Box>
+      )}
       <Typography
         variant="h6"
         sx={{
           fontWeight: 600,
-          ml: 1,
+          ml: showFilteredOutcomes ? 1 : 2,
           fontSize: isMobile ? "1.25rem" : "1.5rem",
         }}
       >
         Predicted Adverse Events
       </Typography>
+      {/* <Paper
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          ml: 2,
+          borderRadius: 10,
+        }}
+      > */}
+      <FilterButton
+        adverseEventsList={adverseEventsList}
+        selectedAdverseEvents={selectedAdverseEvents}
+        setSelectedAdverseEvents={setSelectedAdverseEvents}
+      />
+      {/* </Paper> */}
+      <SelectedChips
+        selectedAdverseEvents={selectedAdverseEvents}
+        setSelectedAdverseEvents={setSelectedAdverseEvents}
+      />
     </Box>
   );
 

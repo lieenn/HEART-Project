@@ -1,6 +1,6 @@
 [
   {
-    "PatientName": "J. Doe",
+    "patientName": "J. Doe",
     "patientId": 2269,
     "roomNumber": 12,
     "timeStamp": 1719509621307,
@@ -145,7 +145,7 @@
   },
 
   {
-    "PatientName": "J. Smit",
+    "patientName": "J. Smit",
     "patientId": 2045,
     "roomNumber": 14,
     "timeStamp": 1719509621407,
@@ -289,7 +289,7 @@
     ]
   },
   {
-    "PatientName": "A. Johnson",
+    "patientName": "A. Johnson",
     "patientId": 1234,
     "roomNumber": 15,
     "timeStamp": 1719510000000,
@@ -397,7 +397,7 @@
     ]
   },
   {
-    "PatientName": "B. Williams",
+    "patientName": "B. Williams",
     "patientId": 5678,
     "roomNumber": 16,
     "timeStamp": 1719510500000,
@@ -509,7 +509,7 @@
     ]
   },
   {
-    "PatientName": "C. Davis",
+    "patientName": "C. Davis",
     "patientId": 9101,
     "roomNumber": 17,
     "timeStamp": 1719511000000,
@@ -2111,7 +2111,7 @@
         ]
       },
       {
-        "title": "Operation Mortality",
+        "title": "Operative Mortality",
         "riskScore": 0.14,
         "confidenceInterval": {
           "low": 0.14,
@@ -4523,7 +4523,7 @@
         ]
       },
       {
-        "title": "Operation Mortality",
+        "title": "Operative Mortality",
         "riskScore": 0.31,
         "confidenceInterval": {
           "low": 0.31,
@@ -6935,7 +6935,7 @@
         ]
       },
       {
-        "title": "Operation Mortality",
+        "title": "Operative Mortality",
         "riskScore": 0.46,
         "confidenceInterval": {
           "low": 0.45,
@@ -9347,7 +9347,7 @@
         ]
       },
       {
-        "title": "Operation Mortality",
+        "title": "Operative Mortality",
         "riskScore": 0.43,
         "confidenceInterval": {
           "low": 0.41,
@@ -11759,7 +11759,7 @@
         ]
       },
       {
-        "title": "Operation Mortality",
+        "title": "Operative Mortality",
         "riskScore": 0.49,
         "confidenceInterval": {
           "low": 0.46,
@@ -14171,7 +14171,7 @@
         ]
       },
       {
-        "title": "Operation Mortality",
+        "title": "Operative Mortality",
         "riskScore": 0.42,
         "confidenceInterval": {
           "low": 0.4,
@@ -16583,7 +16583,7 @@
         ]
       },
       {
-        "title": "Operation Mortality",
+        "title": "Operative Mortality",
         "riskScore": 0.38,
         "confidenceInterval": {
           "low": 0.34,
@@ -18995,7 +18995,7 @@
         ]
       },
       {
-        "title": "Operation Mortality",
+        "title": "Operative Mortality",
         "riskScore": 0.5,
         "confidenceInterval": {
           "low": 0.46,
@@ -21408,7 +21408,7 @@
         ]
       },
       {
-        "title": "Operation Mortality",
+        "title": "Operative Mortality",
         "riskScore": 0.29,
         "confidenceInterval": {
           "low": 0.22,
@@ -23820,7 +23820,7 @@
         ]
       },
       {
-        "title": "Operation Mortality",
+        "title": "Operative Mortality",
         "riskScore": 0.57,
         "confidenceInterval": {
           "low": 0.53,
@@ -26232,7 +26232,7 @@
         ]
       },
       {
-        "title": "Operation Mortality",
+        "title": "Operative Mortality",
         "riskScore": 0.61,
         "confidenceInterval": {
           "low": 0.59,

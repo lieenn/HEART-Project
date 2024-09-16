@@ -7,8 +7,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
+import PushPinIcon from "@mui/icons-material/PushPin";
 
 export default function PatientInfo({
   displayPID,
@@ -18,7 +17,7 @@ export default function PatientInfo({
 }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md", "lg"));
 
   return (
     <Box
@@ -60,16 +59,18 @@ export default function PatientInfo({
             color: "inherit",
             display: "flex",
             alignItems: "center",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
           }}
         >
           <Typography
             variant={isMobile ? "h6" : isTablet ? "h5" : "h4"}
             sx={{
               fontWeight: "bold",
-              fontSize: { xs: "1.25rem", sm: "1.25rem", md: "1.5rem" },
+              fontSize: {
+                xs: "1.25rem",
+                sm: "1.25rem",
+                md: "1.5rem",
+                lg: "1.75rem",
+              },
               overflow: "hidden",
               textOverflow: "ellipsis",
             }}
@@ -81,6 +82,7 @@ export default function PatientInfo({
       <IconButton
         onClick={onToggleFavorite}
         color={isFavorite ? "primary" : "default"}
+        // disableRipple
         sx={{
           padding: 0,
           marginLeft: 1,
@@ -90,9 +92,9 @@ export default function PatientInfo({
         }}
       >
         {isFavorite ? (
-          <StarIcon fontSize={isMobile ? "small" : "medium"} />
+          <PushPinIcon fontSize={isMobile ? "small" : "medium"} />
         ) : (
-          <StarBorderIcon fontSize={isMobile ? "small" : "medium"} />
+          <PushPinIcon fontSize={isMobile ? "small" : "medium"} />
         )}
       </IconButton>
     </Box>
