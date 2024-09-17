@@ -13,6 +13,7 @@ export default function Patient({
   showFilteredOutcomes,
   isFavorite,
   onToggleFavorite,
+  view,
 }) {
   const color = highestRiskColor(patient, riskRange);
   const [relevant, others] = filterRelevantAndOtherEvents(
@@ -47,6 +48,7 @@ export default function Patient({
         isLowRisk
       )}
       riskRange={riskRange}
+      view={view}
     />
   );
 

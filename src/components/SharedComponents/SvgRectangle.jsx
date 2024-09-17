@@ -15,7 +15,9 @@ const SvgRectangle = ({
   isPatientSpecific = false,
   children,
   textAlign,
+  view,
 }) => {
+  const isView1 = view === "view1";
   const [textColor, color] = calculateColor(risk.riskScore, riskRange);
   const gradient = borderLineColor(risk.riskScore, riskRange);
 
@@ -23,7 +25,7 @@ const SvgRectangle = ({
     risk.riskScore < riskRange[0] &&
     calculateRisk(risk.confidenceInterval.high, riskRange) !== "Minimal";
 
-  const smallBoxWidth = 12;
+  const smallBoxWidth = 24;
   const gradientWidth = 12;
 
   const mainBoxStyle = {
@@ -59,9 +61,11 @@ const SvgRectangle = ({
     <Box
       display="flex"
       mb={1}
-      borderRadius="8px"
+      borderRadius={isView1 ? "3px" : "8px"}
       overflow="hidden"
+      // border={isView1 ? "1.5px solid" : "none"}
       border="1.5px solid"
+      // boxShadow={isView1 ? "none" : "0 2px 3px rgba(0, 0, 0, 0.3)"}
     >
       <Box sx={mainBoxStyle}>
         <Typography
@@ -76,13 +80,28 @@ const SvgRectangle = ({
       </Box>
       {!isPatientSpecific && isLowRisk && (
         <>
-          <Box
-            sx={{
-              width: `${gradientWidth}px`,
-              background: `linear-gradient(to right, ${color}, ${gradient})`,
-            }}
-          />
-          <Box sx={smallBoxStyle} />
+          {isView1 ? (
+            <>
+              <Box
+                sx={{
+                  width: `${gradientWidth}px`,
+                  background: gradient,
+                  borderLeft: "1.5px dashed",
+                }}
+              />
+              <Box sx={smallBoxStyle} />
+            </>
+          ) : (
+            <>
+              <Box
+                sx={{
+                  width: `${gradientWidth}px`,
+                  background: `linear-gradient(to right, ${color}, ${gradient})`,
+                }}
+              />
+              <Box sx={smallBoxStyle} />
+            </>
+          )}
         </>
       )}
     </Box>

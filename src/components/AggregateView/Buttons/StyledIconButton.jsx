@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 
 const StyledIconButton = styled(IconButton)(({ theme, isactive }) => ({
-  margin: 2,
+  padding: 0,
   color:
     isactive === "true"
       ? theme.palette.primary.main

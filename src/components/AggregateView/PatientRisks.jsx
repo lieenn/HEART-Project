@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import PatientRiskStatus from "./PatientRiskStatus";
 
-export default function PatientRisks({ adverseEvents, riskRange }) {
+export default function PatientRisks({ adverseEvents, riskRange, view }) {
   const sortedRisks = [...adverseEvents].sort(
     (a, b) => b.riskScore - a.riskScore
   );
@@ -22,6 +22,7 @@ export default function PatientRisks({ adverseEvents, riskRange }) {
           key={risk.title || index}
           risk={risk}
           riskRange={riskRange}
+          view={view}
         />
       ))}
     </Box>

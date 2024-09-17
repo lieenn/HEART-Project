@@ -108,6 +108,7 @@ export default function FilterButton({
         onClick={handleClick}
         aria-describedby={id}
         isactive={isFilterActive.toString()}
+        sx={{ ml: selectedAdverseEvents.length === 0 ? 1 : 0 }}
       >
         <FilterAltIcon fontSize="medium" />
       </StyledIconButton>

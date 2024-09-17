@@ -7,6 +7,7 @@ export default function SortButton({ value, onSort, isActive }) {
     <StyledIconButton
       onClick={() => onSort(value)}
       isactive={isActive.toString()}
+      sx={{ ml: 1 }}
     >
       <SwapVertIcon fontSize="large" />
     </StyledIconButton>

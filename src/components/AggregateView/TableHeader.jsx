@@ -3,7 +3,7 @@ import { Typography, Box, useMediaQuery, useTheme, Paper } from "@mui/material";
 import SortButton from "./Buttons/SortButton";
 import FilterButton from "./Buttons/FilterButton";
 import TableRow from "./TableRow";
-import SelectedChips from "./SelectedChips";
+import SelectedChips from "./Buttons/SelectedChips";
 
 export default function TableHeader({
   setSortingOption,
@@ -36,20 +36,13 @@ export default function TableHeader({
           fontSize: isMobile ? "1.25rem" : "1.5rem",
         }}
       >
-        Patient
+        Patient ID
       </Typography>
     </Box>
   );
 
   const rightContent = (
     <Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
-      {showFilteredOutcomes && (
-        <SortButton
-          value="Filtered conditions"
-          onSort={handleToggle}
-          isActive={activeButton === "Filtered conditions"}
-        />
-      )}
       <Typography
         variant="h6"
         sx={{
@@ -60,24 +53,32 @@ export default function TableHeader({
       >
         Predicted Adverse Events
       </Typography>
-      {/* <Paper
+      <Paper
         sx={{
           display: "flex",
-          alignItems: "center",
+          // alignItems: "center",
           ml: 2,
           borderRadius: 10,
         }}
-      > */}
-      <FilterButton
-        adverseEventsList={adverseEventsList}
-        selectedAdverseEvents={selectedAdverseEvents}
-        setSelectedAdverseEvents={setSelectedAdverseEvents}
-      />
-      {/* </Paper> */}
-      <SelectedChips
-        selectedAdverseEvents={selectedAdverseEvents}
-        setSelectedAdverseEvents={setSelectedAdverseEvents}
-      />
+      >
+        {showFilteredOutcomes && (
+          <SortButton
+            value="Filtered conditions"
+            onSort={handleToggle}
+            isActive={activeButton === "Filtered conditions"}
+          />
+        )}
+        <FilterButton
+          adverseEventsList={adverseEventsList}
+          selectedAdverseEvents={selectedAdverseEvents}
+          setSelectedAdverseEvents={setSelectedAdverseEvents}
+        />
+
+        <SelectedChips
+          selectedAdverseEvents={selectedAdverseEvents}
+          setSelectedAdverseEvents={setSelectedAdverseEvents}
+        />
+      </Paper>
     </Box>
   );
 

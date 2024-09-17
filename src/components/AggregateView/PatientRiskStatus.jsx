@@ -3,12 +3,12 @@ import { Box, Popover, Typography } from "@mui/material";
 import { calculateColor } from "../Utils/Calculator";
 import SvgRectangle from "../SharedComponents/SvgRectangle";
 
-export default function PatientRiskStatus({ risk, riskRange }) {
+export default function PatientRiskStatus({ risk, riskRange, view }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const titleLength = risk.title.length;
   const width = Math.max(
-    80,
-    titleLength <= 12 ? titleLength * 12 : titleLength * 10
+    100,
+    titleLength <= 15 ? titleLength * 12 : titleLength * 10
   );
   const height = 32;
 
@@ -40,7 +40,8 @@ export default function PatientRiskStatus({ risk, riskRange }) {
           width={width}
           height={height}
           text={risk.title}
-          textAlign="center" // Set text alignment to center
+          textAlign="center"
+          view={view}
         />
       </div>
       <Popover

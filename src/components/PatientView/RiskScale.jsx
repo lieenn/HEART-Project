@@ -77,6 +77,7 @@ export default function RiskScale({
     const bandEnd = isUncertainHigh
       ? svgWidth - padding
       : xScale(adverseEvent.confidenceInterval.high);
+    const verticalLineHeight = 5; // Height of the small vertical lines
 
     return (
       <>
@@ -109,8 +110,37 @@ export default function RiskScale({
           x2={bandEnd}
           y1={svgHeight / 2}
           y2={svgHeight / 2}
+          stroke="black"
+          strokeWidth={5}
+        />
+        {/* Main horizontal line */}
+        <line
+          x1={bandStart}
+          x2={bandEnd}
+          y1={svgHeight / 2}
+          y2={svgHeight / 2}
           stroke={lineColor}
-          strokeWidth={4}
+          strokeWidth={3}
+        />
+
+        {/* Left vertical line */}
+        <line
+          x1={bandStart}
+          x2={bandStart}
+          y1={svgHeight / 2 - verticalLineHeight / 2}
+          y2={svgHeight / 2 + verticalLineHeight / 2}
+          stroke="black"
+          strokeWidth={1}
+        />
+
+        {/* Right vertical line */}
+        <line
+          x1={bandEnd}
+          x2={bandEnd}
+          y1={svgHeight / 2 - verticalLineHeight / 2}
+          y2={svgHeight / 2 + verticalLineHeight / 2}
+          stroke="black"
+          strokeWidth={1}
         />
       </>
     );

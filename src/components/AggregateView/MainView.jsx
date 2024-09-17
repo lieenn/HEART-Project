@@ -5,12 +5,14 @@ import ColorLegend from "../SharedComponents/ColorLegend";
 import { GetUniqueAdverseEvents } from "../Utils/FilterFunctions";
 import { SortByGiven, SortByHighest } from "../Utils/SortFunctions";
 import TableHeader from "./TableHeader";
+import ViewToggle from "./ViewToggle";
 
 export default function MainView({ riskRange, patientData }) {
   const [selectedAdverseEvents, setSelectedAdverseEvents] = useState([]);
   const [sortingOption, setSortingOption] = useState("");
   const [showFilteredOutcomes, setShowFilteredOutcomes] = useState(false);
   const [favoritePatients, setFavoritePatients] = useState([]);
+  const [view, setView] = useState("view1");
 
   const adverseEventsList = GetUniqueAdverseEvents(patientData);
 
@@ -37,7 +39,6 @@ export default function MainView({ riskRange, patientData }) {
     sortedData = patientData;
   }
 
-  // Sort patients, putting favorited patients at the top
   const finalSortedData = [
     ...sortedData.filter((patient) =>
       favoritePatients.includes(patient.patientId)
@@ -54,8 +55,8 @@ export default function MainView({ riskRange, patientData }) {
 
   return (
     <>
+      <ViewToggle view={view} setView={setView} />
       <ColorLegend riskRange={riskRange} />
-
       <Box sx={{ border: "1.5px solid #000", mt: 0 }}>
         <TableHeader
           setSortingOption={setSortingOption}
@@ -73,6 +74,7 @@ export default function MainView({ riskRange, patientData }) {
             showFilteredOutcomes={showFilteredOutcomes}
             isFavorite={favoritePatients.includes(patient.patientId)}
             onToggleFavorite={handleToggleFavorite}
+            view={view}
           />
         ))}
       </Box>

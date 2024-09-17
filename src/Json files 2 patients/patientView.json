@@ -560,8 +560,8 @@
       },
       {
         "title": "Renal Failure",
-        "riskScore": 0.7,
-        "confidenceInterval": { "low": 0.6, "high": 0.8 },
+        "riskScore": 0.8,
+        "confidenceInterval": { "low": 0.7, "high": 0.9 },
         "explanations": [
           { "title": "preoperative creatinine", "value": 1.8, "weight": 0.005 },
           { "title": "diabetes", "value": "Yes", "weight": 0.0045 }
