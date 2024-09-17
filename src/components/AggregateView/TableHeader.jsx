@@ -60,6 +60,7 @@ export default function TableHeader({
           ml: 2,
           borderRadius: 10,
         }}
+        variant="outlined"
       >
         {showFilteredOutcomes && (
           <SortButton

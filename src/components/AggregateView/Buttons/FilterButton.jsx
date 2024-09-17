@@ -157,7 +157,7 @@ export default function FilterButton({
               }}
               sx={{
                 width: isMobile ? "100%" : "39%",
-                ml: 1,
+                ml: 1
               }}
             />
             <ListItem

@@ -46,8 +46,9 @@ export default function PatientInfo({
             height: { xs: 16, sm: 18, md: 20 },
             borderRadius: "50%",
             backgroundColor: color,
-            boxShadow:
-              "0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2)",
+            border: "1.5px solid",
+            // boxShadow:
+            //   "0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2)",
             marginRight: { xs: 0.5, sm: 0.75, md: 1 },
             flexShrink: 0,
           }}

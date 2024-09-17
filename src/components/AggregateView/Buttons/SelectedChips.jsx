@@ -39,8 +39,12 @@ export default function SelectedChips({
           <ListItem key={index}>
             <Chip
               label={event}
+              variant="outlined" 
+              // label="small"
+              size="small"
+              // color="primary" 
               onDelete={handleDelete(event)}
-              sx={{ margin: "2px" }} // Add some margin between chips
+              sx={{ margin: "2px"}} // Add some margin between chips
             />
           </ListItem>
         ))
