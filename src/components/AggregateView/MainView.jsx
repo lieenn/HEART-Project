@@ -5,7 +5,7 @@ import ColorLegend from "../SharedComponents/ColorLegend";
 import { GetUniqueAdverseEvents } from "../Utils/FilterFunctions";
 import { SortByGiven, SortByHighest } from "../Utils/SortFunctions";
 import TableHeader from "./TableHeader";
-import ViewToggle from "./ViewToggle";
+import ViewToggle from "./Buttons/ViewToggle";
 
 export default function MainView({ riskRange, patientData }) {
   const [selectedAdverseEvents, setSelectedAdverseEvents] = useState([]);

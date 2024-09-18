@@ -4,6 +4,7 @@ import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Box, IconButton, Avatar } from "@mui/material";
 import RiskScale from "./RiskScale";
 import SvgRectangle from "../SharedComponents/SvgRectangle";
+import ExplainationButton from "./ExplainationButton";
 
 export default function AdverseEvent({ adverseEvent, riskRange }) {
   const rectWidth = 216;
@@ -27,18 +28,7 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
           text={adverseEvent.title}
           isPatientSpecific={true}
         >
-          <Avatar
-            size="small"
-            sx={{ width: 24, height: 24, bgcolor: "#414bb2" }}
-          >
-            <IconButton
-              aria-label="question"
-              size="small"
-              sx={{ color: "white" }}
-            >
-              <QuestionMarkIcon fontSize="inherit" />
-            </IconButton>
-          </Avatar>
+          <ExplainationButton />
         </SvgRectangle>
       </Box>
       {riskLevel === "Minimal" ? (

@@ -18,6 +18,7 @@ const SvgRectangle = ({
   view,
 }) => {
   const isView1 = view === "view1";
+  const isView3 = view === "view3";
   const [textColor, color] = calculateColor(risk.riskScore, riskRange);
   const gradient = borderLineColor(risk.riskScore, riskRange);
 
@@ -25,7 +26,7 @@ const SvgRectangle = ({
     risk.riskScore < riskRange[0] &&
     calculateRisk(risk.confidenceInterval.high, riskRange) !== "Minimal";
 
-  const smallBoxWidth = 24;
+  const smallBoxWidth = isView3 ? 20 : 24;
   const gradientWidth = 12;
 
   const mainBoxStyle = {
@@ -42,7 +43,7 @@ const SvgRectangle = ({
   const textStyle = {
     flexGrow: 1,
     textAlign,
-    paddingRight: children ? "30px" : "0", // Add padding if there's an icon
+    paddingRight: children ? "30px" : "0",
   };
 
   const iconStyle = {
@@ -57,15 +58,62 @@ const SvgRectangle = ({
     flexShrink: 0,
   };
 
+  const renderGradientBoxes = () => {
+    if (isView1) {
+      return (
+        <>
+          <Box
+            sx={{
+              width: `${gradientWidth}px`,
+              background: gradient,
+              borderLeft: "1.5px dashed",
+            }}
+          />
+          <Box sx={smallBoxStyle} />
+        </>
+      );
+    } else if (isView3) {
+      return (
+        <>
+          <Box
+            sx={{
+              width: `${gradientWidth}px`,
+              background: `linear-gradient(to right, ${color}, ${gradient})`,
+            }}
+          />
+          <Box sx={smallBoxStyle} />
+          <Box
+            sx={{
+              width: `${gradientWidth}px`,
+              background: `linear-gradient(to right, ${gradient}, white)`,
+            }}
+          />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Box
+            sx={{
+              width: `${gradientWidth}px`,
+              background: `linear-gradient(to right, ${color}, ${gradient})`,
+            }}
+          />
+          <Box sx={smallBoxStyle} />
+        </>
+      );
+    }
+  };
+
   return (
     <Box
       display="flex"
       mb={1}
       borderRadius={isView1 ? "3px" : "8px"}
       overflow="hidden"
-      // border={isView1 ? "1.5px solid" : "none"}
-      border="1.5px solid"
-      // boxShadow={isView1 ? "none" : "0 2px 3px rgba(0, 0, 0, 0.3)"}
+      border={isView3 ? "none" : "1.5px solid"}
+      // boxShadow={isView3 ? "0 2px 3px rgba(0, 0, 0, 0.3)" : "none"}
+      // border="1.5px solid"
     >
       <Box sx={mainBoxStyle}>
         <Typography
@@ -78,32 +126,7 @@ const SvgRectangle = ({
         </Typography>
         {children && <Box sx={iconStyle}>{children}</Box>}
       </Box>
-      {!isPatientSpecific && isLowRisk && (
-        <>
-          {isView1 ? (
-            <>
-              <Box
-                sx={{
-                  width: `${gradientWidth}px`,
-                  background: gradient,
-                  borderLeft: "1.5px dashed",
-                }}
-              />
-              <Box sx={smallBoxStyle} />
-            </>
-          ) : (
-            <>
-              <Box
-                sx={{
-                  width: `${gradientWidth}px`,
-                  background: `linear-gradient(to right, ${color}, ${gradient})`,
-                }}
-              />
-              <Box sx={smallBoxStyle} />
-            </>
-          )}
-        </>
-      )}
+      {!isPatientSpecific && isLowRisk && renderGradientBoxes()}
     </Box>
   );
 };

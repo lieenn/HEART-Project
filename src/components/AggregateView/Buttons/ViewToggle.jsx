@@ -18,6 +18,7 @@ export default function ViewToggle({ view, setView }) {
         >
           <FormControlLabel value="view1" control={<Radio />} label="View 1" />
           <FormControlLabel value="view2" control={<Radio />} label="View 2" />
+          <FormControlLabel value="view3" control={<Radio />} label="View 3" />
         </RadioGroup>
       </FormControl>
     </Box>
