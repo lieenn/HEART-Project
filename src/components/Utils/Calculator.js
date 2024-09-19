@@ -5,16 +5,16 @@ import { riskRange } from "../../App";
 // Central color configuration
 const color = {
   minimal: {
-    primary: "#b1d6fa",
+    primary: "#99cdf6",
     secondary: "#d0e7fe",
     tertiary: "#5aabfa",
-    text: "black",
+    text: "white",
   },
   moderate: {
-    primary: "#ffea6f",
+    primary: "#ffe556",
     secondary: "#fcf2b6",
     tertiary: "#ffd900",
-    text: "black",
+    text: "white",
   },
   moderateHigh: {
     primary: "#f7924a",
@@ -33,6 +33,8 @@ const color = {
 // #ff624f
 // #E23D28 --> alternative color -- cute chili red -- but needs white font
 // #97C5F6 --> light blue
+// #99cdf6
+// #b1d6fa
 
 /**
  * Using d3 to define color scale,

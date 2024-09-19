@@ -44,6 +44,8 @@ const SvgRectangle = ({
     flexGrow: 1,
     textAlign,
     paddingRight: children ? "30px" : "0",
+    fontSize: "1.05rem",
+    textShadow: "1px 1px 2px rgba(0,0,0,0.3)", // Added text shadow
   };
 
   const iconStyle = {
@@ -109,11 +111,16 @@ const SvgRectangle = ({
     <Box
       display="flex"
       mb={1}
-      borderRadius={isView1 ? "3px" : "8px"}
       overflow="hidden"
-      border={isView3 ? "none" : "1.5px solid"}
-      // boxShadow={isView3 ? "0 2px 3px rgba(0, 0, 0, 0.3)" : "none"}
-      // border="1.5px solid"
+      border="1.5px solid"
+      borderRight={isView3 && isLowRisk ? "none" : "1.5px solid"}
+      sx={{
+        borderRadius: isView1
+          ? "3px"
+          : isView3 && isLowRisk
+          ? "8px 0 0 8px"
+          : "8px",
+      }}
     >
       <Box sx={mainBoxStyle}>
         <Typography

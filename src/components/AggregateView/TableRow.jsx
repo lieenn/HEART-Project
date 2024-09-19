@@ -27,7 +27,7 @@ export default function TableRow({ leftContent, rightContent }) {
           sx={{
             ...commonBoxStyles,
             flexWrap: "wrap",
-            backgroundColor: "#fafafa",
+            // backgroundColor: "#fafafa",
             height: "100%",
           }}
         >

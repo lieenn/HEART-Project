@@ -1,0 +1,2411 @@
+{
+  "patientName":"Determined Pike",
+  "roomNumber":"CICU89",
+  "timeStamp":1725903307576,
+  "age":48,
+  "weightKG":80.1,
+  "heightCM":170.2,
+  "bmi":27.7,
+  "adverseEvents":[
+    {
+      "title":"Mortality Rate",
+      "riskScore":0.01,
+      "confidenceInterval":{
+        "low":0.01,
+        "high":0.06
+      },
+      "contributions":[
+        {
+          "title":"weight (kg)",
+          "weight":-0.0028,
+          "value":80.1
+        },
+        {
+          "title":"body mass index",
+          "weight":-0.005,
+          "value":27.7
+        },
+        {
+          "title":"patient age",
+          "weight":0.0015,
+          "value":48
+        },
+        {
+          "title":"height (cm)",
+          "weight":-0.0003,
+          "value":170.2
+        },
+        {
+          "title":"liver disease",
+          "weight":-0.005,
+          "value":0
+        },
+        {
+          "title":"diabetes",
+          "weight":0.0016,
+          "value":1
+        },
+        {
+          "title":"ischemic heart disease",
+          "weight":0.0019,
+          "value":1
+        },
+        {
+          "title":"aortic stenosis",
+          "weight":-0.0006,
+          "value":0
+        },
+        {
+          "title":"sepsis within 48hrs prior to surgery",
+          "weight":-0.0014,
+          "value":0
+        },
+        {
+          "title":"copd",
+          "weight":-0.0016,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"cerebrovascular disease",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never",
+          "weight":0.0012,
+          "value":0
+        },
+        {
+          "title":"hypertension",
+          "weight":0.0005,
+          "value":0
+        },
+        {
+          "title":"smoking status_*Unknown",
+          "weight":-0.0017,
+          "value":0
+        },
+        {
+          "title":"dementia",
+          "weight":-0.0016,
+          "value":0
+        },
+        {
+          "title":"smoking status_Every Day",
+          "weight":0.0037,
+          "value":1
+        },
+        {
+          "title":"coronary artery disease",
+          "weight":-0.0004,
+          "value":1
+        },
+        {
+          "title":"weakness",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"chronic lung disease",
+          "weight":-0.0007,
+          "value":0
+        },
+        {
+          "title":"gender_Male",
+          "weight":0.0008,
+          "value":0
+        },
+        {
+          "title":"gender_Female",
+          "weight":-0.0004,
+          "value":1
+        },
+        {
+          "title":"smoking status_Never Assessed",
+          "weight":-0.0004,
+          "value":0
+        },
+        {
+          "title":"gender identity_*Unspecified",
+          "weight":-0.0065,
+          "value":0
+        },
+        {
+          "title":"gender identity_Male",
+          "weight":0.0011,
+          "value":0
+        },
+        {
+          "title":"primary race_Unknown",
+          "weight":-0.0002,
+          "value":0
+        },
+        {
+          "title":"end stage renal disease",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"ethnicity_*Unspecified",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"primary race_White or Caucasian",
+          "weight":-0.0004,
+          "value":1
+        },
+        {
+          "title":"gender identity_Female",
+          "weight":-0.0027,
+          "value":1
+        },
+        {
+          "title":"ethnicity_Non-Hispanic",
+          "weight":-0.0004,
+          "value":1
+        },
+        {
+          "title":"primary race_Multi Racial",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"previous cardiac event",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Light Smoker",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Asian",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"pci prior",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Declined",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Other",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Declined",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Some Days",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Hispanic",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Black or African American",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"primary race_American Indian and Alaska Native",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Passive Smoke Exposure - Never Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Female",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Male",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Heavy Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Every Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Choose not to disclose",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_White",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Some Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Native Hawaiian and Other Pacific Islander",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Smoker, Current Status Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former Smoker",
+          "weight":0.0,
+          "value":0
+        }
+      ]
+    },
+    {
+      "title":"Stroke",
+      "riskScore":0.01,
+      "confidenceInterval":{
+        "low":0.01,
+        "high":0.03
+      },
+      "contributions":[
+        {
+          "title":"weight (kg)",
+          "weight":-0.0015,
+          "value":80.1
+        },
+        {
+          "title":"body mass index",
+          "weight":-0.0019,
+          "value":27.7
+        },
+        {
+          "title":"cerebrovascular disease",
+          "weight":-0.0077,
+          "value":0
+        },
+        {
+          "title":"height (cm)",
+          "weight":-0.0003,
+          "value":170.2
+        },
+        {
+          "title":"patient age",
+          "weight":0.0007,
+          "value":48
+        },
+        {
+          "title":"diabetes",
+          "weight":-0.0007,
+          "value":1
+        },
+        {
+          "title":"ischemic heart disease",
+          "weight":-0.0006,
+          "value":1
+        },
+        {
+          "title":"aortic stenosis",
+          "weight":-0.0005,
+          "value":0
+        },
+        {
+          "title":"smoking status_*Unknown",
+          "weight":-0.0005,
+          "value":0
+        },
+        {
+          "title":"copd",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"dementia",
+          "weight":-0.0008,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"coronary artery disease",
+          "weight":-0.0001,
+          "value":1
+        },
+        {
+          "title":"weakness",
+          "weight":-0.0002,
+          "value":0
+        },
+        {
+          "title":"gender_Female",
+          "weight":0.0014,
+          "value":1
+        },
+        {
+          "title":"hypertension",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"gender identity_*Unspecified",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender_Male",
+          "weight":0.0014,
+          "value":0
+        },
+        {
+          "title":"sepsis within 48hrs prior to surgery",
+          "weight":-0.0002,
+          "value":0
+        },
+        {
+          "title":"previous cardiac event",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"gender identity_Male",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"liver disease",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Every Day",
+          "weight":-0.002,
+          "value":1
+        },
+        {
+          "title":"gender identity_Female",
+          "weight":0.0022,
+          "value":1
+        },
+        {
+          "title":"ethnicity_*Unspecified",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"chronic lung disease",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"end stage renal disease",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Non-Hispanic",
+          "weight":-0.0001,
+          "value":1
+        },
+        {
+          "title":"primary race_Asian",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"pci prior",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Assessed",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"primary race_White or Caucasian",
+          "weight":0.0,
+          "value":1
+        },
+        {
+          "title":"ethnicity_Declined",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Some Days",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Hispanic",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Black or African American",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_American Indian and Alaska Native",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Heavy Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Light Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Declined",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Multi Racial",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Every Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Some Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Choose not to disclose",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Female",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Passive Smoke Exposure - Never Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_White",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Native Hawaiian and Other Pacific Islander",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Male",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Smoker, Current Status Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former Smoker",
+          "weight":0.0,
+          "value":0
+        }
+      ]
+    },
+    {
+      "title":"Renal Failure",
+      "riskScore":0.05,
+      "confidenceInterval":{
+        "low":0.04,
+        "high":0.08
+      },
+      "contributions":[
+        {
+          "title":"weight (kg)",
+          "weight":0.0017,
+          "value":80.1
+        },
+        {
+          "title":"body mass index",
+          "weight":0.0019,
+          "value":27.7
+        },
+        {
+          "title":"patient age",
+          "weight":0.0098,
+          "value":48
+        },
+        {
+          "title":"height (cm)",
+          "weight":-0.0027,
+          "value":170.2
+        },
+        {
+          "title":"liver disease",
+          "weight":-0.0033,
+          "value":0
+        },
+        {
+          "title":"sepsis within 48hrs prior to surgery",
+          "weight":-0.0019,
+          "value":0
+        },
+        {
+          "title":"ischemic heart disease",
+          "weight":0.0024,
+          "value":1
+        },
+        {
+          "title":"aortic stenosis",
+          "weight":-0.0014,
+          "value":0
+        },
+        {
+          "title":"diabetes",
+          "weight":0.009,
+          "value":1
+        },
+        {
+          "title":"copd",
+          "weight":0.0003,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former",
+          "weight":0.0012,
+          "value":0
+        },
+        {
+          "title":"dementia",
+          "weight":-0.002,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never",
+          "weight":0.0028,
+          "value":0
+        },
+        {
+          "title":"cerebrovascular disease",
+          "weight":0.0006,
+          "value":0
+        },
+        {
+          "title":"smoking status_*Unknown",
+          "weight":-0.0024,
+          "value":0
+        },
+        {
+          "title":"gender identity_*Unspecified",
+          "weight":-0.0013,
+          "value":0
+        },
+        {
+          "title":"smoking status_Every Day",
+          "weight":0.0066,
+          "value":1
+        },
+        {
+          "title":"gender_Male",
+          "weight":0.0056,
+          "value":0
+        },
+        {
+          "title":"end stage renal disease",
+          "weight":-0.0012,
+          "value":0
+        },
+        {
+          "title":"gender identity_Male",
+          "weight":0.0003,
+          "value":0
+        },
+        {
+          "title":"weakness",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"hypertension",
+          "weight":-0.0101,
+          "value":0
+        },
+        {
+          "title":"gender_Female",
+          "weight":0.007,
+          "value":1
+        },
+        {
+          "title":"coronary artery disease",
+          "weight":-0.0002,
+          "value":1
+        },
+        {
+          "title":"primary race_Asian",
+          "weight":-0.0002,
+          "value":0
+        },
+        {
+          "title":"gender identity_Female",
+          "weight":0.003,
+          "value":1
+        },
+        {
+          "title":"primary race_White or Caucasian",
+          "weight":-0.0001,
+          "value":1
+        },
+        {
+          "title":"ethnicity_Unknown",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"primary race_Multi Racial",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"primary race_Black or African American",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"chronic lung disease",
+          "weight":0.0002,
+          "value":0
+        },
+        {
+          "title":"pci prior",
+          "weight":0.0002,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Assessed",
+          "weight":0.0001,
+          "value":0
+        },
+        {
+          "title":"primary race_Unknown",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Non-Hispanic",
+          "weight":-0.0,
+          "value":1
+        },
+        {
+          "title":"smoking status_Some Days",
+          "weight":0.0001,
+          "value":0
+        },
+        {
+          "title":"previous cardiac event",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_American Indian and Alaska Native",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Hispanic",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Other",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"ethnicity_White",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Passive Smoke Exposure - Never Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Declined",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_*Unspecified",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Female",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Light Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Declined",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Every Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Heavy Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Choose not to disclose",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Some Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Native Hawaiian and Other Pacific Islander",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Male",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Smoker, Current Status Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former Smoker",
+          "weight":0.0,
+          "value":0
+        }
+      ]
+    },
+    {
+      "title":"Prolonged Ventiliation",
+      "riskScore":0.06,
+      "confidenceInterval":{
+        "low":0.06,
+        "high":0.1
+      },
+      "contributions":[
+        {
+          "title":"weight (kg)",
+          "weight":-0.0035,
+          "value":80.1
+        },
+        {
+          "title":"body mass index",
+          "weight":-0.0009,
+          "value":27.7
+        },
+        {
+          "title":"patient age",
+          "weight":-0.0004,
+          "value":48
+        },
+        {
+          "title":"height (cm)",
+          "weight":-0.0027,
+          "value":170.2
+        },
+        {
+          "title":"liver disease",
+          "weight":-0.0084,
+          "value":0
+        },
+        {
+          "title":"sepsis within 48hrs prior to surgery",
+          "weight":-0.004,
+          "value":0
+        },
+        {
+          "title":"dementia",
+          "weight":-0.0092,
+          "value":0
+        },
+        {
+          "title":"aortic stenosis",
+          "weight":0.0003,
+          "value":0
+        },
+        {
+          "title":"ischemic heart disease",
+          "weight":0.002,
+          "value":1
+        },
+        {
+          "title":"diabetes",
+          "weight":0.0031,
+          "value":1
+        },
+        {
+          "title":"copd",
+          "weight":-0.002,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former",
+          "weight":0.0002,
+          "value":0
+        },
+        {
+          "title":"cerebrovascular disease",
+          "weight":-0.0059,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never",
+          "weight":0.0011,
+          "value":0
+        },
+        {
+          "title":"hypertension",
+          "weight":-0.0007,
+          "value":0
+        },
+        {
+          "title":"smoking status_*Unknown",
+          "weight":-0.0011,
+          "value":0
+        },
+        {
+          "title":"coronary artery disease",
+          "weight":-0.0006,
+          "value":1
+        },
+        {
+          "title":"gender identity_*Unspecified",
+          "weight":-0.0037,
+          "value":0
+        },
+        {
+          "title":"smoking status_Every Day",
+          "weight":0.0059,
+          "value":1
+        },
+        {
+          "title":"weakness",
+          "weight":-0.0019,
+          "value":0
+        },
+        {
+          "title":"gender_Male",
+          "weight":0.0018,
+          "value":0
+        },
+        {
+          "title":"gender_Female",
+          "weight":0.002,
+          "value":1
+        },
+        {
+          "title":"gender identity_Male",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"chronic lung disease",
+          "weight":-0.0002,
+          "value":0
+        },
+        {
+          "title":"end stage renal disease",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Assessed",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"gender identity_Female",
+          "weight":-0.002,
+          "value":1
+        },
+        {
+          "title":"previous cardiac event",
+          "weight":-0.0006,
+          "value":0
+        },
+        {
+          "title":"smoking status_Light Smoker",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"pci prior",
+          "weight":-0.0002,
+          "value":0
+        },
+        {
+          "title":"primary race_White or Caucasian",
+          "weight":0.0001,
+          "value":1
+        },
+        {
+          "title":"ethnicity_*Unspecified",
+          "weight":-0.0004,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Non-Hispanic",
+          "weight":-0.0,
+          "value":1
+        },
+        {
+          "title":"smoking status_Some Days",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Black or African American",
+          "weight":-0.0002,
+          "value":0
+        },
+        {
+          "title":"smoking status_Passive Smoke Exposure - Never Smoker",
+          "weight":-0.0002,
+          "value":0
+        },
+        {
+          "title":"primary race_Asian",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Hispanic",
+          "weight":0.0001,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Unknown",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"smoking status_Heavy Smoker",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_American Indian and Alaska Native",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Multi Racial",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Unknown",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Declined",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Every Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Female",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Declined",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Choose not to disclose",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Some Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_White",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Male",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Native Hawaiian and Other Pacific Islander",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Smoker, Current Status Unknown",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former Smoker",
+          "weight":0.0,
+          "value":0
+        }
+      ]
+    },
+    {
+      "title":"Reoperation",
+      "riskScore":0.07,
+      "confidenceInterval":{
+        "low":0.06,
+        "high":0.13
+      },
+      "contributions":[
+        {
+          "title":"weight (kg)",
+          "weight":0.0002,
+          "value":80.1
+        },
+        {
+          "title":"body mass index",
+          "weight":0.0001,
+          "value":27.7
+        },
+        {
+          "title":"patient age",
+          "weight":0.0007,
+          "value":48
+        },
+        {
+          "title":"height (cm)",
+          "weight":-0.0024,
+          "value":170.2
+        },
+        {
+          "title":"diabetes",
+          "weight":-0.0017,
+          "value":1
+        },
+        {
+          "title":"ischemic heart disease",
+          "weight":0.0014,
+          "value":1
+        },
+        {
+          "title":"aortic stenosis",
+          "weight":-0.001,
+          "value":0
+        },
+        {
+          "title":"liver disease",
+          "weight":-0.0029,
+          "value":0
+        },
+        {
+          "title":"copd",
+          "weight":-0.0006,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never",
+          "weight":0.0038,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former",
+          "weight":0.0018,
+          "value":0
+        },
+        {
+          "title":"hypertension",
+          "weight":0.0051,
+          "value":0
+        },
+        {
+          "title":"cerebrovascular disease",
+          "weight":-0.0019,
+          "value":0
+        },
+        {
+          "title":"dementia",
+          "weight":-0.0029,
+          "value":0
+        },
+        {
+          "title":"smoking status_*Unknown",
+          "weight":-0.0018,
+          "value":0
+        },
+        {
+          "title":"coronary artery disease",
+          "weight":-0.0005,
+          "value":1
+        },
+        {
+          "title":"smoking status_Every Day",
+          "weight":0.0083,
+          "value":1
+        },
+        {
+          "title":"gender identity_*Unspecified",
+          "weight":-0.0002,
+          "value":0
+        },
+        {
+          "title":"weakness",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"gender_Male",
+          "weight":0.0017,
+          "value":0
+        },
+        {
+          "title":"gender_Female",
+          "weight":0.0015,
+          "value":1
+        },
+        {
+          "title":"gender identity_Male",
+          "weight":0.0011,
+          "value":0
+        },
+        {
+          "title":"chronic lung disease",
+          "weight":-0.0005,
+          "value":0
+        },
+        {
+          "title":"previous cardiac event",
+          "weight":-0.0006,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Assessed",
+          "weight":-0.0005,
+          "value":0
+        },
+        {
+          "title":"sepsis within 48hrs prior to surgery",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"gender identity_Female",
+          "weight":0.0064,
+          "value":1
+        },
+        {
+          "title":"pci prior",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"end stage renal disease",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_White or Caucasian",
+          "weight":0.0001,
+          "value":1
+        },
+        {
+          "title":"primary race_Asian",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"smoking status_Some Days",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"smoking status_Light Smoker",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Declined",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Non-Hispanic",
+          "weight":0.0,
+          "value":1
+        },
+        {
+          "title":"primary race_Multi Racial",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Black or African American",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Declined",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Unknown",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Hispanic",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_*Unspecified",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_American Indian and Alaska Native",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Passive Smoke Exposure - Never Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Heavy Smoker",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Female",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Every Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Some Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Choose not to disclose",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Male",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Native Hawaiian and Other Pacific Islander",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_White",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Smoker, Current Status Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former Smoker",
+          "weight":0.0,
+          "value":0
+        }
+      ]
+    },
+    {
+      "title":"Operation Mortality",
+      "riskScore":0.13,
+      "confidenceInterval":{
+        "low":0.12,
+        "high":0.19
+      },
+      "contributions":[
+        {
+          "title":"weight (kg)",
+          "weight":-0.001,
+          "value":80.1
+        },
+        {
+          "title":"body mass index",
+          "weight":-0.0019,
+          "value":27.7
+        },
+        {
+          "title":"patient age",
+          "weight":-0.0006,
+          "value":48
+        },
+        {
+          "title":"height (cm)",
+          "weight":-0.0038,
+          "value":170.2
+        },
+        {
+          "title":"liver disease",
+          "weight":-0.009,
+          "value":0
+        },
+        {
+          "title":"sepsis within 48hrs prior to surgery",
+          "weight":-0.0032,
+          "value":0
+        },
+        {
+          "title":"dementia",
+          "weight":-0.0092,
+          "value":0
+        },
+        {
+          "title":"diabetes",
+          "weight":0.0012,
+          "value":1
+        },
+        {
+          "title":"ischemic heart disease",
+          "weight":0.002,
+          "value":1
+        },
+        {
+          "title":"aortic stenosis",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"cerebrovascular disease",
+          "weight":-0.011,
+          "value":0
+        },
+        {
+          "title":"copd",
+          "weight":-0.0022,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former",
+          "weight":0.0005,
+          "value":0
+        },
+        {
+          "title":"hypertension",
+          "weight":-0.0006,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never",
+          "weight":0.005,
+          "value":0
+        },
+        {
+          "title":"gender identity_*Unspecified",
+          "weight":-0.0009,
+          "value":0
+        },
+        {
+          "title":"smoking status_*Unknown",
+          "weight":-0.0011,
+          "value":0
+        },
+        {
+          "title":"coronary artery disease",
+          "weight":-0.001,
+          "value":1
+        },
+        {
+          "title":"weakness",
+          "weight":-0.0011,
+          "value":0
+        },
+        {
+          "title":"smoking status_Every Day",
+          "weight":0.0119,
+          "value":1
+        },
+        {
+          "title":"gender identity_Male",
+          "weight":0.0007,
+          "value":0
+        },
+        {
+          "title":"gender_Male",
+          "weight":0.0033,
+          "value":0
+        },
+        {
+          "title":"gender_Female",
+          "weight":0.0029,
+          "value":1
+        },
+        {
+          "title":"chronic lung disease",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"end stage renal disease",
+          "weight":-0.0011,
+          "value":0
+        },
+        {
+          "title":"gender identity_Female",
+          "weight":0.0039,
+          "value":1
+        },
+        {
+          "title":"smoking status_Never Assessed",
+          "weight":-0.0004,
+          "value":0
+        },
+        {
+          "title":"previous cardiac event",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"pci prior",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_White or Caucasian",
+          "weight":0.0001,
+          "value":1
+        },
+        {
+          "title":"ethnicity_Non-Hispanic",
+          "weight":-0.0002,
+          "value":1
+        },
+        {
+          "title":"smoking status_Some Days",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_*Unspecified",
+          "weight":-0.0002,
+          "value":0
+        },
+        {
+          "title":"smoking status_Light Smoker",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"primary race_Asian",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Black or African American",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"smoking status_Passive Smoke Exposure - Never Smoker",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Declined",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"primary race_Unknown",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Hispanic",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_American Indian and Alaska Native",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Heavy Smoker",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Multi Racial",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Declined",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Choose not to disclose",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Female",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Every Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_White",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Some Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Male",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Native Hawaiian and Other Pacific Islander",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Smoker, Current Status Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former Smoker",
+          "weight":0.0,
+          "value":0
+        }
+      ]
+    },
+    {
+      "title":"Long Length of Stay",
+      "riskScore":0.07,
+      "confidenceInterval":{
+        "low":0.07,
+        "high":0.1
+      },
+      "contributions":[
+        {
+          "title":"weight (kg)",
+          "weight":-0.0011,
+          "value":80.1
+        },
+        {
+          "title":"body mass index",
+          "weight":-0.0064,
+          "value":27.7
+        },
+        {
+          "title":"patient age",
+          "weight":0.0027,
+          "value":48
+        },
+        {
+          "title":"height (cm)",
+          "weight":-0.0029,
+          "value":170.2
+        },
+        {
+          "title":"sepsis within 48hrs prior to surgery",
+          "weight":-0.0032,
+          "value":0
+        },
+        {
+          "title":"dementia",
+          "weight":-0.0091,
+          "value":0
+        },
+        {
+          "title":"ischemic heart disease",
+          "weight":-0.0002,
+          "value":1
+        },
+        {
+          "title":"aortic stenosis",
+          "weight":-0.0013,
+          "value":0
+        },
+        {
+          "title":"liver disease",
+          "weight":-0.0039,
+          "value":0
+        },
+        {
+          "title":"diabetes",
+          "weight":0.0057,
+          "value":1
+        },
+        {
+          "title":"cerebrovascular disease",
+          "weight":-0.005,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former",
+          "weight":0.0005,
+          "value":0
+        },
+        {
+          "title":"copd",
+          "weight":-0.0022,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never",
+          "weight":0.0033,
+          "value":0
+        },
+        {
+          "title":"smoking status_*Unknown",
+          "weight":-0.0006,
+          "value":0
+        },
+        {
+          "title":"hypertension",
+          "weight":-0.0004,
+          "value":0
+        },
+        {
+          "title":"weakness",
+          "weight":-0.0011,
+          "value":0
+        },
+        {
+          "title":"smoking status_Every Day",
+          "weight":0.0053,
+          "value":1
+        },
+        {
+          "title":"gender identity_*Unspecified",
+          "weight":-0.0019,
+          "value":0
+        },
+        {
+          "title":"coronary artery disease",
+          "weight":-0.0013,
+          "value":1
+        },
+        {
+          "title":"gender_Female",
+          "weight":0.0059,
+          "value":1
+        },
+        {
+          "title":"gender_Male",
+          "weight":0.0067,
+          "value":0
+        },
+        {
+          "title":"gender identity_Male",
+          "weight":0.0003,
+          "value":0
+        },
+        {
+          "title":"chronic lung disease",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Assessed",
+          "weight":-0.0002,
+          "value":0
+        },
+        {
+          "title":"pci prior",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"gender identity_Female",
+          "weight":-0.0005,
+          "value":1
+        },
+        {
+          "title":"end stage renal disease",
+          "weight":-0.0002,
+          "value":0
+        },
+        {
+          "title":"primary race_White or Caucasian",
+          "weight":-0.0001,
+          "value":1
+        },
+        {
+          "title":"smoking status_Light Smoker",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"previous cardiac event",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"primary race_Black or African American",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"smoking status_Passive Smoke Exposure - Never Smoker",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"primary race_Asian",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Non-Hispanic",
+          "weight":0.0,
+          "value":1
+        },
+        {
+          "title":"ethnicity_*Unspecified",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Heavy Smoker",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Some Days",
+          "weight":0.0001,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Hispanic",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Unknown",
+          "weight":-0.0001,
+          "value":0
+        },
+        {
+          "title":"primary race_Other",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_American Indian and Alaska Native",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Declined",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Female",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Declined",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Choose not to disclose",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Every Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Multi Racial",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_White",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Male",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Some Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Native Hawaiian and Other Pacific Islander",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Smoker, Current Status Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former Smoker",
+          "weight":0.0,
+          "value":0
+        }
+      ]
+    },
+    {
+      "title":"Short Length of Stay",
+      "riskScore":0.4,
+      "confidenceInterval":{
+        "low":0.38,
+        "high":0.44
+      },
+      "contributions":[
+        {
+          "title":"patient age",
+          "weight":0.0396,
+          "value":48
+        },
+        {
+          "title":"weight (kg)",
+          "weight":0.0035,
+          "value":80.1
+        },
+        {
+          "title":"body mass index",
+          "weight":0.0102,
+          "value":27.7
+        },
+        {
+          "title":"height (cm)",
+          "weight":-0.0013,
+          "value":170.2
+        },
+        {
+          "title":"diabetes",
+          "weight":-0.051,
+          "value":1
+        },
+        {
+          "title":"ischemic heart disease",
+          "weight":-0.0011,
+          "value":1
+        },
+        {
+          "title":"aortic stenosis",
+          "weight":0.007,
+          "value":0
+        },
+        {
+          "title":"copd",
+          "weight":0.0148,
+          "value":0
+        },
+        {
+          "title":"dementia",
+          "weight":0.0101,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former",
+          "weight":-0.0037,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never",
+          "weight":-0.0094,
+          "value":0
+        },
+        {
+          "title":"cerebrovascular disease",
+          "weight":0.0078,
+          "value":0
+        },
+        {
+          "title":"hypertension",
+          "weight":0.0054,
+          "value":0
+        },
+        {
+          "title":"gender identity_*Unspecified",
+          "weight":0.0077,
+          "value":0
+        },
+        {
+          "title":"coronary artery disease",
+          "weight":0.0013,
+          "value":1
+        },
+        {
+          "title":"smoking status_*Unknown",
+          "weight":0.0016,
+          "value":0
+        },
+        {
+          "title":"weakness",
+          "weight":0.0023,
+          "value":0
+        },
+        {
+          "title":"gender identity_Male",
+          "weight":-0.002,
+          "value":0
+        },
+        {
+          "title":"liver disease",
+          "weight":0.0031,
+          "value":0
+        },
+        {
+          "title":"smoking status_Every Day",
+          "weight":-0.015,
+          "value":1
+        },
+        {
+          "title":"gender_Male",
+          "weight":-0.0435,
+          "value":0
+        },
+        {
+          "title":"gender_Female",
+          "weight":-0.0442,
+          "value":1
+        },
+        {
+          "title":"chronic lung disease",
+          "weight":0.0007,
+          "value":0
+        },
+        {
+          "title":"end stage renal disease",
+          "weight":0.0022,
+          "value":0
+        },
+        {
+          "title":"pci prior",
+          "weight":-0.0007,
+          "value":0
+        },
+        {
+          "title":"gender identity_Female",
+          "weight":0.0027,
+          "value":1
+        },
+        {
+          "title":"primary race_White or Caucasian",
+          "weight":-0.0004,
+          "value":1
+        },
+        {
+          "title":"smoking status_Never Assessed",
+          "weight":-0.0003,
+          "value":0
+        },
+        {
+          "title":"sepsis within 48hrs prior to surgery",
+          "weight":0.0007,
+          "value":0
+        },
+        {
+          "title":"previous cardiac event",
+          "weight":0.0001,
+          "value":0
+        },
+        {
+          "title":"smoking status_Some Days",
+          "weight":0.0003,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Non-Hispanic",
+          "weight":-0.0001,
+          "value":1
+        },
+        {
+          "title":"primary race_Asian",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_*Unspecified",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Hispanic",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Declined",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Light Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Black or African American",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_American Indian and Alaska Native",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Passive Smoke Exposure - Never Smoker",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Choose not to disclose",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Multi Racial",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Declined",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Heavy Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Unknown",
+          "weight":-0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Never Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"primary race_Native Hawaiian and Other Pacific Islander",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Male",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Transgender Female",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Every Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"ethnicity_White",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Current Some Day Smoker",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"gender identity_Other",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Smoker, Current Status Unknown",
+          "weight":0.0,
+          "value":0
+        },
+        {
+          "title":"smoking status_Former Smoker",
+          "weight":0.0,
+          "value":0
+        }
+      ]
+    }
+  ]
+}

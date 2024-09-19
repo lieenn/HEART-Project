@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import AdverseEventsList from "./AdverseEventsList";
 import { GetHighRisks, GetLowRisks } from "../Utils/FilterFunctions";
+import ColorLegend from "../SharedComponents/ColorLegend";
 
 export default function DetailPage({ riskRange, patientData }) {
   const { value } = useParams();
@@ -19,7 +20,7 @@ export default function DetailPage({ riskRange, patientData }) {
     {
       type: "High",
       bgColor: "#f7917d",
-      fontColor: "black",
+      fontColor: "white",
       riskFilterFn: GetHighRisks,
       size: {
         xs: 12,
@@ -31,7 +32,7 @@ export default function DetailPage({ riskRange, patientData }) {
     {
       type: "Low",
       bgColor: "#99CDF6",
-      fontColor: "black",
+      fontColor: "white",
       riskFilterFn: GetLowRisks,
       size: {
         xs: 12,
@@ -46,12 +47,21 @@ export default function DetailPage({ riskRange, patientData }) {
     <Grid item key={index} {...view.size}>
       <Card elevation={4}>
         <CardHeader
-          title={`${view.type} Risk Adverse Events`}
+          title={
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: 800,
+                textShadow: "2px 2px 4px rgba(0,0,0,0.3)", // Added text shadow
+              }}
+            >
+              {`${view.type} Risk Adverse Events`}
+            </Typography>
+          }
           sx={{
             backgroundColor: view.bgColor,
             textAlign: "center",
             padding: 1,
-            fontWeight: 600,
             color: view.fontColor,
           }}
         />
@@ -82,11 +92,13 @@ export default function DetailPage({ riskRange, patientData }) {
         <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
           {person.patientName}
         </Typography>
+        <ColorLegend />
       </Grid>
       <Grid item xs={12} sm={4} md={3} lg={2}>
-        <Typography variant="h6">PID: {person.patientId}</Typography>
+        <Typography variant="h6">Patient ID: {person.patientId}</Typography>
         <Typography variant="h6">Room # {person.roomNumber}</Typography>
       </Grid>
+
       {detailCardGrids}
       <Grid item>
         <Link to="/">

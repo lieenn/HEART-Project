@@ -39,12 +39,16 @@ export default function SelectedChips({
           <ListItem key={index}>
             <Chip
               label={event}
-              variant="outlined" 
-              // label="small"
+              variant="outlined"
               size="small"
-              // color="primary" 
               onDelete={handleDelete(event)}
-              sx={{ margin: "2px"}} // Add some margin between chips
+              sx={{
+                margin: "2px",
+                border: (theme) => `1px solid ${theme.palette.primary.main}`,
+                "& .MuiChip-deleteIcon": {
+                  color: (theme) => theme.palette.primary.main,
+                },
+              }}
             />
           </ListItem>
         ))

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import patientView from "./Json files 2 patients/patientView.json";
+import patientView from "./SampleData/patientView.json";
+import aggregate from "./SampleData/aggregate.json";
 import Box from "@mui/material/Box";
 import MainView from "./components/AggregateView/MainView";
 import DetailPage from "./components/PatientView/DetailPage";
@@ -32,10 +32,7 @@ export default function App() {
           <Route
             path="/"
             element={
-              <MainView
-                riskRange={currentRiskRange}
-                patientData={patientView}
-              />
+              <MainView riskRange={currentRiskRange} patientData={aggregate} />
             }
           />
           <Route
