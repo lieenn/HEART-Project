@@ -10,12 +10,6 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
   const rectWidth = 216;
   const rectHeight = 36;
   const riskLevel = calculateRisk(adverseEvent.riskScore, riskRange);
-  const lowRiskDomain = [0, riskRange[0]];
-  const highRiskDomain = [
-    [riskRange[0], riskRange[1]],
-    [riskRange[1], riskRange[2]],
-    [riskRange[2], riskRange[3]],
-  ];
 
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
@@ -28,14 +22,13 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
           text={adverseEvent.title}
           isPatientSpecific={true}
         >
-          <ExplainationButton />
+          <ExplainationButton risk={adverseEvent} riskRange={riskRange} />
         </SvgRectangle>
       </Box>
       {riskLevel === "Minimal" ? (
         <Box sx={{ ml: -3.2 }}>
           <RiskScale
             adverseEvent={adverseEvent}
-            domain={lowRiskDomain}
             isHighRisk={false}
             riskRange={riskRange}
           />
@@ -43,7 +36,6 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
       ) : (
         <RiskScale
           adverseEvent={adverseEvent}
-          domain={highRiskDomain}
           isHighRisk={true}
           riskRange={riskRange}
         />

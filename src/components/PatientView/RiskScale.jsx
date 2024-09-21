@@ -4,12 +4,14 @@ import { Box, Typography } from "@mui/material";
 import { calculateColor } from "../Utils/Calculator";
 import { colorScale } from "../Utils/Calculator";
 
-export default function RiskScale({
-  adverseEvent,
-  domain,
-  isHighRisk,
-  riskRange,
-}) {
+export default function RiskScale({ adverseEvent, riskRange, isHighRisk }) {
+  const lowRiskDomain = [0, riskRange[0]];
+  const highRiskDomain = [
+    [riskRange[0], riskRange[1]],
+    [riskRange[1], riskRange[2]],
+    [riskRange[2], riskRange[3]],
+  ];
+  const domain = isHighRisk ? highRiskDomain : lowRiskDomain;
   const mainWidth = 180;
   const height = 23;
   const svgHeight = 25;
@@ -149,8 +151,7 @@ export default function RiskScale({
   const getRiskScorePosition = () => {
     if (isHighRisk) {
       if (adverseEvent.riskScore < domain[0][0]) return padding + extraWidth;
-      if (adverseEvent.riskScore > domain[2][1])
-        return padding + extraWidth + mainWidth;
+      if (adverseEvent.riskScore > domain[2][1]) return padding + mainWidth;
     } else {
       if (adverseEvent.riskScore < domain[0]) return padding + extraWidth;
       if (adverseEvent.riskScore > domain[1])
@@ -171,7 +172,13 @@ export default function RiskScale({
           fill="black"
         />
       </svg>
-      <Typography fontWeight="bold" color="black">
+      <Typography
+        fontWeight="bold"
+        color="black"
+        sx={{
+          marginLeft: isHighRisk ? -2 : 1,
+        }}
+      >
         Risk: {Math.round(adverseEvent.riskScore * 100)}%
       </Typography>
     </Box>

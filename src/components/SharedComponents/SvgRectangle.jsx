@@ -12,9 +12,9 @@ const SvgRectangle = ({
   width,
   height,
   text,
+  textAlign,
   isPatientSpecific = false,
   children,
-  textAlign,
   view,
 }) => {
   const isView1 = view === "view1";
@@ -44,8 +44,8 @@ const SvgRectangle = ({
     flexGrow: 1,
     textAlign,
     paddingRight: children ? "30px" : "0",
-    fontSize: "1.05rem",
-    textShadow: "1px 1px 2px rgba(0,0,0,0.3)", // Added text shadow
+    // fontSize: "1.05rem",
+    // textShadow: "1px 1px 2px rgba(0,0,0,0.3)",
   };
 
   const iconStyle = {

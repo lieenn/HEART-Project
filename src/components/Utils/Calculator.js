@@ -8,13 +8,13 @@ const color = {
     primary: "#99cdf6",
     secondary: "#d0e7fe",
     tertiary: "#5aabfa",
-    text: "white",
+    text: "black",
   },
   moderate: {
-    primary: "#ffe556",
+    primary: "#ffea6f",
     secondary: "#fcf2b6",
     tertiary: "#ffd900",
-    text: "white",
+    text: "black",
   },
   moderateHigh: {
     primary: "#f7924a",
