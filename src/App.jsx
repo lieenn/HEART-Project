@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Container from "@mui/material/Container";
 import patientView from "./SampleData/patientView.json";
 import aggregate from "./SampleData/aggregate.json";
+import fakeData from "./SampleData/fakeData.json";
 import Box from "@mui/material/Box";
 import MainView from "./components/AggregateView/MainView";
 import DetailPage from "./components/PatientView/DetailPage";
@@ -32,7 +33,10 @@ export default function App() {
           <Route
             path="/"
             element={
-              <MainView riskRange={currentRiskRange} patientData={aggregate} />
+              <MainView
+                riskRange={currentRiskRange}
+                patientData={aggregate.concat(fakeData)}
+              />
             }
           />
           <Route
@@ -40,7 +44,7 @@ export default function App() {
             element={
               <DetailPage
                 riskRange={currentRiskRange}
-                patientData={patientView}
+                patientData={patientView.concat(fakeData)}
               />
             }
           />

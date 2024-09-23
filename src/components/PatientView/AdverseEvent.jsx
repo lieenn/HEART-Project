@@ -4,7 +4,7 @@ import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Box, IconButton, Avatar } from "@mui/material";
 import RiskScale from "./RiskScale";
 import SvgRectangle from "../SharedComponents/SvgRectangle";
-import ExplainationButton from "./ExplainationButton";
+import ExplanationButton from "./Explanation/ExplanationButton";
 
 export default function AdverseEvent({ adverseEvent, riskRange }) {
   const rectWidth = 216;
@@ -22,7 +22,7 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
           text={adverseEvent.title}
           isPatientSpecific={true}
         >
-          <ExplainationButton risk={adverseEvent} riskRange={riskRange} />
+          <ExplanationButton risk={adverseEvent} riskRange={riskRange} />
         </SvgRectangle>
       </Box>
       {riskLevel === "Minimal" ? (

@@ -1,8 +1,8 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
-import SvgRectangle from "../SharedComponents/SvgRectangle";
-import { calculateRisk } from "../Utils/Calculator";
-import RiskScale from "./RiskScale";
+import SvgRectangle from "../../SharedComponents/SvgRectangle";
+import { calculateRisk } from "../../Utils/Calculator";
+import RiskScale from "../RiskScale";
 import PredictionBox from "./PredictionBox";
 
 export default function ExplanationModal({ risk, riskRange }) {

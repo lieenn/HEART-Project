@@ -11,6 +11,7 @@ import {
 import AdverseEventsList from "./AdverseEventsList";
 import { GetHighRisks, GetLowRisks } from "../Utils/FilterFunctions";
 import ColorLegend from "../SharedComponents/ColorLegend";
+import PredictedLos from "./PredictedLoS";
 
 export default function DetailPage({ riskRange, patientData }) {
   const { value } = useParams();
@@ -100,6 +101,16 @@ export default function DetailPage({ riskRange, patientData }) {
       </Grid>
 
       {detailCardGrids}
+      <Grid item xs={12}>
+        <Card elevation={4}>
+          <CardContent>
+            <PredictedLos
+              lengthOfStayEstimate={person.lengthOfStayEstimate}
+              lengthOfStayRange={person.lengthOfStayRange}
+            />
+          </CardContent>
+        </Card>
+      </Grid>
       <Grid item>
         <Link to="/">
           <Button variant="contained">Back</Button>

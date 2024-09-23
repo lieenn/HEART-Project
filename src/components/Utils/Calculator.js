@@ -5,30 +5,65 @@ import { riskRange } from "../../App";
 // Central color configuration
 const color = {
   minimal: {
-    primary: "#99cdf6",
-    secondary: "#d0e7fe",
-    tertiary: "#5aabfa",
+    main: "#d0e7fe",
+    risk: "#d0e7fe",
+    line: "#5aabfa",
+    accent: "#99cdf6",
     text: "black",
   },
   moderate: {
-    primary: "#ffea6f",
-    secondary: "#fcf2b6",
-    tertiary: "#ffd900",
+    main: "#fcf2b6",
+    risk: "#fcf2b6",
+    line: "#ffd900",
+    accent: "#ffea6f",
     text: "black",
   },
   moderateHigh: {
-    primary: "#f7924a",
-    secondary: "#f5bc93",
-    tertiary: "#ff7700",
-    text: "white",
+    main: "#f5bc93",
+    risk: "#f5bc93",
+    line: "#ff7700",
+    accent: "#f7924a",
+    text: "black",
   },
   high: {
-    primary: "#f16547",
-    secondary: "#fc7668",
-    tertiary: "#fa2205",
-    text: "white",
+    main: "#ffadaa",
+    risk: "#ffadaa",
+    line: "#fa2205",
+    accent: "#fc716c",
+    text: "black",
   },
 };
+
+// const color = {
+//   minimal: {
+//     main: "#99cdf6",
+//     risk: "#d0e7fe",
+//     line: "#5aabfa",
+//     accent: "#99cdf6",
+//     text: "black",
+//   },
+//   moderate: {
+//     main: "#ffea6f",
+//     risk: "#fcf2b6",
+//     line: "#ffd900",
+//     accent: "#ffea6f",
+//     text: "black",
+//   },
+//   moderateHigh: {
+//     main: "#f7924a",
+//     risk: "#f5bc93",
+//     line: "#ff7700",
+//     accent: "#f7924a",
+//     text: "white",
+//   },
+//   high: {
+//     main: "#fc716c",
+//     risk: "#ffadaa",
+//     line: "#fa2205",
+//     accent: "#fc716c",
+//     text: "white",
+//   },
+// };
 
 // #ff624f
 // #E23D28 --> alternative color -- cute chili red -- but needs white font
@@ -39,20 +74,31 @@ const color = {
 /**
  * Using d3 to define color scale,
  * ordinal so there is no gradient.
- * Each risk level maps to an array of three colors: [primary, secondary].
+ * Each risk level maps to an array of three colors: [main, risk].
  */
 export const colorScale = d3
   .scaleOrdinal()
   .domain(["Minimal", "Moderate", "Moderate High", "High"])
   .range([
-    [color.minimal.primary, color.minimal.secondary, color.minimal.tertiary],
-    [color.moderate.primary, color.moderate.secondary, color.moderate.tertiary],
     [
-      color.moderateHigh.primary,
-      color.moderateHigh.secondary,
-      color.moderateHigh.tertiary,
+      color.minimal.main,
+      color.minimal.risk,
+      color.minimal.line,
+      color.minimal.accent,
     ],
-    [color.high.primary, color.high.secondary, color.high.tertiary],
+    [
+      color.moderate.main,
+      color.moderate.risk,
+      color.moderate.line,
+      color.moderate.accent,
+    ],
+    [
+      color.moderateHigh.main,
+      color.moderateHigh.risk,
+      color.moderateHigh.line,
+      color.moderateHigh.accent,
+    ],
+    [color.high.main, color.high.risk, color.high.line, color.high.accent],
   ]);
 
 /**
@@ -92,18 +138,16 @@ export function calculateColor(riskScore, riskRange) {
 
 export function borderLineColor(riskScore, riskRange) {
   const riskLevel = calculateRisk(riskScore, riskRange);
-  return riskLevel === "Minimal"
-    ? color.moderate.primary
-    : color.minimal.primary;
+  return riskLevel === "Minimal" ? color.moderate.main : color.minimal.main;
 }
 
 /**
- * Get the primary colors corresponding to the
+ * Get the main colors corresponding to the
  * highest risk score among a patient's adverse events
  * @param {Object} patient - The patient object containing adverse events
  * @param {Array<Object>} patient.adverseEvents - Array of adverse events
  * @param {Array<number>} riskRange - The current risk range used to define levels.
- * @returns {string} primary color
+ * @returns {string} main color
  */
 export function highestRiskColor(patient, riskRange) {
   const risks = patient.adverseEvents;
@@ -113,6 +157,9 @@ export function highestRiskColor(patient, riskRange) {
     0
   );
 
-  const [textColor, primary] = calculateColor(highestRisk, riskRange);
-  return primary;
+  const [textColor, main, risk, line, accent] = calculateColor(
+    highestRisk,
+    riskRange
+  );
+  return accent;
 }
