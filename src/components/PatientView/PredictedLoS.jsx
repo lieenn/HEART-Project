@@ -9,31 +9,33 @@ const PredictedLosD3 = ({ lengthOfStayEstimate, lengthOfStayRange }) => {
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove(); // Clear previous render
 
-    const width = 500; // Increase the width
-    const height = 150; // Increase the height for more space
-    const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+    const width = 600;
+    const height = 120; // Reduced height
+    const margin = { top: 10, right: 20, bottom: 30, left: 20 }; // Adjusted margins
+
+    const arrowOffset = 15;
+    const xOffset = 50; // Reduced offset to move everything slightly to the right
 
     // X scale for days (0 to 21 days)
-    const xScale = d3.scaleLinear().domain([0, 21]).range([0, width]);
+    const xScale = d3
+      .scaleLinear()
+      .domain([0, 21])
+      .range([0, width - margin.left - margin.right - arrowOffset]);
 
-    // Arrowhead width (reduce the highlight before this point)
-    const arrowOffset = 40; // Increase this value to shorten the box further
-
-    // Colors for different LoS ranges
     const rangeColors = {
-      shortLoS: "rgba(148, 195, 244, 0.5)", // Light Blue
-      AvgLoS: "rgba(255, 250, 159, 0.5)", // Yellow
-      ProlongedLoS: "rgba(237, 158, 138, 0.5)", // Red
+      shortLoS: "rgba(148, 195, 244, 0.5)",
+      AvgLoS: "rgba(255, 250, 159, 0.5)",
+      ProlongedLoS: "rgba(237, 158, 138, 0.5)",
     };
 
     const getRangeHighlight = () => {
       switch (lengthOfStayRange) {
         case "shortLoS":
-          return [0, 6]; // Highlight 0 to 6 days
+          return [0, 6];
         case "AvgLoS":
-          return [6, 14]; // Highlight 6 to 14 days
+          return [6, 14];
         case "ProlongedLoS":
-          return [14, 21]; // Highlight 14 to 21 days
+          return [14, 21];
         default:
           return [0, 0];
       }
@@ -41,154 +43,159 @@ const PredictedLosD3 = ({ lengthOfStayEstimate, lengthOfStayRange }) => {
 
     const [highlightStart, highlightEnd] = getRangeHighlight();
 
+    const yPos = height / 2; // Centered vertically
+
+    const cappedEstimate = Math.min(lengthOfStayEstimate, 21);
+    const arrowX = xOffset + margin.left + xScale(cappedEstimate);
+
+    // Highlight the appropriate range
+    svg
+      .append("rect")
+      .attr("x", xOffset + margin.left + xScale(highlightStart))
+      .attr("y", yPos - 15)
+      .attr("width", xScale(highlightEnd) - xScale(highlightStart))
+      .attr("height", 30)
+      .attr("fill", rangeColors[lengthOfStayRange]);
+
     // Add the timeline (solid for first 6 days)
     svg
       .append("line")
-      .attr("x1", margin.left)
-      .attr("x2", margin.left + xScale(6))
-      .attr("y1", height / 2)
-      .attr("y2", height / 2)
+      .attr("x1", xOffset + margin.left)
+      .attr("x2", xOffset + margin.left + xScale(6))
+      .attr("y1", yPos)
+      .attr("y2", yPos)
       .attr("stroke", "black")
-      .attr("stroke-width", 3); // Make the line thicker
+      .attr("stroke-width", 2);
 
     // Add the timeline (dashed for 6 to 14 days)
     svg
       .append("line")
-      .attr("x1", margin.left + xScale(6))
-      .attr("x2", margin.left + xScale(14))
-      .attr("y1", height / 2)
-      .attr("y2", height / 2)
+      .attr("x1", xOffset + margin.left + xScale(6))
+      .attr("x2", xOffset + margin.left + xScale(14))
+      .attr("y1", yPos)
+      .attr("y2", yPos)
       .attr("stroke", "black")
-      .attr("stroke-width", 3) // Make the dashed line thicker
-      .attr("stroke-dasharray", "6 4"); // Adjust the dash length
+      .attr("stroke-width", 2)
+      .attr("stroke-dasharray", "4 2");
 
     // Add the timeline (solid for day 14 onwards)
     svg
       .append("line")
-      .attr("x1", margin.left + xScale(14))
-      .attr("x2", width - margin.right) // Extend the line slightly
-      .attr("y1", height / 2)
-      .attr("y2", height / 2)
+      .attr("x1", xOffset + margin.left + xScale(14))
+      .attr("x2", xOffset + width - margin.right - arrowOffset)
+      .attr("y1", yPos)
+      .attr("y2", yPos)
       .attr("stroke", "black")
-      .attr("stroke-width", 3); // Make the line thicker
+      .attr("stroke-width", 2);
 
     // Arrow at the far right
     svg
       .append("polygon")
       .attr(
         "points",
-        `${width - margin.right},${height / 2 - 8} ${width - margin.right},${
-          height / 2 + 8
-        } ${width - margin.right + 12},${height / 2}`
+        `${xOffset + width - margin.right - arrowOffset},${yPos - 6} ${
+          xOffset + width - margin.right - arrowOffset
+        },${yPos + 6} ${xOffset + width - margin.right},${yPos}`
       )
       .attr("fill", "black");
-
-    // Highlight the appropriate range, adjust for arrow offset in ProlongedLoS
-    svg
-      .append("rect")
-      .attr("x", margin.left + xScale(highlightStart))
-      .attr("y", height / 2 - 15)
-      .attr(
-        "width",
-        lengthOfStayRange === "ProlongedLoS"
-          ? xScale(highlightEnd) - xScale(highlightStart) - arrowOffset // Adjust for arrow overlap
-          : xScale(highlightEnd) - xScale(highlightStart)
-      )
-      .attr("height", 30) // Adjust the height for better visibility
-      .attr("fill", rangeColors[lengthOfStayRange]);
 
     // Add day markers (day 6 and day 14)
     svg
       .append("line")
-      .attr("x1", margin.left + xScale(6))
-      .attr("x2", margin.left + xScale(6))
-      .attr("y1", height / 2 - 15)
-      .attr("y2", height / 2 + 15)
+      .attr("x1", xOffset + margin.left + xScale(6))
+      .attr("x2", xOffset + margin.left + xScale(6))
+      .attr("y1", yPos - 10)
+      .attr("y2", yPos + 10)
       .attr("stroke", "black")
-      .attr("stroke-width", 3); // Thicker marker
+      .attr("stroke-width", 2);
 
     svg
       .append("line")
-      .attr("x1", margin.left + xScale(14))
-      .attr("x2", margin.left + xScale(14))
-      .attr("y1", height / 2 - 15)
-      .attr("y2", height / 2 + 15)
+      .attr("x1", xOffset + margin.left + xScale(14))
+      .attr("x2", xOffset + margin.left + xScale(14))
+      .attr("y1", yPos - 10)
+      .attr("y2", yPos + 10)
       .attr("stroke", "black")
-      .attr("stroke-width", 3); // Thicker marker
+      .attr("stroke-width", 2);
 
-    // Add day 6 and day 14 labels
     // Add day 6 and day 14 labels above the timeline
     svg
       .append("text")
-      .attr("x", margin.left + xScale(6))
-      .attr("y", height / 2 - 28) // Move this above the line by adjusting the y-coordinate
+      .attr("x", xOffset + margin.left + xScale(6))
+      .attr("y", yPos - 20)
       .attr("text-anchor", "middle")
+      .style("font-size", "10px")
+      .style("font-weight", "bold")
       .text("day 6");
 
     svg
       .append("text")
-      .attr("x", margin.left + xScale(14))
-      .attr("y", height / 2 - 28) // Move this above the line by adjusting the y-coordinate
+      .attr("x", xOffset + margin.left + xScale(14))
+      .attr("y", yPos - 20)
       .attr("text-anchor", "middle")
+      .style("font-size", "10px")
+      .style("font-weight", "bold")
       .text("day 14");
 
-    // Add the arrow for the predicted day
-    const predictedX = margin.left + xScale(lengthOfStayEstimate);
-
+    // Add the vertical arrow
     svg
       .append("line")
-      .attr("x1", predictedX)
-      .attr("x2", predictedX)
-      .attr("y1", height / 2) // Start the vertical line exactly at the horizontal line's y-position
-      .attr("y2", height / 2 + 55) // Extend the vertical line to touch the arrowhead
+      .attr("x1", arrowX)
+      .attr("x2", arrowX)
+      .attr("y1", yPos)
+      .attr("y2", yPos + 30)
       .attr("stroke", "black")
-      .attr("stroke-width", 2); // Thicker arrow line
+      .attr("stroke-width", 1);
 
-    // Arrowhead
+    // Arrowhead for vertical arrow
     svg
       .append("polygon")
       .attr(
         "points",
-        `${predictedX - 8},${height / 2 + 55} ${predictedX + 8},${
-          height / 2 + 55
-        } ${predictedX},${height / 2 + 65}`
+        `${arrowX - 4},${yPos + 30} ${arrowX + 4},${yPos + 30} ${arrowX},${
+          yPos + 35
+        }`
       )
       .attr("fill", "black");
 
     // Add the predicted days label
     svg
       .append("text")
-      .attr("x", predictedX)
-      .attr("y", height / 2 + 88)
+      .attr("x", arrowX)
+      .attr("y", yPos + 50)
       .attr("text-anchor", "middle")
-      .style("font-weight", "bold") // Make the text bold
+      .style("font-size", "12px")
+      .style("font-weight", "bold")
       .text(`Predicted days in the ICU: ${lengthOfStayEstimate}`);
   }, [lengthOfStayEstimate, lengthOfStayRange]);
 
   return (
     <Box
       sx={{
-        display: "flex", // Flexbox for horizontal layout
-        alignItems: "center", // Vertically center the content
-        justifyContent: "center", // Center the content horizontally
-        width: "100%", // Ensure the container takes full width
-        textAlign: "center", // Center text within the box
-        flexDirection: "column", // Stack the text and SVG vertically
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        textAlign: "center",
+        flexDirection: "row",
       }}
     >
-      {/* Typography for Predicted Length of Stay */}
       <Typography
         variant="h6"
         sx={{
           fontWeight: "bold",
-          marginBottom: "0px", // Decrease the margin-bottom to reduce space
         }}
       >
         Predicted Length of Stay
       </Typography>
 
-      {/* SVG Container */}
-      <svg ref={svgRef} width="500" height="180" />
+      <svg
+        ref={svgRef}
+        width="600"
+        height="120"
+        viewBox="0 0 700 120"
+        preserveAspectRatio="xMidYMid meet"
+      />
     </Box>
   );
 };
