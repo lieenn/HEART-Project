@@ -20,8 +20,8 @@ export default function DetailPage({ riskRange, patientData }) {
   const riskViews = [
     {
       type: "High",
-      bgColor: "#f7917d",
-      fontColor: "white",
+      bgColor: "white",
+      fontColor: "#fa2104",
       riskFilterFn: GetHighRisks,
       size: {
         xs: 12,
@@ -32,8 +32,8 @@ export default function DetailPage({ riskRange, patientData }) {
     },
     {
       type: "Low",
-      bgColor: "#99CDF6",
-      fontColor: "white",
+      bgColor: "white",
+      fontColor: "#65b5f3",
       riskFilterFn: GetLowRisks,
       size: {
         xs: 12,
@@ -53,7 +53,9 @@ export default function DetailPage({ riskRange, patientData }) {
               variant="h6"
               sx={{
                 fontWeight: 800,
-                textShadow: "2px 2px 4px rgba(0,0,0,0.3)", // Added text shadow
+                // textShadow: "2px 2px 4px rgba(0,0,0,0.3)", // Added text shadow
+                border: 1,
+                borderRadius: '4px'
               }}
             >
               {`${view.type} Risk Adverse Events`}
@@ -101,7 +103,7 @@ export default function DetailPage({ riskRange, patientData }) {
       </Grid>
 
       {detailCardGrids}
-      <Grid item xs={12}>
+      <Grid item xs={8}>
         <Card elevation={4}>
           <CardContent>
             <PredictedLos
@@ -111,7 +113,7 @@ export default function DetailPage({ riskRange, patientData }) {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item>
+      <Grid item xs={12}>
         <Link to="/">
           <Button variant="contained">Back</Button>
         </Link>
