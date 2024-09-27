@@ -1,105 +1,7 @@
 [
   {
-    "patientName": "J. Doe",
-    "patientId": 2269,
-    "roomNumber": 12,
-    "timeStamp": 1719509621307,
-    "age": 60,
-    "weightKG": 85.0,
-    "heightCM": 168,
-    "bmi": 30.0,
-    "lengthOfStayEstimate": 14,
-    "lengthOfStayRange": "ProlongedLoS",
-    "adverseEvents": [
-      {
-        "title": "Renal Failure",
-        "riskScore": 0.09,
-        "confidenceInterval": { "low": 0.06, "high": 0.13 },
-        "contributions": [
-          { "title": "weight (kg)", "weight": 0.35, "value": 85.0 },
-          { "title": "body mass index", "weight": 0.25, "value": 30.0 },
-          { "title": "age", "weight": 0.15, "value": 60 },
-          { "title": "diabetes", "weight": 0.1, "value": 1 },
-          { "title": "hypertension", "weight": 0.15, "value": 1 }
-        ]
-      },
-      {
-        "title": "Prolonged Ventilation",
-        "riskScore": 0.6,
-        "confidenceInterval": { "low": 0.52, "high": 0.68 },
-        "contributions": [
-          { "title": "chronic lung disease", "weight": 0.4, "value": 1 },
-          { "title": "smoking status", "weight": 0.3, "value": 1 },
-          { "title": "body mass index", "weight": 0.15, "value": 30.0 },
-          { "title": "age", "weight": 0.1, "value": 60 },
-          { "title": "previous cardiac event", "weight": 0.05, "value": 0 }
-        ]
-      },
-      {
-        "title": "Reoperation",
-        "riskScore": 0.2,
-        "confidenceInterval": { "low": 0.15, "high": 0.26 },
-        "contributions": [
-          { "title": "previous cardiac event", "weight": 0.27, "value": 0 },
-          { "title": "age", "weight": 0.24, "value": 60 },
-          { "title": "body mass index", "weight": 0.22, "value": 30.0 },
-          { "title": "diabetes", "weight": 0.19, "value": 1 },
-          { "title": "smoking status", "weight": 0.18, "value": 1 }
-        ]
-      },
-      {
-        "title": "Operative Mortality",
-        "riskScore": 0.21,
-        "confidenceInterval": { "low": 0.18, "high": 0.26 },
-        "contributions": [
-          { "title": "weight (kg)", "weight": 0.24, "value": 85.0 },
-          { "title": "body mass index", "weight": 0.23, "value": 30.0 },
-          { "title": "age", "weight": 0.22, "value": 60 },
-          { "title": "liver disease", "weight": 0.2, "value": 0 },
-          { "title": "diabetes", "weight": 0.21, "value": 1 }
-        ]
-      },
-      {
-        "title": "Stroke",
-        "riskScore": 0.06,
-        "confidenceInterval": { "low": 0.04, "high": 0.09 },
-        "contributions": [
-          { "title": "cerebrovascular disease", "weight": 0.26, "value": 1 },
-          { "title": "smoking status", "weight": 0.23, "value": 1 },
-          { "title": "age", "weight": 0.24, "value": 60 },
-          { "title": "hypertension", "weight": 0.21, "value": 1 },
-          { "title": "diabetes", "weight": 0.22, "value": 1 }
-        ]
-      },
-      {
-        "title": "Short Length of Stay",
-        "riskScore": 0.12,
-        "confidenceInterval": { "low": 0.1, "high": 0.14 },
-        "contributions": [
-          { "title": "weight (kg)", "weight": 0.18, "value": 85.0 },
-          { "title": "age", "weight": 0.19, "value": 60 },
-          { "title": "body mass index", "weight": 0.17, "value": 30.0 },
-          { "title": "hypertension", "weight": 0.16, "value": 1 },
-          { "title": "previous surgery", "weight": 0.15, "value": 1 }
-        ]
-      },
-      {
-        "title": "Long Length of Stay",
-        "riskScore": 0.75,
-        "confidenceInterval": { "low": 0.7, "high": 0.8 },
-        "contributions": [
-          { "title": "weight (kg)", "weight": 0.36, "value": 85.0 },
-          { "title": "age", "weight": 0.32, "value": 60 },
-          { "title": "body mass index", "weight": 0.34, "value": 30.0 },
-          { "title": "diabetes", "weight": 0.35, "value": 1 },
-          { "title": "previous surgery", "weight": 0.33, "value": 1 }
-        ]
-      }
-    ]
-  },
-  {
-    "patientName": "J. Smit",
-    "patientId": 2045,
+    "patientName": "J. Smit*",
+    "patientId": "2045*",
     "roomNumber": 14,
     "timeStamp": 1719509621407,
     "age": 45,
@@ -126,11 +28,11 @@
         "riskScore": 0.38,
         "confidenceInterval": { "low": 0.32, "high": 0.4 },
         "contributions": [
-          { "title": "chronic lung disease", "weight": 0.26, "value": 0 },
-          { "title": "smoking status", "weight": 0.24, "value": 0 },
-          { "title": "body mass index", "weight": 0.22, "value": 25.0 },
-          { "title": "age", "weight": 0.23, "value": 45 },
-          { "title": "previous cardiac event", "weight": 0.21, "value": 0 }
+          { "title": "chronic lung disease", "weight": 0.225, "value": 0 },
+          { "title": "smoking status", "weight": 0.207, "value": 0 },
+          { "title": "body mass index", "weight": 0.19, "value": 25.0 },
+          { "title": "age", "weight": 0.198, "value": 45 },
+          { "title": "previous cardiac event", "weight": 0.18, "value": 0 }
         ]
       },
       {
@@ -138,11 +40,11 @@
         "riskScore": 0.18,
         "confidenceInterval": { "low": 0.05, "high": 0.5 },
         "contributions": [
-          { "title": "previous surgery", "weight": 0.27, "value": 1 },
-          { "title": "age", "weight": 0.24, "value": 45 },
-          { "title": "body mass index", "weight": 0.22, "value": 25.0 },
-          { "title": "chronic lung disease", "weight": 0.26, "value": 0 },
-          { "title": "hypertension", "weight": 0.24, "value": 0 }
+          { "title": "previous surgery", "weight": 0.219, "value": 1 },
+          { "title": "age", "weight": 0.195, "value": 45 },
+          { "title": "body mass index", "weight": 0.179, "value": 25.0 },
+          { "title": "chronic lung disease", "weight": 0.211, "value": 0 },
+          { "title": "hypertension", "weight": 0.196, "value": 0 }
         ]
       },
       {
@@ -150,11 +52,11 @@
         "riskScore": 0.35,
         "confidenceInterval": { "low": 0.3, "high": 0.4 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.28, "value": 70.0 },
-          { "title": "body mass index", "weight": 0.26, "value": 25.0 },
-          { "title": "age", "weight": 0.27, "value": 45 },
-          { "title": "previous cardiac event", "weight": 0.25, "value": 0 },
-          { "title": "diabetes", "weight": 0.24, "value": 0 }
+          { "title": "weight (kg)", "weight": 0.215, "value": 70.0 },
+          { "title": "body mass index", "weight": 0.2, "value": 25.0 },
+          { "title": "age", "weight": 0.208, "value": 45 },
+          { "title": "previous cardiac event", "weight": 0.192, "value": 0 },
+          { "title": "diabetes", "weight": 0.185, "value": 0 }
         ]
       },
       {
@@ -162,11 +64,11 @@
         "riskScore": 0.23,
         "confidenceInterval": { "low": 0.2, "high": 0.5 },
         "contributions": [
-          { "title": "cerebrovascular disease", "weight": 0.29, "value": 0 },
-          { "title": "age", "weight": 0.27, "value": 45 },
-          { "title": "diabetes", "weight": 0.25, "value": 0 },
-          { "title": "hypertension", "weight": 0.26, "value": 0 },
-          { "title": "smoking status", "weight": 0.24, "value": 0 }
+          { "title": "cerebrovascular disease", "weight": 0.221, "value": 0 },
+          { "title": "age", "weight": 0.206, "value": 45 },
+          { "title": "diabetes", "weight": 0.191, "value": 0 },
+          { "title": "hypertension", "weight": 0.198, "value": 0 },
+          { "title": "smoking status", "weight": 0.184, "value": 0 }
         ]
       },
       {
@@ -174,11 +76,11 @@
         "riskScore": 0.85,
         "confidenceInterval": { "low": 0.8, "high": 0.9 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.38, "value": 70.0 },
-          { "title": "body mass index", "weight": 0.36, "value": 25.0 },
-          { "title": "age", "weight": 0.35, "value": 45 },
-          { "title": "previous surgery", "weight": 0.37, "value": 1 },
-          { "title": "smoking status", "weight": 0.34, "value": 0 }
+          { "title": "weight (kg)", "weight": 0.211, "value": 70.0 },
+          { "title": "body mass index", "weight": 0.2, "value": 25.0 },
+          { "title": "age", "weight": 0.194, "value": 45 },
+          { "title": "previous surgery", "weight": 0.206, "value": 1 },
+          { "title": "smoking status", "weight": 0.189, "value": 0 }
         ]
       },
       {
@@ -186,18 +88,18 @@
         "riskScore": 0.05,
         "confidenceInterval": { "low": 0.03, "high": 0.07 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.21, "value": 70.0 },
-          { "title": "body mass index", "weight": 0.22, "value": 25.0 },
-          { "title": "age", "weight": 0.19, "value": 45 },
-          { "title": "previous cardiac event", "weight": 0.18, "value": 0 },
-          { "title": "diabetes", "weight": 0.23, "value": 0 }
+          { "title": "weight (kg)", "weight": 0.204, "value": 70.0 },
+          { "title": "body mass index", "weight": 0.214, "value": 25.0 },
+          { "title": "age", "weight": 0.185, "value": 45 },
+          { "title": "previous cardiac event", "weight": 0.175, "value": 0 },
+          { "title": "diabetes", "weight": 0.222, "value": 0 }
         ]
       }
     ]
   },
   {
-    "patientName": "A. Johnson",
-    "patientId": 1234,
+    "patientName": "A. Johnson*",
+    "patientId": "1234*",
     "roomNumber": 15,
     "timeStamp": 1719510000000,
     "lengthOfStayEstimate": 15,
@@ -208,11 +110,11 @@
         "riskScore": 0.18,
         "confidenceInterval": { "low": 0.18, "high": 0.38 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.28, "value": 65.0 },
-          { "title": "body mass index", "weight": 0.26, "value": 22.0 },
-          { "title": "age", "weight": 0.24, "value": 30 },
-          { "title": "diabetes", "weight": 0.27, "value": 1 },
-          { "title": "hypertension", "weight": 0.25, "value": 1 }
+          { "title": "weight (kg)", "weight": 0.215, "value": 65.0 },
+          { "title": "body mass index", "weight": 0.2, "value": 22.0 },
+          { "title": "age", "weight": 0.185, "value": 30 },
+          { "title": "diabetes", "weight": 0.208, "value": 1 },
+          { "title": "hypertension", "weight": 0.192, "value": 1 }
         ]
       },
       {
@@ -220,11 +122,11 @@
         "riskScore": 0.85,
         "confidenceInterval": { "low": 0.75, "high": 0.95 },
         "contributions": [
-          { "title": "chronic lung disease", "weight": 0.35, "value": 1 },
-          { "title": "smoking status", "weight": 0.33, "value": 1 },
-          { "title": "body mass index", "weight": 0.31, "value": 22.0 },
-          { "title": "age", "weight": 0.32, "value": 30 },
-          { "title": "previous cardiac event", "weight": 0.29, "value": 0 }
+          { "title": "chronic lung disease", "weight": 0.219, "value": 1 },
+          { "title": "smoking status", "weight": 0.206, "value": 1 },
+          { "title": "body mass index", "weight": 0.194, "value": 22.0 },
+          { "title": "age", "weight": 0.2, "value": 30 },
+          { "title": "previous cardiac event", "weight": 0.181, "value": 0 }
         ]
       },
       {
@@ -232,11 +134,11 @@
         "riskScore": 0.52,
         "confidenceInterval": { "low": 0.42, "high": 0.62 },
         "contributions": [
-          { "title": "previous surgery", "weight": 0.34, "value": 1 },
-          { "title": "age", "weight": 0.31, "value": 30 },
-          { "title": "body mass index", "weight": 0.29, "value": 22.0 },
-          { "title": "smoking status", "weight": 0.33, "value": 0 },
-          { "title": "weight (kg)", "weight": 0.32, "value": 65.0 }
+          { "title": "previous surgery", "weight": 0.214, "value": 1 },
+          { "title": "age", "weight": 0.195, "value": 30 },
+          { "title": "body mass index", "weight": 0.182, "value": 22.0 },
+          { "title": "smoking status", "weight": 0.208, "value": 0 },
+          { "title": "weight (kg)", "weight": 0.201, "value": 65.0 }
         ]
       },
       {
@@ -244,11 +146,11 @@
         "riskScore": 0.05,
         "confidenceInterval": { "low": 0.01, "high": 0.1 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.27, "value": 65.0 },
-          { "title": "body mass index", "weight": 0.25, "value": 22.0 },
-          { "title": "age", "weight": 0.24, "value": 30 },
-          { "title": "liver disease", "weight": 0.26, "value": 0 },
-          { "title": "diabetes", "weight": 0.28, "value": 1 }
+          { "title": "weight (kg)", "weight": 0.208, "value": 65.0 },
+          { "title": "body mass index", "weight": 0.192, "value": 22.0 },
+          { "title": "age", "weight": 0.185, "value": 30 },
+          { "title": "liver disease", "weight": 0.2, "value": 0 },
+          { "title": "diabetes", "weight": 0.215, "value": 1 }
         ]
       },
       {
@@ -256,11 +158,11 @@
         "riskScore": 0.35,
         "confidenceInterval": { "low": 0.25, "high": 0.45 },
         "contributions": [
-          { "title": "cerebrovascular disease", "weight": 0.31, "value": 1 },
-          { "title": "age", "weight": 0.33, "value": 30 },
-          { "title": "hypertension", "weight": 0.29, "value": 1 },
-          { "title": "smoking status", "weight": 0.32, "value": 0 },
-          { "title": "diabetes", "weight": 0.3, "value": 1 }
+          { "title": "cerebrovascular disease", "weight": 0.2, "value": 1 },
+          { "title": "age", "weight": 0.213, "value": 30 },
+          { "title": "hypertension", "weight": 0.187, "value": 1 },
+          { "title": "smoking status", "weight": 0.206, "value": 0 },
+          { "title": "diabetes", "weight": 0.194, "value": 1 }
         ]
       },
       {
@@ -268,11 +170,11 @@
         "riskScore": 0.1,
         "confidenceInterval": { "low": 0.08, "high": 0.12 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.22, "value": 65.0 },
-          { "title": "body mass index", "weight": 0.21, "value": 22.0 },
-          { "title": "age", "weight": 0.23, "value": 30 },
-          { "title": "diabetes", "weight": 0.24, "value": 1 },
-          { "title": "hypertension", "weight": 0.25, "value": 1 }
+          { "title": "weight (kg)", "weight": 0.191, "value": 65.0 },
+          { "title": "body mass index", "weight": 0.183, "value": 22.0 },
+          { "title": "age", "weight": 0.2, "value": 30 },
+          { "title": "diabetes", "weight": 0.209, "value": 1 },
+          { "title": "hypertension", "weight": 0.217, "value": 1 }
         ]
       },
       {
@@ -280,18 +182,18 @@
         "riskScore": 0.8,
         "confidenceInterval": { "low": 0.75, "high": 0.85 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.35, "value": 65.0 },
-          { "title": "body mass index", "weight": 0.32, "value": 22.0 },
-          { "title": "age", "weight": 0.34, "value": 30 },
-          { "title": "previous surgery", "weight": 0.33, "value": 1 },
-          { "title": "diabetes", "weight": 0.36, "value": 1 }
+          { "title": "weight (kg)", "weight": 0.206, "value": 65.0 },
+          { "title": "body mass index", "weight": 0.188, "value": 22.0 },
+          { "title": "age", "weight": 0.2, "value": 30 },
+          { "title": "previous surgery", "weight": 0.194, "value": 1 },
+          { "title": "diabetes", "weight": 0.212, "value": 1 }
         ]
       }
     ]
   },
   {
-    "patientName": "B. Williams",
-    "patientId": 5678,
+    "patientName": "B. Williams*",
+    "patientId": "5678*",
     "roomNumber": 16,
     "timeStamp": 1719510500000,
     "lengthOfStayEstimate": 15,
@@ -302,11 +204,11 @@
         "riskScore": 0.38,
         "confidenceInterval": { "low": 0.28, "high": 0.48 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.32, "value": 78.0 },
-          { "title": "body mass index", "weight": 0.31, "value": 24.0 },
-          { "title": "age", "weight": 0.29, "value": 50 },
-          { "title": "diabetes", "weight": 0.34, "value": 1 },
-          { "title": "hypertension", "weight": 0.33, "value": 1 }
+          { "title": "weight (kg)", "weight": 0.2, "value": 78.0 },
+          { "title": "body mass index", "weight": 0.194, "value": 24.0 },
+          { "title": "age", "weight": 0.182, "value": 50 },
+          { "title": "diabetes", "weight": 0.213, "value": 1 },
+          { "title": "hypertension", "weight": 0.211, "value": 1 }
         ]
       },
       {
@@ -314,11 +216,11 @@
         "riskScore": 0.45,
         "confidenceInterval": { "low": 0.35, "high": 0.55 },
         "contributions": [
-          { "title": "chronic lung disease", "weight": 0.36, "value": 1 },
-          { "title": "smoking status", "weight": 0.33, "value": 1 },
-          { "title": "body mass index", "weight": 0.32, "value": 24.0 },
-          { "title": "age", "weight": 0.31, "value": 50 },
-          { "title": "previous cardiac event", "weight": 0.34, "value": 0 }
+          { "title": "chronic lung disease", "weight": 0.217, "value": 1 },
+          { "title": "smoking status", "weight": 0.199, "value": 1 },
+          { "title": "body mass index", "weight": 0.193, "value": 24.0 },
+          { "title": "age", "weight": 0.187, "value": 50 },
+          { "title": "previous cardiac event", "weight": 0.204, "value": 0 }
         ]
       },
       {
@@ -326,11 +228,11 @@
         "riskScore": 0.52,
         "confidenceInterval": { "low": 0.42, "high": 0.62 },
         "contributions": [
-          { "title": "previous surgery", "weight": 0.38, "value": 1 },
-          { "title": "age", "weight": 0.34, "value": 50 },
-          { "title": "body mass index", "weight": 0.33, "value": 24.0 },
-          { "title": "smoking status", "weight": 0.31, "value": 1 },
-          { "title": "weight (kg)", "weight": 0.35, "value": 78.0 }
+          { "title": "previous surgery", "weight": 0.222, "value": 1 },
+          { "title": "age", "weight": 0.199, "value": 50 },
+          { "title": "body mass index", "weight": 0.193, "value": 24.0 },
+          { "title": "smoking status", "weight": 0.181, "value": 1 },
+          { "title": "weight (kg)", "weight": 0.205, "value": 78.0 }
         ]
       },
       {
@@ -338,11 +240,11 @@
         "riskScore": 0.28,
         "confidenceInterval": { "low": 0.18, "high": 0.38 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.29, "value": 78.0 },
-          { "title": "body mass index", "weight": 0.27, "value": 24.0 },
-          { "title": "age", "weight": 0.32, "value": 50 },
-          { "title": "liver disease", "weight": 0.31, "value": 0 },
-          { "title": "diabetes", "weight": 0.28, "value": 1 }
+          { "title": "weight (kg)", "weight": 0.197, "value": 78.0 },
+          { "title": "body mass index", "weight": 0.184, "value": 24.0 },
+          { "title": "age", "weight": 0.218, "value": 50 },
+          { "title": "liver disease", "weight": 0.211, "value": 0 },
+          { "title": "diabetes", "weight": 0.19, "value": 1 }
         ]
       },
       {
@@ -350,11 +252,11 @@
         "riskScore": 0.35,
         "confidenceInterval": { "low": 0.25, "high": 0.45 },
         "contributions": [
-          { "title": "cerebrovascular disease", "weight": 0.36, "value": 1 },
-          { "title": "age", "weight": 0.33, "value": 50 },
-          { "title": "hypertension", "weight": 0.31, "value": 1 },
-          { "title": "smoking status", "weight": 0.34, "value": 1 },
-          { "title": "diabetes", "weight": 0.32, "value": 1 }
+          { "title": "cerebrovascular disease", "weight": 0.217, "value": 1 },
+          { "title": "age", "weight": 0.199, "value": 50 },
+          { "title": "hypertension", "weight": 0.187, "value": 1 },
+          { "title": "smoking status", "weight": 0.205, "value": 1 },
+          { "title": "diabetes", "weight": 0.192, "value": 1 }
         ]
       },
       {
@@ -362,11 +264,11 @@
         "riskScore": 0.2,
         "confidenceInterval": { "low": 0.18, "high": 0.22 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.22, "value": 78.0 },
-          { "title": "age", "weight": 0.21, "value": 50 },
-          { "title": "body mass index", "weight": 0.23, "value": 24.0 },
-          { "title": "hypertension", "weight": 0.24, "value": 1 },
-          { "title": "diabetes", "weight": 0.25, "value": 1 }
+          { "title": "weight (kg)", "weight": 0.191, "value": 78.0 },
+          { "title": "age", "weight": 0.183, "value": 50 },
+          { "title": "body mass index", "weight": 0.2, "value": 24.0 },
+          { "title": "hypertension", "weight": 0.209, "value": 1 },
+          { "title": "diabetes", "weight": 0.217, "value": 1 }
         ]
       },
       {
@@ -374,18 +276,18 @@
         "riskScore": 0.78,
         "confidenceInterval": { "low": 0.72, "high": 0.82 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.35, "value": 78.0 },
-          { "title": "age", "weight": 0.36, "value": 50 },
-          { "title": "body mass index", "weight": 0.34, "value": 24.0 },
-          { "title": "diabetes", "weight": 0.33, "value": 1 },
-          { "title": "previous surgery", "weight": 0.37, "value": 1 }
+          { "title": "weight (kg)", "weight": 0.2, "value": 78.0 },
+          { "title": "age", "weight": 0.206, "value": 50 },
+          { "title": "body mass index", "weight": 0.194, "value": 24.0 },
+          { "title": "diabetes", "weight": 0.189, "value": 1 },
+          { "title": "previous surgery", "weight": 0.211, "value": 1 }
         ]
       }
     ]
   },
   {
-    "patientName": "C. Davis",
-    "patientId": 9101,
+    "patientName": "C. Davis*",
+    "patientId": "9101*",
     "roomNumber": 17,
     "timeStamp": 1719511000000,
     "lengthOfStayEstimate": 18,
@@ -396,11 +298,11 @@
         "riskScore": 0.8,
         "confidenceInterval": { "low": 0.7, "high": 0.9 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.35, "value": 95.0 },
-          { "title": "body mass index", "weight": 0.33, "value": 28.0 },
-          { "title": "age", "weight": 0.38, "value": 65 },
-          { "title": "diabetes", "weight": 0.34, "value": 1 },
-          { "title": "hypertension", "weight": 0.36, "value": 1 }
+          { "title": "weight (kg)", "weight": 0.199, "value": 95.0 },
+          { "title": "body mass index", "weight": 0.188, "value": 28.0 },
+          { "title": "age", "weight": 0.216, "value": 65 },
+          { "title": "diabetes", "weight": 0.193, "value": 1 },
+          { "title": "hypertension", "weight": 0.204, "value": 1 }
         ]
       },
       {
@@ -408,11 +310,11 @@
         "riskScore": 0.6,
         "confidenceInterval": { "low": 0.5, "high": 0.7 },
         "contributions": [
-          { "title": "chronic lung disease", "weight": 0.39, "value": 1 },
-          { "title": "smoking status", "weight": 0.37, "value": 1 },
-          { "title": "body mass index", "weight": 0.36, "value": 28.0 },
-          { "title": "age", "weight": 0.35, "value": 65 },
-          { "title": "previous cardiac event", "weight": 0.32, "value": 0 }
+          { "title": "chronic lung disease", "weight": 0.218, "value": 1 },
+          { "title": "smoking status", "weight": 0.207, "value": 1 },
+          { "title": "body mass index", "weight": 0.201, "value": 28.0 },
+          { "title": "age", "weight": 0.196, "value": 65 },
+          { "title": "previous cardiac event", "weight": 0.178, "value": 0 }
         ]
       },
       {
@@ -420,11 +322,11 @@
         "riskScore": 0.3,
         "confidenceInterval": { "low": 0.2, "high": 0.4 },
         "contributions": [
-          { "title": "previous surgery", "weight": 0.38, "value": 1 },
-          { "title": "age", "weight": 0.35, "value": 65 },
-          { "title": "body mass index", "weight": 0.34, "value": 28.0 },
-          { "title": "smoking status", "weight": 0.33, "value": 1 },
-          { "title": "weight (kg)", "weight": 0.36, "value": 95.0 }
+          { "title": "previous surgery", "weight": 0.216, "value": 1 },
+          { "title": "age", "weight": 0.199, "value": 65 },
+          { "title": "body mass index", "weight": 0.193, "value": 28.0 },
+          { "title": "smoking status", "weight": 0.187, "value": 1 },
+          { "title": "weight (kg)", "weight": 0.205, "value": 95.0 }
         ]
       },
       {
@@ -432,11 +334,11 @@
         "riskScore": 0.25,
         "confidenceInterval": { "low": 0.15, "high": 0.35 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.32, "value": 95.0 },
-          { "title": "body mass index", "weight": 0.31, "value": 28.0 },
-          { "title": "age", "weight": 0.34, "value": 65 },
-          { "title": "liver disease", "weight": 0.33, "value": 0 },
-          { "title": "diabetes", "weight": 0.35, "value": 1 }
+          { "title": "weight (kg)", "weight": 0.194, "value": 95.0 },
+          { "title": "body mass index", "weight": 0.188, "value": 28.0 },
+          { "title": "age", "weight": 0.206, "value": 65 },
+          { "title": "liver disease", "weight": 0.2, "value": 0 },
+          { "title": "diabetes", "weight": 0.212, "value": 1 }
         ]
       },
       {
@@ -444,11 +346,11 @@
         "riskScore": 0.45,
         "confidenceInterval": { "low": 0.35, "high": 0.55 },
         "contributions": [
-          { "title": "cerebrovascular disease", "weight": 0.38, "value": 1 },
-          { "title": "age", "weight": 0.37, "value": 65 },
-          { "title": "hypertension", "weight": 0.35, "value": 1 },
-          { "title": "smoking status", "weight": 0.36, "value": 1 },
-          { "title": "diabetes", "weight": 0.33, "value": 1 }
+          { "title": "cerebrovascular disease", "weight": 0.212, "value": 1 },
+          { "title": "age", "weight": 0.206, "value": 65 },
+          { "title": "hypertension", "weight": 0.195, "value": 1 },
+          { "title": "smoking status", "weight": 0.201, "value": 1 },
+          { "title": "diabetes", "weight": 0.186, "value": 1 }
         ]
       },
       {
@@ -456,11 +358,11 @@
         "riskScore": 0.1,
         "confidenceInterval": { "low": 0.08, "high": 0.12 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.25, "value": 95.0 },
-          { "title": "body mass index", "weight": 0.23, "value": 28.0 },
-          { "title": "age", "weight": 0.22, "value": 65 },
-          { "title": "previous surgery", "weight": 0.24, "value": 1 },
-          { "title": "smoking status", "weight": 0.21, "value": 1 }
+          { "title": "weight (kg)", "weight": 0.217, "value": 95.0 },
+          { "title": "body mass index", "weight": 0.2, "value": 28.0 },
+          { "title": "age", "weight": 0.191, "value": 65 },
+          { "title": "previous surgery", "weight": 0.209, "value": 1 },
+          { "title": "smoking status", "weight": 0.183, "value": 1 }
         ]
       },
       {
@@ -468,11 +370,11 @@
         "riskScore": 0.85,
         "confidenceInterval": { "low": 0.75, "high": 0.9 },
         "contributions": [
-          { "title": "weight (kg)", "weight": 0.36, "value": 95.0 },
-          { "title": "body mass index", "weight": 0.37, "value": 28.0 },
-          { "title": "age", "weight": 0.35, "value": 65 },
-          { "title": "diabetes", "weight": 0.34, "value": 1 },
-          { "title": "previous surgery", "weight": 0.38, "value": 1 }
+          { "title": "weight (kg)", "weight": 0.2, "value": 95.0 },
+          { "title": "body mass index", "weight": 0.205, "value": 28.0 },
+          { "title": "age", "weight": 0.194, "value": 65 },
+          { "title": "diabetes", "weight": 0.189, "value": 1 },
+          { "title": "previous surgery", "weight": 0.212, "value": 1 }
         ]
       }
     ]

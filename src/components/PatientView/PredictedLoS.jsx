@@ -124,7 +124,7 @@ const PredictedLosD3 = ({ lengthOfStayEstimate, lengthOfStayRange }) => {
       .attr("x", xOffset + margin.left + xScale(6))
       .attr("y", yPos - 20)
       .attr("text-anchor", "middle")
-      .style("font-size", "10px")
+      .style("font-size", "12px")
       .style("font-weight", "bold")
       .text("day 6");
 
@@ -133,7 +133,7 @@ const PredictedLosD3 = ({ lengthOfStayEstimate, lengthOfStayRange }) => {
       .attr("x", xOffset + margin.left + xScale(14))
       .attr("y", yPos - 20)
       .attr("text-anchor", "middle")
-      .style("font-size", "10px")
+      .style("font-size", "12px")
       .style("font-weight", "bold")
       .text("day 14");
 
@@ -145,7 +145,7 @@ const PredictedLosD3 = ({ lengthOfStayEstimate, lengthOfStayRange }) => {
       .attr("y1", yPos)
       .attr("y2", yPos + 30)
       .attr("stroke", "black")
-      .attr("stroke-width", 1);
+      .attr("stroke-width", 2);
 
     // Arrowhead for vertical arrow
     svg
@@ -191,7 +191,7 @@ const PredictedLosD3 = ({ lengthOfStayEstimate, lengthOfStayRange }) => {
 
       <svg
         ref={svgRef}
-        width="600"
+        width="650"
         height="120"
         viewBox="0 0 700 120"
         preserveAspectRatio="xMidYMid meet"
