@@ -3,7 +3,7 @@ import { FilterUnwantedAdverse } from "./FilterFunctions";
 import { riskRange } from "../../App";
 
 // Central color configuration
-const color = {
+export const color = {
   minimal: {
     main: "#d0e7fe",
     risk: "#d0e7fe",
@@ -134,11 +134,6 @@ export function calculateColor(riskScore, riskRange) {
       : color.minimal.text;
 
   return [textColor, ...colors];
-}
-
-export function borderLineColor(riskScore, riskRange) {
-  const riskLevel = calculateRisk(riskScore, riskRange);
-  return riskLevel === "Minimal" ? color.moderate.main : color.minimal.main;
 }
 
 /**

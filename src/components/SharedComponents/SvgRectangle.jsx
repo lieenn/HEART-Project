@@ -2,8 +2,8 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import {
   calculateColor,
-  borderLineColor,
   calculateRisk,
+  color as colorPalette,
 } from "../Utils/Calculator";
 
 const SvgRectangle = ({
@@ -20,7 +20,7 @@ const SvgRectangle = ({
   const isView1 = view === "view1";
   const isView3 = view === "view3";
   const [textColor, color] = calculateColor(risk.riskScore, riskRange);
-  const gradient = borderLineColor(risk.riskScore, riskRange);
+  const gradient = colorPalette.moderate.main;
 
   const isLowRisk =
     risk.riskScore < riskRange[0] &&

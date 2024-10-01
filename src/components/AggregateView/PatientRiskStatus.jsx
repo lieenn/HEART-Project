@@ -28,7 +28,6 @@ export default function PatientRiskStatus({ risk, riskRange, view }) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: 1,
         mr: 2,
         position: "relative",
       }}

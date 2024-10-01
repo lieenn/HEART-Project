@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { Typography, Box } from "@mui/material";
+import { color } from "../Utils/Calculator";
 
 const PredictedLosD3 = ({ lengthOfStayEstimate, lengthOfStayRange }) => {
   const svgRef = useRef();
@@ -22,10 +23,19 @@ const PredictedLosD3 = ({ lengthOfStayEstimate, lengthOfStayRange }) => {
       .domain([0, 21])
       .range([0, width - margin.left - margin.right - arrowOffset]);
 
+    // Function to add transparency to a hex color
+    const addTransparency = (hexColor, alpha) => {
+      const r = parseInt(hexColor.slice(1, 3), 16);
+      const g = parseInt(hexColor.slice(3, 5), 16);
+      const b = parseInt(hexColor.slice(5, 7), 16);
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    };
+
+    // Updated colors with transparency
     const rangeColors = {
-      shortLoS: "rgba(148, 195, 244, 0.5)",
-      AvgLoS: "rgba(255, 250, 159, 0.5)",
-      ProlongedLoS: "rgba(237, 158, 138, 0.5)",
+      shortLoS: addTransparency(color.minimal.risk, 0.5),
+      AvgLoS: addTransparency(color.moderate.risk, 0.5),
+      ProlongedLoS: addTransparency(color.high.risk, 0.5),
     };
 
     const getRangeHighlight = () => {

@@ -6,7 +6,7 @@ export default function TableRow({ leftContent, rightContent }) {
     display: "flex",
     alignItems: "center",
     minHeight: 64,
-    p: 1,
+    pl: 1,
   };
 
   return (

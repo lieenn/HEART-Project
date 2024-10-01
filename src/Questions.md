@@ -1,4 +1,0 @@
-- Function that select the ranges and based on the range
-- Patient name background
-- Boxes with uncertainty band
-- Connect uncertainty with the frontend

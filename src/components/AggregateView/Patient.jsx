@@ -4,7 +4,6 @@ import { highestRiskColor } from "../Utils/Calculator";
 import { filterRelevantAndOtherEvents } from "../Utils/FilterFunctions";
 import PatientInfo from "./PatientInfo";
 import TableRow from "./TableRow";
-import { Box } from "@mui/material";
 
 export default function Patient({
   patient,
@@ -22,13 +21,16 @@ export default function Patient({
     riskRange
   );
 
-  // If there are selected adverse events and no relevant risks, don't render the patient
-  if (selectedAdverseEvents.length > 0 && relevant.length === 0) {
+  // Only hide non-favorite patients with no relevant events when filters are applied
+  if (
+    !isFavorite &&
+    selectedAdverseEvents.length > 0 &&
+    relevant.length === 0
+  ) {
     return null;
   }
 
   const displayPID = patient.patientId;
-  const isLowRisk = relevant.length === 0 && others.length === 0;
 
   const leftContent = (
     <PatientInfo
@@ -45,7 +47,7 @@ export default function Patient({
         showFilteredOutcomes,
         relevant,
         others,
-        isLowRisk
+        selectedAdverseEvents
       )}
       riskRange={riskRange}
       view={view}
@@ -55,8 +57,14 @@ export default function Patient({
   return <TableRow leftContent={leftContent} rightContent={rightContent} />;
 }
 
-function getAdverseEvents(showFilteredOutcomes, relevant, others, isLowRisk) {
-  if (isLowRisk && !showFilteredOutcomes) {
+function getAdverseEvents(
+  showFilteredOutcomes,
+  relevant,
+  others,
+  selectedAdverseEvents
+) {
+  // For patients with no adverse events at all
+  if (relevant.length === 0 && others.length === 0) {
     return [
       {
         title: "No adverse events predicted for this patient at this time.",
@@ -68,8 +76,21 @@ function getAdverseEvents(showFilteredOutcomes, relevant, others, isLowRisk) {
       },
     ];
   }
-  if (showFilteredOutcomes) {
-    return relevant;
+
+  // When filters are applied and there are no relevant events
+  if (selectedAdverseEvents.length > 0 && relevant.length === 0) {
+    return [
+      {
+        title: "No filtered adverse events for this patient.",
+        riskScore: 0,
+        confidenceInterval: {
+          low: 0.0,
+          high: 0.0,
+        },
+      },
+    ];
   }
-  return others;
+
+  // When showing filtered outcomes or all outcomes
+  return showFilteredOutcomes ? relevant : others;
 }
