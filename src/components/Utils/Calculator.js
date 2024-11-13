@@ -136,6 +136,27 @@ export function calculateColor(riskScore, riskRange) {
   return [textColor, ...colors];
 }
 
+export function calculateBorderline(riskScore, riskRange) {
+  const riskLevel = calculateRisk(riskScore, riskRange);
+
+  if (riskLevel === "Minimal") return [];
+
+  switch (riskLevel) {
+    case "Moderate":
+      return [colorScale("Moderate")[1]];
+    case "Moderate High":
+      return [colorScale("Moderate")[1], colorScale("Moderate High")[1]];
+    case "High":
+      return [
+        colorScale("Moderate")[1],
+        colorScale("Moderate High")[1],
+        colorScale("High")[1],
+      ];
+    default:
+      return [];
+  }
+}
+
 /**
  * Get the main colors corresponding to the
  * highest risk score among a patient's adverse events

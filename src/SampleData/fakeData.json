@@ -102,13 +102,13 @@
     "patientId": "1234*",
     "roomNumber": 15,
     "timeStamp": 1719510000000,
-    "lengthOfStayEstimate": 15,
+    "lengthOfStayEstimate": 31,
     "lengthOfStayRange": "ProlongedLoS",
     "adverseEvents": [
       {
         "title": "Renal Failure",
         "riskScore": 0.18,
-        "confidenceInterval": { "low": 0.18, "high": 0.38 },
+        "confidenceInterval": { "low": 0.18, "high": 0.9 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.215, "value": 65.0 },
           { "title": "body mass index", "weight": 0.2, "value": 22.0 },
@@ -143,8 +143,8 @@
       },
       {
         "title": "Operative Mortality",
-        "riskScore": 0.05,
-        "confidenceInterval": { "low": 0.01, "high": 0.1 },
+        "riskScore": 0.3,
+        "confidenceInterval": { "low": 0.2, "high": 0.7 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.208, "value": 65.0 },
           { "title": "body mass index", "weight": 0.192, "value": 22.0 },

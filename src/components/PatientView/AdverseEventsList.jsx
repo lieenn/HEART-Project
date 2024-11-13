@@ -20,6 +20,7 @@ export default function AdverseEventsList({
   header,
   bgColor,
   riskRange,
+  view,
 }) {
   const risks = FilterUnwantedAdverse(adverseEvents);
   const filteredRisks = riskFilter(risks, riskRange);
@@ -54,7 +55,11 @@ export default function AdverseEventsList({
         <List>
           {sortedRisks.map((risk, index) => (
             <ListItem key={index}>
-              <AdverseEvent adverseEvent={risk} riskRange={riskRange} />
+              <AdverseEvent
+                adverseEvent={risk}
+                riskRange={riskRange}
+                view={view}
+              />
             </ListItem>
           ))}
         </List>

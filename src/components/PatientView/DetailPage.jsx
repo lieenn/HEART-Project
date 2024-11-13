@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import {
   Button,
@@ -12,10 +12,12 @@ import AdverseEventsList from "./AdverseEventsList";
 import { GetHighRisks, GetLowRisks } from "../Utils/FilterFunctions";
 import ColorLegend from "../SharedComponents/ColorLegend";
 import PredictedLos from "./PredictedLoS";
+import BorderlineViewToggle from "./BorderlineViewToggle";
 
 export default function DetailPage({ riskRange, patientData }) {
   const { value } = useParams();
   const person = patientData.find((item) => item.patientId == value);
+  const [view, setView] = useState("view1");
 
   const riskViews = [
     {
@@ -44,8 +46,8 @@ export default function DetailPage({ riskRange, patientData }) {
     },
   ];
 
-  let detailCardGrids = riskViews.map((view, index) => (
-    <Grid item key={index} {...view.size}>
+  let detailCardGrids = riskViews.map((riskView, index) => (
+    <Grid item key={index} {...riskView.size}>
       <Card elevation={4}>
         <CardHeader
           title={
@@ -55,28 +57,29 @@ export default function DetailPage({ riskRange, patientData }) {
                 fontWeight: 800,
                 // textShadow: "2px 2px 4px rgba(0,0,0,0.3)", // Added text shadow
                 border: 1,
-                borderRadius: '4px'
+                borderRadius: "4px",
               }}
             >
-              {`${view.type} Risk Adverse Events`}
+              {`${riskView.type} Risk Adverse Events`}
             </Typography>
           }
           sx={{
-            backgroundColor: view.bgColor,
+            backgroundColor: riskView.bgColor,
             textAlign: "center",
             padding: 1,
-            color: view.fontColor,
+            color: riskView.fontColor,
           }}
         />
         <CardContent>
           <Typography variant="body1">
-            Patient is predicted <b>{view.type.toLowerCase()} risk</b> for these
-            adverse events:
+            Patient is predicted <b>{riskView.type.toLowerCase()} risk</b> for
+            these adverse events:
           </Typography>
           <AdverseEventsList
             adverseEvents={person.adverseEvents}
-            riskFilter={view.riskFilterFn}
+            riskFilter={riskView.riskFilterFn}
             riskRange={riskRange}
+            view={view}
           />
         </CardContent>
       </Card>
@@ -95,6 +98,7 @@ export default function DetailPage({ riskRange, patientData }) {
         <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
           {person.patientName}
         </Typography>
+        <BorderlineViewToggle view={view} setView={setView} />
         <ColorLegend />
       </Grid>
       <Grid item xs={12} sm={4} md={3} lg={2}>

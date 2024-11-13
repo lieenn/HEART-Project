@@ -6,7 +6,7 @@ import RiskScale from "./RiskScale";
 import SvgRectangle from "../SharedComponents/SvgRectangle";
 import ExplanationButton from "./Explanation/ExplanationButton";
 
-export default function AdverseEvent({ adverseEvent, riskRange }) {
+export default function AdverseEvent({ adverseEvent, riskRange, view }) {
   const rectWidth = 216;
   const rectHeight = 36;
   const riskLevel = calculateRisk(adverseEvent.riskScore, riskRange);
@@ -31,6 +31,7 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
             adverseEvent={adverseEvent}
             isHighRisk={false}
             riskRange={riskRange}
+            view={view}
           />
         </Box>
       ) : (
@@ -38,6 +39,7 @@ export default function AdverseEvent({ adverseEvent, riskRange }) {
           adverseEvent={adverseEvent}
           isHighRisk={true}
           riskRange={riskRange}
+          view={view}
         />
       )}
     </Box>
