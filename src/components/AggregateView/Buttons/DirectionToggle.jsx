@@ -26,7 +26,6 @@ export default function DirectionToggle({ direction, setDirection }) {
             control={<Radio />}
             label="Vertical"
           />
-          <FormControlLabel value="boxes" control={<Radio />} label="Boxes" />
         </RadioGroup>
       </FormControl>
     </Box>

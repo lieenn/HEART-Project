@@ -9,15 +9,16 @@ import {
 const SvgRectangle = ({
   risk,
   riskRange,
+  direction,
+  view,
+  borderline,
   width,
-  maxWidth = "100%",
+  maxWidth = direction === "vertical" ? "120px" : "100%",
   height: minHeight,
   text,
   textAlign,
   isPatientSpecific = false,
   children,
-  view,
-  borderline,
 }) => {
   const isView1 = view === "view1";
   const isView3 = view === "view3";

@@ -37,6 +37,7 @@ export default function PatientRisks({
             view={view}
             isVertical={direction === "vertical"}
             borderline={borderline}
+            direction={direction}
           />
         </Box>
       ))}

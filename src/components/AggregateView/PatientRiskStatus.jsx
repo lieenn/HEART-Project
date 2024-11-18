@@ -7,6 +7,7 @@ export default function PatientRiskStatus({
   risk,
   riskRange,
   view,
+  direction,
   borderline,
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -46,6 +47,7 @@ export default function PatientRiskStatus({
           text={risk.title}
           textAlign="center"
           view={view}
+          direction={direction}
           borderline={borderline}
         />
       </div>
