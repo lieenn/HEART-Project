@@ -5,7 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import Box from "@mui/material/Box";
 
-export default function BorderlineViewToggle({ view, setView }) {
+export default function DirectionToggle({ direction, setDirection }) {
   return (
     <Box sx={{ mb: 2 }}>
       <FormControl>
@@ -13,24 +13,20 @@ export default function BorderlineViewToggle({ view, setView }) {
           row
           aria-labelledby="view-toggle-group-label"
           name="view-toggle-group"
-          value={view}
-          onChange={(e) => setView(e.target.value)}
+          value={direction}
+          onChange={(e) => setDirection(e.target.value)}
         >
           <FormControlLabel
-            value="borderline1"
+            value="horizontal"
             control={<Radio />}
-            label="Borderline 1"
+            label="Horizontal"
           />
           <FormControlLabel
-            value="borderline2"
+            value="vertical"
             control={<Radio />}
-            label="Borderline 2"
+            label="Vertical"
           />
-          <FormControlLabel
-            value="borderline3"
-            control={<Radio />}
-            label="Borderline 3"
-          />
+          <FormControlLabel value="boxes" control={<Radio />} label="Boxes" />
         </RadioGroup>
       </FormControl>
     </Box>

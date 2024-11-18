@@ -26,11 +26,11 @@ export default function SelectedChips({
         justifyContent: "flex-start",
         flexWrap: "wrap",
         listStyle: "none",
-        p: 0.5,
+        p: 0,
         m: 0,
         // border: "1px solid #e0e0e0",
         // borderRadius: 10,
-        minHeight: "48px",
+        minHeight: "28px",
       }}
       component="ul"
     >
@@ -43,7 +43,7 @@ export default function SelectedChips({
               size="small"
               onDelete={handleDelete(event)}
               sx={{
-                margin: "2px",
+                margin: "1px",
                 border: (theme) => `1px solid ${theme.palette.primary.main}`,
                 "& .MuiChip-deleteIcon": {
                   color: (theme) => theme.palette.primary.main,
@@ -56,9 +56,8 @@ export default function SelectedChips({
         <Typography
           sx={{
             color: "text.secondary",
-            fontSize: "0.875rem",
-            lineHeight: "32px",
-            mt: 0.5,
+            fontSize: "0.8rem",
+            lineHeight: "28px",
             mr: 1,
           }}
         >

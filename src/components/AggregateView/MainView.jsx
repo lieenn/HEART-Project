@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Patient from "./Patient";
 import ColorLegend from "../SharedComponents/ColorLegend";
 import { GetUniqueAdverseEvents } from "../Utils/FilterFunctions";
 import { SortByGiven, SortByHighest } from "../Utils/SortFunctions";
 import TableHeader from "./TableHeader";
 import ViewToggle from "./Buttons/ViewToggle";
+import DirectionToggle from "./Buttons/DirectionToggle";
+import BorderlineToggle from "./Buttons/BorderlineToggle";
 
 export default function MainView({ riskRange, patientData }) {
   const [selectedAdverseEvents, setSelectedAdverseEvents] = useState([]);
@@ -13,6 +15,8 @@ export default function MainView({ riskRange, patientData }) {
   const [showFilteredOutcomes, setShowFilteredOutcomes] = useState(false);
   const [favoritePatients, setFavoritePatients] = useState([]);
   const [view, setView] = useState("view1");
+  const [direction, setDirection] = useState("horizontal");
+  const [borderline, setBorderline] = useState("borderline1");
 
   const adverseEventsList = GetUniqueAdverseEvents(patientData);
 
@@ -53,31 +57,83 @@ export default function MainView({ riskRange, patientData }) {
     setShowFilteredOutcomes(hasRelevantOutcomes);
   }, [selectedAdverseEvents]);
 
+  // Calculate number of columns based on data length
+  const getGridColumns = (dataLength) => {
+    if (dataLength <= 3) return { xs: 12, sm: 6, md: 4 };
+    if (dataLength <= 6) return { xs: 12, sm: 6, md: 4 };
+    if (dataLength <= 9) return { xs: 12, sm: 6, md: 4 };
+    return { xs: 12, sm: 6, md: 1.5 }; // 4 columns for 10+ items
+  };
+
   return (
     <>
       <ViewToggle view={view} setView={setView} />
+      <BorderlineToggle view={borderline} setView={setBorderline} />
+      <DirectionToggle direction={direction} setDirection={setDirection} />
       <ColorLegend riskRange={riskRange} />
-      <Box sx={{ border: "1.5px solid #000", mt: 0 }}>
-        <TableHeader
-          setSortingOption={setSortingOption}
-          showFilteredOutcomes={showFilteredOutcomes}
-          adverseEventsList={adverseEventsList}
-          selectedAdverseEvents={selectedAdverseEvents}
-          setSelectedAdverseEvents={setSelectedAdverseEvents}
-        />
-        {finalSortedData.map((patient) => (
-          <Patient
-            key={patient.patientId}
-            patient={patient}
-            riskRange={riskRange}
-            selectedAdverseEvents={selectedAdverseEvents}
+      {direction === "horizontal" ? (
+        // Horizontal Layout
+        <Box sx={{ border: "1.5px solid #000", mt: 0 }}>
+          <TableHeader
+            setSortingOption={setSortingOption}
             showFilteredOutcomes={showFilteredOutcomes}
-            isFavorite={favoritePatients.includes(patient.patientId)}
-            onToggleFavorite={handleToggleFavorite}
-            view={view}
+            adverseEventsList={adverseEventsList}
+            selectedAdverseEvents={selectedAdverseEvents}
+            setSelectedAdverseEvents={setSelectedAdverseEvents}
           />
-        ))}
-      </Box>
+          {finalSortedData.map((patient) => (
+            <Patient
+              key={patient.patientId}
+              patient={patient}
+              riskRange={riskRange}
+              selectedAdverseEvents={selectedAdverseEvents}
+              showFilteredOutcomes={showFilteredOutcomes}
+              isFavorite={favoritePatients.includes(patient.patientId)}
+              onToggleFavorite={handleToggleFavorite}
+              view={view}
+              direction={direction}
+              borderline={borderline}
+            />
+          ))}
+        </Box>
+      ) : (
+        // Vertical Grid Layout
+        <Box sx={{ flexGrow: 0, mt: 2 }}>
+          <TableHeader
+            setSortingOption={setSortingOption}
+            showFilteredOutcomes={showFilteredOutcomes}
+            adverseEventsList={adverseEventsList}
+            selectedAdverseEvents={selectedAdverseEvents}
+            setSelectedAdverseEvents={setSelectedAdverseEvents}
+          />
+          <Grid
+            container
+            spacing={{ xs: 2, md: 2 }}
+            columns={{ xs: 12, sm: 12, md: 12 }}
+          >
+            {finalSortedData.map((patient) => (
+              <Grid
+                item
+                key={patient.patientId}
+                {...getGridColumns(finalSortedData.length)}
+              >
+                <Box sx={{ border: "1px solid #000", p: 2, height: "100%" }}>
+                  <Patient
+                    patient={patient}
+                    riskRange={riskRange}
+                    selectedAdverseEvents={selectedAdverseEvents}
+                    showFilteredOutcomes={showFilteredOutcomes}
+                    isFavorite={favoritePatients.includes(patient.patientId)}
+                    onToggleFavorite={handleToggleFavorite}
+                    view={view}
+                    direction={direction}
+                  />
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      )}
     </>
   );
 }

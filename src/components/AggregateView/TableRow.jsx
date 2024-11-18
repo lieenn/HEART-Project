@@ -5,13 +5,13 @@ export default function TableRow({ leftContent, rightContent }) {
   const commonBoxStyles = {
     display: "flex",
     alignItems: "center",
-    minHeight: 64,
+    minHeight: 28,
     pl: 1,
   };
 
   return (
     <Grid container alignItems="stretch">
-      <Grid item xs={4} sm={3} md={2}>
+      <Grid item xs={4} sm={3} md={1.5}>
         <Box
           sx={{
             ...commonBoxStyles,

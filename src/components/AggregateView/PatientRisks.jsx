@@ -2,7 +2,13 @@ import React from "react";
 import { Box } from "@mui/material";
 import PatientRiskStatus from "./PatientRiskStatus";
 
-export default function PatientRisks({ adverseEvents, riskRange, view }) {
+export default function PatientRisks({
+  adverseEvents,
+  riskRange,
+  view,
+  direction,
+  borderline,
+}) {
   const sortedRisks = [...adverseEvents].sort(
     (a, b) => b.riskScore - a.riskScore
   );
@@ -10,20 +16,29 @@ export default function PatientRisks({ adverseEvents, riskRange, view }) {
   return (
     <Box
       sx={{
-        ml: { xs: 1, sm: 1.5, md: 2 },
-        display: "flex",
-        alignItems: "center",
-        flexWrap: "wrap",
-        height: "100%",
+        display: direction === "horizontal" ? "flex" : "block",
+        flexDirection: direction === "vertical" ? "column" : "row",
+        flexWrap: direction === "horizontal" ? "wrap" : "nowrap",
+        gap: 1,
+        width: "100%",
+        alignItems: direction === "vertical" ? "stretch" : "center",
       }}
     >
       {sortedRisks.map((risk, index) => (
-        <PatientRiskStatus
+        <Box
           key={risk.title || index}
-          risk={risk}
-          riskRange={riskRange}
-          view={view}
-        />
+          sx={{
+            width: direction === "vertical" ? "100%" : "auto",
+          }}
+        >
+          <PatientRiskStatus
+            risk={risk}
+            riskRange={riskRange}
+            view={view}
+            isVertical={direction === "vertical"}
+            borderline={borderline}
+          />
+        </Box>
       ))}
     </Box>
   );

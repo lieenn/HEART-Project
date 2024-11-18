@@ -1,4 +1,5 @@
 import React from "react";
+import { Box } from "@mui/material";
 import PatientRisks from "./PatientRisks";
 import { highestRiskColor } from "../Utils/Calculator";
 import { filterRelevantAndOtherEvents } from "../Utils/FilterFunctions";
@@ -13,6 +14,8 @@ export default function Patient({
   isFavorite,
   onToggleFavorite,
   view,
+  direction,
+  borderline,
 }) {
   const color = highestRiskColor(patient, riskRange);
   const [relevant, others] = filterRelevantAndOtherEvents(
@@ -21,7 +24,6 @@ export default function Patient({
     riskRange
   );
 
-  // Only hide non-favorite patients with no relevant events when filters are applied
   if (
     !isFavorite &&
     selectedAdverseEvents.length > 0 &&
@@ -31,8 +33,7 @@ export default function Patient({
   }
 
   const displayPID = patient.patientId;
-
-  const leftContent = (
+  const patientInfo = (
     <PatientInfo
       displayPID={displayPID}
       color={color}
@@ -41,7 +42,7 @@ export default function Patient({
     />
   );
 
-  const rightContent = (
+  const patientRisks = (
     <PatientRisks
       adverseEvents={getAdverseEvents(
         showFilteredOutcomes,
@@ -51,10 +52,32 @@ export default function Patient({
       )}
       riskRange={riskRange}
       view={view}
+      direction={direction}
+      borderline={borderline}
     />
   );
 
-  return <TableRow leftContent={leftContent} rightContent={rightContent} />;
+  if (direction === "horizontal") {
+    return <TableRow leftContent={patientInfo} rightContent={patientRisks} />;
+  }
+
+  // Vertical layout
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 1,
+        p: 1,
+        border: "1px solid #e0e0e0",
+        borderRadius: 1,
+        display: "inline-block",
+      }}
+    >
+      {patientInfo}
+      {patientRisks}
+    </Box>
+  );
 }
 
 function getAdverseEvents(
@@ -67,7 +90,7 @@ function getAdverseEvents(
   if (relevant.length === 0 && others.length === 0) {
     return [
       {
-        title: "No adverse events predicted for this patient at this time.",
+        title: "No adverse events predicted at this time.",
         riskScore: 0,
         confidenceInterval: {
           low: 0.0,

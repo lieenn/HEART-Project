@@ -24,6 +24,7 @@ export default function ExplanationModal({ risk, riskRange }) {
         adverseEvent={risk}
         riskRange={riskRange}
         isHighRisk={isHighRisk}
+        isModal={true}
       />
       <PredictionBox adverseEvent={risk} />
     </>

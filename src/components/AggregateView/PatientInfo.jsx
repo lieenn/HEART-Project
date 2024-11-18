@@ -27,6 +27,7 @@ export default function PatientInfo({
         alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
+        m: 0.8,
       }}
     >
       <Box
@@ -67,10 +68,10 @@ export default function PatientInfo({
             sx={{
               fontWeight: "bold",
               fontSize: {
-                xs: "1.25rem",
+                xs: "1.2rem",
                 sm: "1.25rem",
-                md: "1.5rem",
-                lg: "1.75rem",
+                md: "1.30rem",
+                lg: "1.35rem",
               },
               overflow: "hidden",
               textOverflow: "ellipsis",

@@ -5,7 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import Box from "@mui/material/Box";
 
-export default function BorderlineViewToggle({ view, setView }) {
+export default function BorderlineToggle({ view, setView }) {
   return (
     <Box sx={{ mb: 2 }}>
       <FormControl>

@@ -22,7 +22,14 @@ export default function TableHeader({
   };
 
   const leftContent = (
-    <Box sx={{ display: "flex", alignItems: "center", overflow: "hidden" }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        overflow: "hidden",
+        mt: 0.5,
+      }}
+    >
       <SortButton
         value="Overall highest"
         onSort={handleToggle}
@@ -31,9 +38,9 @@ export default function TableHeader({
       <Typography
         variant="h6"
         sx={{
-          fontWeight: 600,
+          fontWeight: 700,
           ml: 1,
-          fontSize: isMobile ? "1.25rem" : "1.5rem",
+          fontSize: isMobile ? "1.25rem" : "1.3rem",
         }}
       >
         Patient ID
@@ -42,13 +49,15 @@ export default function TableHeader({
   );
 
   const rightContent = (
-    <Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap" }}>
+    <Box
+      sx={{ display: "flex", alignItems: "center", flexWrap: "wrap", mt: 0.5 }}
+    >
       <Typography
         variant="h6"
         sx={{
           fontWeight: 600,
-          ml: showFilteredOutcomes ? 1 : 2,
-          fontSize: isMobile ? "1.25rem" : "1.5rem",
+          ml: showFilteredOutcomes ? 2 : 2,
+          fontSize: isMobile ? "1rem" : "1.3rem",
         }}
       >
         Predicted Adverse Events

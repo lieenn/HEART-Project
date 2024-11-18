@@ -95,10 +95,11 @@ export default function DetailPage({ riskRange, patientData }) {
       spacing={3}
     >
       <Grid item xs={12} sm={8} md={9} lg={10}>
+        <BorderlineViewToggle view={view} setView={setView} />
+
         <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
           {person.patientName}
         </Typography>
-        <BorderlineViewToggle view={view} setView={setView} />
         <ColorLegend />
       </Grid>
       <Grid item xs={12} sm={4} md={3} lg={2}>
