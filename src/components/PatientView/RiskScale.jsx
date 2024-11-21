@@ -62,7 +62,7 @@ export default function RiskScale({
   const lineColor = colorArray[3];
 
   const totalExtraBoxes =
-    isView3 && isUncertainHigh
+    (isView3 || isModal) && isUncertainHigh
       ? calculateBorderline(adverseEvent.confidenceInterval.high, riskRange)
           .length
       : 1;
@@ -126,7 +126,7 @@ export default function RiskScale({
             strokeDasharray="4 2"
           />
         )}
-        {isView3
+        {isView3 || isModal
           ? isUncertainHigh &&
             borderlineColors.map((color, index) => (
               <rect

@@ -73,7 +73,7 @@ export default function MainView({ riskRange, patientData }) {
       <ColorLegend riskRange={riskRange} />
       {direction === "horizontal" ? (
         // Horizontal Layout
-        <Box sx={{ border: "1.5px solid #000", mt: 0 }}>
+        <Box sx={{ border: "1.5px solid #000", m: 0 }}>
           <TableHeader
             setSortingOption={setSortingOption}
             showFilteredOutcomes={showFilteredOutcomes}

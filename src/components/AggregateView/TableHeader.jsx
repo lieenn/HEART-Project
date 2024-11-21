@@ -67,6 +67,8 @@ export default function TableHeader({
           display: "flex",
           // alignItems: "center",
           ml: 2,
+          mt: 0.5,
+          mb: 1,
           borderRadius: 10,
         }}
         variant="outlined"

@@ -26,7 +26,7 @@
       {
         "title": "Prolonged Ventilation",
         "riskScore": 0.38,
-        "confidenceInterval": { "low": 0.32, "high": 0.4 },
+        "confidenceInterval": { "low": 0.32, "high": 0.7 },
         "contributions": [
           { "title": "chronic lung disease", "weight": 0.225, "value": 0 },
           { "title": "smoking status", "weight": 0.207, "value": 0 },
@@ -107,8 +107,8 @@
     "adverseEvents": [
       {
         "title": "Renal Failure",
-        "riskScore": 0.18,
-        "confidenceInterval": { "low": 0.18, "high": 0.9 },
+        "riskScore": 0.25,
+        "confidenceInterval": { "low": 0.18, "high": 0.45 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.215, "value": 65.0 },
           { "title": "body mass index", "weight": 0.2, "value": 22.0 },
@@ -156,7 +156,7 @@
       {
         "title": "Stroke",
         "riskScore": 0.35,
-        "confidenceInterval": { "low": 0.25, "high": 0.45 },
+        "confidenceInterval": { "low": 0.25, "high": 0.9 },
         "contributions": [
           { "title": "cerebrovascular disease", "weight": 0.2, "value": 1 },
           { "title": "age", "weight": 0.213, "value": 30 },
