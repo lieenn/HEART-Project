@@ -5,18 +5,18 @@ import ColorLegend from "../SharedComponents/ColorLegend";
 import { GetUniqueAdverseEvents } from "../Utils/FilterFunctions";
 import { SortByGiven, SortByHighest } from "../Utils/SortFunctions";
 import TableHeader from "./TableHeader";
-import ViewToggle from "./Buttons/ViewToggle";
-import DirectionToggle from "./Buttons/DirectionToggle";
-import BorderlineToggle from "./Buttons/BorderlineToggle";
 
-export default function MainView({ riskRange, patientData }) {
+export default function MainView({
+  riskRange,
+  patientData,
+  view,
+  direction,
+  borderline,
+}) {
   const [selectedAdverseEvents, setSelectedAdverseEvents] = useState([]);
   const [sortingOption, setSortingOption] = useState("");
   const [showFilteredOutcomes, setShowFilteredOutcomes] = useState(false);
   const [favoritePatients, setFavoritePatients] = useState([]);
-  const [view, setView] = useState("view1");
-  const [direction, setDirection] = useState("horizontal");
-  const [borderline, setBorderline] = useState("borderline1");
 
   const adverseEventsList = GetUniqueAdverseEvents(patientData);
 
@@ -67,9 +67,6 @@ export default function MainView({ riskRange, patientData }) {
 
   return (
     <>
-      <ViewToggle view={view} setView={setView} />
-      <BorderlineToggle view={borderline} setView={setBorderline} />
-      <DirectionToggle direction={direction} setDirection={setDirection} />
       <ColorLegend riskRange={riskRange} />
       {direction === "horizontal" ? (
         // Horizontal Layout

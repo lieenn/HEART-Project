@@ -6,18 +6,7 @@ import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Box, IconButton, Avatar } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import ExplanationModal from "./ExplanationModal";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function ExplanationButton({ risk, riskRange }) {
   const [open, setOpen] = React.useState(false);
@@ -25,7 +14,7 @@ export default function ExplanationButton({ risk, riskRange }) {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <>
       <Avatar size="small" sx={{ width: 24, height: 24, bgcolor: "#414bb2" }}>
         <IconButton
           aria-label="question"
@@ -43,24 +32,32 @@ export default function ExplanationButton({ risk, riskRange }) {
         aria-describedby="modal-modal-description"
       >
         <Box
-          sx={
-            (style,
-            {
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 500, // Set your desired width here
-              bgcolor: "background.paper",
-              border: "2px solid #000",
-              boxShadow: 24,
-              p: 4,
-            })
-          }
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 500,
+            bgcolor: "background.paper",
+            border: "2px solid #000",
+            boxShadow: 24,
+            p: 4,
+          }}
         >
+          <IconButton
+            onClick={handleClose}
+            sx={{
+              position: "absolute",
+              right: 1,
+              top: 1,
+              color: "black",
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
           <ExplanationModal risk={risk} riskRange={riskRange} />
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }

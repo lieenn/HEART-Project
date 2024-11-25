@@ -7,17 +7,17 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Avatar,
+  Box,
 } from "@mui/material";
 import AdverseEventsList from "./AdverseEventsList";
 import { GetHighRisks, GetLowRisks } from "../Utils/FilterFunctions";
 import ColorLegend from "../SharedComponents/ColorLegend";
 import PredictedLos from "./PredictedLoS";
-import BorderlineViewToggle from "./BorderlineViewToggle";
 
-export default function DetailPage({ riskRange, patientData }) {
+export default function DetailPage({ riskRange, patientData, borderline }) {
   const { value } = useParams();
   const person = patientData.find((item) => item.patientId == value);
-  const [view, setView] = useState("view1");
 
   const riskViews = [
     {
@@ -31,6 +31,7 @@ export default function DetailPage({ riskRange, patientData }) {
         md: 7,
         lg: 8,
       },
+      isLowRisk: false,
     },
     {
       type: "Low",
@@ -43,6 +44,7 @@ export default function DetailPage({ riskRange, patientData }) {
         md: 5,
         lg: 4,
       },
+      isLowRisk: true,
     },
   ];
 
@@ -55,7 +57,6 @@ export default function DetailPage({ riskRange, patientData }) {
               variant="h6"
               sx={{
                 fontWeight: 800,
-                // textShadow: "2px 2px 4px rgba(0,0,0,0.3)", // Added text shadow
                 border: 1,
                 borderRadius: "4px",
               }}
@@ -79,7 +80,9 @@ export default function DetailPage({ riskRange, patientData }) {
             adverseEvents={person.adverseEvents}
             riskFilter={riskView.riskFilterFn}
             riskRange={riskRange}
-            view={view}
+            borderline={borderline}
+            header={`${riskView.type} Risk Adverse Events`}
+            isLowRisk={riskView.isLowRisk}
           />
         </CardContent>
       </Card>
@@ -95,17 +98,32 @@ export default function DetailPage({ riskRange, patientData }) {
       spacing={3}
     >
       <Grid item xs={12} sm={8} md={9} lg={10}>
-        <BorderlineViewToggle view={view} setView={setView} />
-
-        <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold" }}>
-          {person.patientName}
-        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 2, 
+          }}
+        >
+          <Avatar
+            src="/broken-image.jpg"
+            sx={{
+              width: 56, 
+              height: 56,
+            }}
+          />
+          <Box>
+            <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+              Patient: {person.patientId}
+            </Typography>
+            <Typography variant="body1">Room # {person.roomNumber}</Typography>
+          </Box>
+        </Box>
         <ColorLegend />
       </Grid>
-      <Grid item xs={12} sm={4} md={3} lg={2}>
+      {/* <Grid item xs={12} sm={4} md={3} lg={2}>
         <Typography variant="h6">Patient ID: {person.patientId}</Typography>
-        <Typography variant="h6">Room # {person.roomNumber}</Typography>
-      </Grid>
+      </Grid> */}
 
       {detailCardGrids}
       <Grid item xs={8}>

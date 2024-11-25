@@ -1,55 +1,37 @@
-import React from "react";
+import React, { useMemo } from "react"; // Import useMemo
 import { List, ListItem, Box, Typography } from "@mui/material";
 import AdverseEvent from "./AdverseEvent";
 import { FilterUnwantedAdverse } from "../Utils/FilterFunctions";
+import SortLowRisk from "./SortLowRisk";
 
-/**
- * Displays a list of adverse events based on the provided
- * risk filter and header information. It can be used to display both
- * high-risk and low-risk adverse events.
- *
- * @param {Array} adverseEvents - The array of adverse events of the patient.
- * @param {Function} riskFilter - The function to filter events by risk level.
- * @param {String} header - The header title indicating the risk level.
- * @param {String} bgColor - The background color for the header.
- * @returns {JSX.Element} - The rendered adverse events list as a list.
- */
 export default function AdverseEventsList({
   adverseEvents,
   riskFilter,
   header,
   bgColor,
   riskRange,
-  view,
+  borderline,
+  isLowRisk,
 }) {
-  const risks = FilterUnwantedAdverse(adverseEvents);
-  const filteredRisks = riskFilter(risks, riskRange);
-  const sortedRisks = filteredRisks.sort((a, b) => b.riskScore - a.riskScore);
+  const [sort, setSort] = React.useState("risk");
+
+  // Use useMemo to prevent unnecessary re-calculations
+  const sortedRisks = useMemo(() => {
+    const risks = FilterUnwantedAdverse(adverseEvents);
+    const filteredRisks = riskFilter(risks, riskRange);
+
+    if (sort === "risk") {
+      return [...filteredRisks].sort((a, b) => b.riskScore - a.riskScore);
+    } else {
+      return [...filteredRisks].sort((a, b) => {
+        return b.confidenceInterval.high - a.confidenceInterval.high;
+      });
+    }
+  }, [adverseEvents, riskFilter, riskRange, sort]);
 
   return (
     <>
-      {/* <Box>
-        <Typography
-          gutterBottom
-          sx={{
-            bgcolor: bgColor,
-            textAlign: "center",
-            fontWeight: "bold",
-            fontSize: "20px",
-            color: "white",
-            width: "100%",
-          }}
-        >
-          {header}
-        </Typography>
-        <Typography sx={{ m: 2 }}>
-          Patient is predicted{" "}
-          <Typography component="span" sx={{ fontWeight: "bold" }}>
-            {header && header.replace("Adverse Events", "").toLowerCase()}
-          </Typography>{" "}
-          for these adverse events:
-        </Typography>
-      </Box> */}
+      {isLowRisk && <SortLowRisk sort={sort} setSort={setSort} />}
 
       {sortedRisks.length > 0 ? (
         <List>
@@ -58,7 +40,7 @@ export default function AdverseEventsList({
               <AdverseEvent
                 adverseEvent={risk}
                 riskRange={riskRange}
-                view={view}
+                borderline={borderline}
               />
             </ListItem>
           ))}

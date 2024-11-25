@@ -34,7 +34,7 @@ export default function PatientRiskStatus({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        mr: 2,
+        // mr: 2,
         position: "relative",
       }}
     >

@@ -1,6 +1,6 @@
 import React from "react";
 import * as d3 from "d3";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { calculateBorderline, calculateColor } from "../Utils/Calculator";
 import { colorScale } from "../Utils/Calculator";
 
@@ -8,11 +8,11 @@ export default function RiskScale({
   adverseEvent,
   riskRange,
   isHighRisk,
-  view,
+  borderline,
   isModal,
 }) {
-  const isView1 = view === "borderline1";
-  const isView3 = view === "borderline3";
+  const isBorderline1 = borderline === "borderline1";
+  const isBorderline3 = borderline === "borderline3";
 
   const lowRiskDomain = [0, riskRange[0]];
   const highRiskDomain = [
@@ -21,6 +21,16 @@ export default function RiskScale({
     [riskRange[2], riskRange[3]],
   ];
   const domain = isHighRisk ? highRiskDomain : lowRiskDomain;
+
+  const lowRiskRange = lowRiskDomain[1] - lowRiskDomain[0];
+  const highRiskRange = highRiskDomain[2][1] - highRiskDomain[0][0];
+
+  const baseWidth = 180;
+  // Scale width proportionally
+  const mainWidth = isHighRisk
+    ? baseWidth
+    : baseWidth * (lowRiskRange / highRiskRange);
+
   const isUncertainLow =
     adverseEvent.confidenceInterval.low <=
     (isHighRisk ? domain[0][0] : domain[0]);
@@ -28,19 +38,8 @@ export default function RiskScale({
     adverseEvent.confidenceInterval.high >=
     (isHighRisk ? domain[2][1] : domain[1]);
 
-  const mainWidth = 180;
   const height = 23;
   const svgHeight = 25;
-  // const extraWidth =
-  //   isHighRisk && isUncertainLow
-  //     ? 25
-  //     : isHighRisk && !isModal
-  //     ? 25
-  //     : !isHighRisk && isModal
-  //     ? 0
-  //     : isHighRisk && isModal
-  //     ? 0
-  //     : 25;
   const extraWidth =
     (isModal && isUncertainLow) || isUncertainHigh ? 25 : isModal ? 0 : 25;
   const padding = 2;
@@ -58,16 +57,14 @@ export default function RiskScale({
   });
 
   const colorArray = calculateColor(adverseEvent.riskScore, riskRange);
-
   const lineColor = colorArray[3];
 
   const totalExtraBoxes =
-    (isView3 || isModal) && isUncertainHigh
+    (isBorderline3 || isModal) && isUncertainHigh
       ? calculateBorderline(adverseEvent.confidenceInterval.high, riskRange)
           .length
       : 1;
 
-  // Modify totalWidth calculation to account for extra boxes in view3
   const totalWidth = mainWidth + extraWidth * (1 + totalExtraBoxes);
   const svgWidth = totalWidth + padding * 2;
 
@@ -106,7 +103,6 @@ export default function RiskScale({
     );
 
     const borderlineColor = highestColors[1];
-
     const borderlineColors = calculateBorderline(
       adverseEvent.confidenceInterval.high,
       riskRange
@@ -126,12 +122,12 @@ export default function RiskScale({
             strokeDasharray="4 2"
           />
         )}
-        {isView3 || isModal
+        {isBorderline3 || isModal
           ? isUncertainHigh &&
             borderlineColors.map((color, index) => (
               <rect
                 key={index}
-                x={padding + extraWidth + mainWidth + index * extraWidth} // Move each rectangle to the right
+                x={padding + extraWidth + mainWidth + index * extraWidth}
                 y={(svgHeight - height) / 2}
                 width={extraWidth}
                 height={height}
@@ -148,7 +144,11 @@ export default function RiskScale({
                 width={extraWidth}
                 height={height}
                 fill={
-                  isHighRisk ? colors[3] : isView1 ? colors[1] : borderlineColor
+                  isHighRisk
+                    ? colors[3]
+                    : isBorderline1
+                    ? colors[1]
+                    : borderlineColor
                 }
                 stroke={strokeColor}
                 strokeWidth={strokeWidth}
@@ -238,13 +238,12 @@ export default function RiskScale({
   return (
     <Box
       sx={{
-        mt: 0.8,
-        display: "flex",
-        gap: 2,
-        ml: isModal && !isHighRisk ? -3 : 0,
+        // mt: isHighRisk && !isModal ? -0.5 : 0.5,
+        ml: !isHighRisk && isModal ? -3 : 0,
+        mt: isHighRisk ? 1 : 0,
+        ml: !isHighRisk ? -3.2 : 0,
       }}
     >
-      {/* <Box sx={{ mt: 0.8, display: "flex", gap: 2, ml: isHighRisk ? -3 : 0 }}> */}
       <svg width={svgWidth} height={svgHeight}>
         {renderBackgroundSegments()}
         {renderUncertaintyBand()}
@@ -255,19 +254,6 @@ export default function RiskScale({
           fill="black"
         />
       </svg>
-      <Typography
-        fontWeight="bold"
-        color="black"
-        sx={{
-          marginLeft:
-            (isHighRisk && !isModal) ||
-            (isHighRisk && isModal && isUncertainLow)
-              ? -3
-              : 0,
-        }}
-      >
-        Risk: {Math.round(adverseEvent.riskScore * 100)}%
-      </Typography>
     </Box>
   );
 }

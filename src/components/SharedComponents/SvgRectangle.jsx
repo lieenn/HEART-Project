@@ -22,6 +22,7 @@ const SvgRectangle = ({
 }) => {
   const isView1 = view === "view1";
   const isView3 = view === "view3";
+  const isView4 = view === "view4";
   const [textColor, color] = calculateColor(risk.riskScore, riskRange);
   const borderlineColors = calculateBorderline(
     risk.confidenceInterval.high,
@@ -39,19 +40,32 @@ const SvgRectangle = ({
   const smallBoxWidth = isView3 ? 20 : 24;
   const gradientWidth = 12;
 
+  // Calculate uncertainty range as a percentage for gradient distribution
+  const uncertaintyRange =
+    risk.confidenceInterval.high - risk.confidenceInterval.low;
+  const totalRange = riskRange[riskRange.length - 1] - riskRange[0];
+  const uncertaintyPercentage = Math.min(
+    (uncertaintyRange / totalRange) * 100,
+    100
+  );
+
   const mainBoxStyle = {
     width: isPatientSpecific ? width : `calc(${width}px - ${smallBoxWidth}px)`,
     maxWidth: maxWidth,
     minHeight,
-    backgroundColor: color,
+    background:
+      isView4 && isLowRisk
+        ? `linear-gradient(to right, ${color} ${
+            100 - uncertaintyPercentage
+          }%, ${gradient})`
+        : color,
     display: "flex",
     alignItems: "center",
     position: "relative",
     padding: "6px",
     justifyContent: textAlign === "center" ? "center" : "flex-start",
-    flexGrow: 1,
-    margin: 0,
-    borderRight: 0,
+    border: isView1 && isLowRisk ? "1.5px solid" : "none",
+    borderRadius: "3px 0 0 3px",
   };
 
   const textStyle = {
@@ -74,7 +88,7 @@ const SvgRectangle = ({
     <Box
       key={index}
       sx={{
-        width: `${smallBoxWidth}px`,
+        width: `${smallBoxWidth / borderlineColors.length}px`,
         minHeight,
         backgroundColor: borderColor,
         borderLeft: index > 0 ? "1px solid rgba(0,0,0,0.1)" : "none",
@@ -85,7 +99,16 @@ const SvgRectangle = ({
   const smallBoxStyle = () => {
     if (borderline === "borderline3") {
       return (
-        <Box sx={{ display: "flex", width: smallBoxWidth, minHeight }}>
+        <Box
+          sx={{
+            display: "flex",
+            width: smallBoxWidth,
+            minHeight,
+            border: isView1 ? "2px dashed" : "none",
+            borderLeft: "none",
+            borderRadius: "0 3px 3px 0",
+          }}
+        >
           {smallBoxes}
         </Box>
       );
@@ -93,9 +116,14 @@ const SvgRectangle = ({
     return (
       <Box
         sx={{
-          width: smallBoxWidth,
+          width: isView1 ? smallBoxWidth + gradientWidth : smallBoxWidth,
           minHeight,
           backgroundColor: gradient,
+          ...(isView1 && {
+            border: "2px dashed",
+            borderLeft: "none",
+            borderRadius: "0 3px 3px 0",
+          }),
         }}
       />
     );
@@ -103,19 +131,7 @@ const SvgRectangle = ({
 
   const renderGradientBoxes = () => {
     if (isView1) {
-      return (
-        <>
-          <Box
-            sx={{
-              width: `${gradientWidth}px`,
-              minHeight,
-              background: gradient,
-              borderLeft: "1.5px dashed",
-            }}
-          />
-          {smallBoxStyle()}
-        </>
-      );
+      return smallBoxStyle();
     } else if (isView3) {
       return (
         <>
@@ -136,7 +152,7 @@ const SvgRectangle = ({
           />
         </>
       );
-    } else {
+    } else if (!isView4) {
       return (
         <>
           <Box
@@ -153,26 +169,19 @@ const SvgRectangle = ({
         </>
       );
     }
+    return null;
   };
 
   return (
     <Box
       display="flex"
       mb={1}
-      border="1.5px solid"
-      borderRight={isView3 && isLowRisk ? "none" : "1.5px solid"}
+      border={isView1 && isLowRisk ? "none" : "1.5px solid"}
+      borderRight={(isView3 || isView1) && isLowRisk ? "none" : "1.5px solid"}
       sx={{
-        borderRadius: isView1
-          ? "3px"
-          : isView3 && isLowRisk
-          ? "8px 0 0 8px"
-          : "8px",
+        borderRadius: isView3 && isLowRisk ? "3px 0 0 3px" : "3px",
         maxWidth: maxWidth,
         alignItems: "stretch",
-        overflow: "hidden",
-        "& > *": {
-          borderRight: "none",
-        },
       }}
     >
       <Box sx={mainBoxStyle}>
@@ -186,7 +195,7 @@ const SvgRectangle = ({
         </Typography>
         {children && <Box sx={iconStyle}>{children}</Box>}
       </Box>
-      {!isPatientSpecific && isLowRisk && renderGradientBoxes()}
+      {!isPatientSpecific && isLowRisk && !isView4 && renderGradientBoxes()}
     </Box>
   );
 };
