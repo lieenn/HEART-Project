@@ -56,7 +56,6 @@ export default function TableHeader({
         variant="h6"
         sx={{
           fontWeight: 600,
-          ml: showFilteredOutcomes ? 2 : 2,
           fontSize: isMobile ? "1rem" : "1.3rem",
         }}
       >

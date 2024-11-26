@@ -4,6 +4,7 @@ import SvgRectangle from "../../SharedComponents/SvgRectangle";
 import { calculateRisk } from "../../Utils/Calculator";
 import RiskScale from "../RiskScale";
 import PredictionBox from "./PredictionBox";
+import RiskLabel from "../RiskLabel";
 
 export default function ExplanationModal({ risk, riskRange }) {
   const title = calculateRisk(risk.riskScore, riskRange);
@@ -20,12 +21,15 @@ export default function ExplanationModal({ risk, riskRange }) {
         textAlign="center"
         isPatientSpecific={true}
       />
-      <RiskScale
-        adverseEvent={risk}
-        riskRange={riskRange}
-        isHighRisk={isHighRisk}
-        isModal={true}
-      />
+      <Box sx={{ display: "flex", justifyContent: "flex-start", gap: 3 }}>
+        <RiskScale
+          adverseEvent={risk}
+          riskRange={riskRange}
+          isHighRisk={isHighRisk}
+          isModal={true}
+        />
+        <RiskLabel adverseEvent={risk} isHighRisk={isHighRisk} isModal={true} />
+      </Box>
       <PredictionBox adverseEvent={risk} />
     </>
   );
