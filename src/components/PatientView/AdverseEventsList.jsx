@@ -12,6 +12,7 @@ export default function AdverseEventsList({
   riskRange,
   borderline,
   isLowRisk,
+  riskLabel,
 }) {
   const [sort, setSort] = React.useState("risk");
 
@@ -41,6 +42,7 @@ export default function AdverseEventsList({
                 adverseEvent={risk}
                 riskRange={riskRange}
                 borderline={borderline}
+                riskLabel={riskLabel}
               />
             </ListItem>
           ))}

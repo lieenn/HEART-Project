@@ -37,9 +37,6 @@ const SvgRectangle = ({
     risk.riskScore < riskRange[0] &&
     calculateRisk(risk.confidenceInterval.high, riskRange) !== "Minimal";
 
-  const smallBoxWidth = isView3 ? 20 : 24;
-  const gradientWidth = 12;
-
   // Calculate uncertainty range as a percentage for gradient distribution
   const uncertaintyRange =
     risk.confidenceInterval.high - risk.confidenceInterval.low;
@@ -49,23 +46,29 @@ const SvgRectangle = ({
     100
   );
 
+  const baseSmallBoxWidth = isView3 ? 20 : isView4 ? 32 : 24; // Changed from 24 to 32 for view4
+  const smallBoxWidth = isView4
+    ? Math.max(
+        Math.round((uncertaintyPercentage * baseSmallBoxWidth) / 100),
+        12
+      ) // Also increased minimum width from 8 to 12
+    : baseSmallBoxWidth;
+  const gradientWidth = 12;
+
   const mainBoxStyle = {
-    width: isPatientSpecific ? width : `calc(${width}px - ${smallBoxWidth}px)`,
+    width: isPatientSpecific
+      ? width
+      : `calc(${width}px - ${isView4 && isLowRisk ? smallBoxWidth : 0}px)`,
     maxWidth: maxWidth,
     minHeight,
-    background:
-      isView4 && isLowRisk
-        ? `linear-gradient(to right, ${color} ${
-            100 - uncertaintyPercentage
-          }%, ${gradient})`
-        : color,
+    background: color,
     display: "flex",
     alignItems: "center",
     position: "relative",
     padding: "6px",
     justifyContent: textAlign === "center" ? "center" : "flex-start",
-    border: isView1 && isLowRisk ? "1.5px solid" : "none",
-    borderRadius: "3px 0 0 3px",
+    border: (isView1 || isView4) && isLowRisk ? "1.5px solid" : "none", // Updated to include view4
+    borderRadius: isView1 || (isView4 && isLowRisk) ? "3px 0 0 3px" : "3px",
   };
 
   const textStyle = {
@@ -84,19 +87,22 @@ const SvgRectangle = ({
     transform: "translateY(-50%)",
   };
 
-  const smallBoxes = borderlineColors.map((borderColor, index) => (
-    <Box
-      key={index}
-      sx={{
-        width: `${smallBoxWidth / borderlineColors.length}px`,
-        minHeight,
-        backgroundColor: borderColor,
-        borderLeft: index > 0 ? "1px solid rgba(0,0,0,0.1)" : "none",
-      }}
-    />
-  ));
-
   const smallBoxStyle = () => {
+    if (isView4 && isLowRisk) {
+      return (
+        <Box
+          sx={{
+            width: smallBoxWidth,
+            minHeight,
+            backgroundColor: gradient,
+            border: "2px dashed",
+            borderLeft: "none",
+            borderRadius: "0 3px 3px 0",
+          }}
+        />
+      );
+    }
+
     if (borderline === "borderline3") {
       return (
         <Box
@@ -109,17 +115,28 @@ const SvgRectangle = ({
             borderRadius: "0 3px 3px 0",
           }}
         >
-          {smallBoxes}
+          {borderlineColors.map((borderColor, index) => (
+            <Box
+              key={index}
+              sx={{
+                width: `${smallBoxWidth / borderlineColors.length}px`,
+                minHeight,
+                backgroundColor: borderColor,
+                borderLeft: index > 0 ? "1px solid rgba(0,0,0,0.1)" : "none",
+              }}
+            />
+          ))}
         </Box>
       );
     }
+
     return (
       <Box
         sx={{
           width: isView1 ? smallBoxWidth + gradientWidth : smallBoxWidth,
           minHeight,
           backgroundColor: gradient,
-          ...(isView1 && {
+          ...((isView1 || isView4) && {
             border: "2px dashed",
             borderLeft: "none",
             borderRadius: "0 3px 3px 0",
@@ -130,7 +147,7 @@ const SvgRectangle = ({
   };
 
   const renderGradientBoxes = () => {
-    if (isView1) {
+    if (isView1 || isView4) {
       return smallBoxStyle();
     } else if (isView3) {
       return (
@@ -152,34 +169,34 @@ const SvgRectangle = ({
           />
         </>
       );
-    } else if (!isView4) {
-      return (
-        <>
-          <Box
-            sx={{
-              width: `${gradientWidth}px`,
-              minHeight,
-              background: `linear-gradient(to right, ${color}, ${gradient})`,
-              flexShrink: 0,
-              margin: 0,
-              padding: 0,
-            }}
-          />
-          {smallBoxStyle()}
-        </>
-      );
     }
-    return null;
+    return (
+      <>
+        <Box
+          sx={{
+            width: `${gradientWidth}px`,
+            minHeight,
+            background: `linear-gradient(to right, ${color}, ${gradient})`,
+            flexShrink: 0,
+            margin: 0,
+            padding: 0,
+          }}
+        />
+        {smallBoxStyle()}
+      </>
+    );
   };
 
   return (
     <Box
       display="flex"
       mb={1}
-      border={isView1 && isLowRisk ? "none" : "1.5px solid"}
-      borderRight={(isView3 || isView1) && isLowRisk ? "none" : "1.5px solid"}
+      border={(isView1 || isView4) && isLowRisk ? "none" : "1.5px solid"} // Updated to include view4
+      borderRight={
+        (isView3 || isView1 || isView4) && isLowRisk ? "none" : "1.5px solid"
+      }
       sx={{
-        borderRadius: isView3 && isLowRisk ? "3px 0 0 3px" : "3px",
+        borderRadius: (isView3 || isView4) && isLowRisk ? "3px 0 0 3px" : "3px",
         maxWidth: maxWidth,
         alignItems: "stretch",
       }}
@@ -195,7 +212,7 @@ const SvgRectangle = ({
         </Typography>
         {children && <Box sx={iconStyle}>{children}</Box>}
       </Box>
-      {!isPatientSpecific && isLowRisk && !isView4 && renderGradientBoxes()}
+      {!isPatientSpecific && isLowRisk && renderGradientBoxes()}
     </Box>
   );
 };

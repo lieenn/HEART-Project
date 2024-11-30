@@ -12,6 +12,8 @@ import ViewToggle from "./components/Controls/ViewToggle";
 import BorderlineToggle from "./components/Controls/BorderlineToggle";
 import DirectionToggle from "./components/Controls/DirectionToggle";
 import Controls from "./components/Controls/Controls";
+import RiskLabelToggle from "./components/Controls/RiskLabelToggle";
+import LoSToggle from "./components/Controls/LoSToggle";
 
 /**
  * @constant {Array<number>} riskRange - Defines risk thresholds [minimal, moderate, moderate high, high].
@@ -31,6 +33,8 @@ export default function App() {
   const [view, setView] = useState("view1");
   const [direction, setDirection] = useState("horizontal");
   const [borderline, setBorderline] = useState("borderline1");
+  const [riskLabel, setRiskLabel] = useState("label1");
+  const [los, setLos] = useState("los1");
 
   return (
     <Container maxWidth="xl">
@@ -66,11 +70,18 @@ export default function App() {
                 <Controls>
                   <RiskRangeInput onChange={setCurrentRiskRange} />
                   <BorderlineToggle view={borderline} setView={setBorderline} />
+                  <RiskLabelToggle
+                    riskLabel={riskLabel}
+                    setRiskLabel={setRiskLabel}
+                  />
+                  <LoSToggle los={los} setLos={setLos} />
                 </Controls>
                 <DetailPage
                   riskRange={currentRiskRange}
                   patientData={patientView.concat(fakeData)}
                   borderline={borderline}
+                  riskLabel={riskLabel}
+                  los={los}
                 />
               </>
             }

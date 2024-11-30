@@ -15,7 +15,13 @@ import { GetHighRisks, GetLowRisks } from "../Utils/FilterFunctions";
 import ColorLegend from "../SharedComponents/ColorLegend";
 import PredictedLos from "./PredictedLoS";
 
-export default function DetailPage({ riskRange, patientData, borderline }) {
+export default function DetailPage({
+  riskRange,
+  patientData,
+  borderline,
+  riskLabel,
+  los,
+}) {
   const { value } = useParams();
   const person = patientData.find((item) => item.patientId == value);
 
@@ -83,6 +89,7 @@ export default function DetailPage({ riskRange, patientData, borderline }) {
             borderline={borderline}
             header={`${riskView.type} Risk Adverse Events`}
             isLowRisk={riskView.isLowRisk}
+            riskLabel={riskLabel}
           />
         </CardContent>
       </Card>
@@ -102,13 +109,13 @@ export default function DetailPage({ riskRange, patientData, borderline }) {
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: 2, 
+            gap: 2,
           }}
         >
           <Avatar
             src="/broken-image.jpg"
             sx={{
-              width: 56, 
+              width: 56,
               height: 56,
             }}
           />
@@ -132,6 +139,9 @@ export default function DetailPage({ riskRange, patientData, borderline }) {
             <PredictedLos
               lengthOfStayEstimate={person.lengthOfStayEstimate}
               lengthOfStayRange={person.lengthOfStayRange}
+              patientData={patientData}
+              patient={person}
+              los={los}
             />
           </CardContent>
         </Card>

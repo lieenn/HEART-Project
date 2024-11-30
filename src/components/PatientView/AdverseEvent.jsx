@@ -7,7 +7,12 @@ import SvgRectangle from "../SharedComponents/SvgRectangle";
 import ExplanationButton from "./Explanation/ExplanationButton";
 import RiskLabel from "./RiskLabel";
 
-export default function AdverseEvent({ adverseEvent, riskRange, borderline }) {
+export default function AdverseEvent({
+  adverseEvent,
+  riskRange,
+  borderline,
+  riskLabel,
+}) {
   const rectWidth = 216;
   const rectHeight = 36;
   const riskLevel = calculateRisk(adverseEvent.riskScore, riskRange);
@@ -28,7 +33,7 @@ export default function AdverseEvent({ adverseEvent, riskRange, borderline }) {
       </Box>
       {riskLevel === "Minimal" ? (
         <>
-          <Grid item xs={8}>
+          <Grid item xs={5}>
             <RiskScale
               adverseEvent={adverseEvent}
               isHighRisk={false}
@@ -36,7 +41,12 @@ export default function AdverseEvent({ adverseEvent, riskRange, borderline }) {
               borderline={borderline}
             />
           </Grid>
-          <RiskLabel adverseEvent={adverseEvent} isHighRisk={false} />
+          <RiskLabel
+            adverseEvent={adverseEvent}
+            isHighRisk={false}
+            riskLabel={riskLabel}
+            riskRange={riskRange}
+          />
         </>
       ) : (
         <>
@@ -46,7 +56,12 @@ export default function AdverseEvent({ adverseEvent, riskRange, borderline }) {
             riskRange={riskRange}
             borderline={borderline}
           />
-          <RiskLabel adverseEvent={adverseEvent} isHighRisk={true} />
+          <RiskLabel
+            adverseEvent={adverseEvent}
+            isHighRisk={true}
+            riskLabel={riskLabel}
+            riskRange={riskRange}
+          />
         </>
       )}
     </Box>

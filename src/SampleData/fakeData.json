@@ -8,6 +8,7 @@
     "weightKG": 70.0,
     "heightCM": 167,
     "bmi": 25.0,
+    "lengthOfStay": { "low": 4, "high": 7, "confidence": 0.93 },
     "lengthOfStayEstimate": 4,
     "lengthOfStayRange": "shortLoS",
     "adverseEvents": [
@@ -15,6 +16,8 @@
         "title": "Renal Failure",
         "riskScore": 0.32,
         "confidenceInterval": { "low": 0.25, "high": 0.8 },
+        "absoluteRisk": 0.1,
+        "uncertaintyRange": { "low": 0.05, "high": 0.14 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.4, "value": 70.0 },
           { "title": "body mass index", "weight": 0.3, "value": 25.0 },
@@ -27,6 +30,8 @@
         "title": "Prolonged Ventilation",
         "riskScore": 0.38,
         "confidenceInterval": { "low": 0.32, "high": 0.7 },
+        "absoluteRisk": 0.15,
+        "uncertaintyRange": { "low": 0.08, "high": 0.22 },
         "contributions": [
           { "title": "chronic lung disease", "weight": 0.225, "value": 0 },
           { "title": "smoking status", "weight": 0.207, "value": 0 },
@@ -39,6 +44,8 @@
         "title": "Reoperation",
         "riskScore": 0.18,
         "confidenceInterval": { "low": 0.05, "high": 0.5 },
+        "absoluteRisk": 0.08,
+        "uncertaintyRange": { "low": 0.03, "high": 0.12 },
         "contributions": [
           { "title": "previous surgery", "weight": 0.219, "value": 1 },
           { "title": "age", "weight": 0.195, "value": 45 },
@@ -51,6 +58,8 @@
         "title": "Operative Mortality",
         "riskScore": 0.35,
         "confidenceInterval": { "low": 0.3, "high": 0.4 },
+        "absoluteRisk": 0.12,
+        "uncertaintyRange": { "low": 0.07, "high": 0.18 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.215, "value": 70.0 },
           { "title": "body mass index", "weight": 0.2, "value": 25.0 },
@@ -63,6 +72,8 @@
         "title": "Stroke",
         "riskScore": 0.23,
         "confidenceInterval": { "low": 0.2, "high": 0.5 },
+        "absoluteRisk": 0.09,
+        "uncertaintyRange": { "low": 0.04, "high": 0.15 },
         "contributions": [
           { "title": "cerebrovascular disease", "weight": 0.221, "value": 0 },
           { "title": "age", "weight": 0.206, "value": 45 },
@@ -75,6 +86,8 @@
         "title": "Short Length of Stay",
         "riskScore": 0.85,
         "confidenceInterval": { "low": 0.8, "high": 0.9 },
+        "absoluteRisk": 0.75,
+        "uncertaintyRange": { "low": 0.65, "high": 0.85 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.211, "value": 70.0 },
           { "title": "body mass index", "weight": 0.2, "value": 25.0 },
@@ -87,6 +100,8 @@
         "title": "Long Length of Stay",
         "riskScore": 0.05,
         "confidenceInterval": { "low": 0.03, "high": 0.07 },
+        "absoluteRisk": 0.02,
+        "uncertaintyRange": { "low": 0.01, "high": 0.04 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.204, "value": 70.0 },
           { "title": "body mass index", "weight": 0.214, "value": 25.0 },
@@ -102,6 +117,7 @@
     "patientId": "1234*",
     "roomNumber": 15,
     "timeStamp": 1719510000000,
+    "lengthOfStay": { "low": 19, "high": 45, "confidence": 0.93 },
     "lengthOfStayEstimate": 31,
     "lengthOfStayRange": "ProlongedLoS",
     "adverseEvents": [
@@ -109,6 +125,8 @@
         "title": "Renal Failure",
         "riskScore": 0.25,
         "confidenceInterval": { "low": 0.18, "high": 0.45 },
+        "absoluteRisk": 0.08,
+        "uncertaintyRange": { "low": 0.04, "high": 0.13 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.215, "value": 65.0 },
           { "title": "body mass index", "weight": 0.2, "value": 22.0 },
@@ -121,6 +139,8 @@
         "title": "Prolonged Ventilation",
         "riskScore": 0.85,
         "confidenceInterval": { "low": 0.75, "high": 0.95 },
+        "absoluteRisk": 0.25,
+        "uncertaintyRange": { "low": 0.18, "high": 0.32 },
         "contributions": [
           { "title": "chronic lung disease", "weight": 0.219, "value": 1 },
           { "title": "smoking status", "weight": 0.206, "value": 1 },
@@ -133,6 +153,8 @@
         "title": "Reoperation",
         "riskScore": 0.52,
         "confidenceInterval": { "low": 0.42, "high": 0.62 },
+        "absoluteRisk": 0.18,
+        "uncertaintyRange": { "low": 0.12, "high": 0.25 },
         "contributions": [
           { "title": "previous surgery", "weight": 0.214, "value": 1 },
           { "title": "age", "weight": 0.195, "value": 30 },
@@ -145,6 +167,8 @@
         "title": "Operative Mortality",
         "riskScore": 0.3,
         "confidenceInterval": { "low": 0.2, "high": 0.7 },
+        "absoluteRisk": 0.11,
+        "uncertaintyRange": { "low": 0.06, "high": 0.17 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.208, "value": 65.0 },
           { "title": "body mass index", "weight": 0.192, "value": 22.0 },
@@ -157,6 +181,8 @@
         "title": "Stroke",
         "riskScore": 0.35,
         "confidenceInterval": { "low": 0.25, "high": 0.9 },
+        "absoluteRisk": 0.14,
+        "uncertaintyRange": { "low": 0.08, "high": 0.21 },
         "contributions": [
           { "title": "cerebrovascular disease", "weight": 0.2, "value": 1 },
           { "title": "age", "weight": 0.213, "value": 30 },
@@ -169,6 +195,8 @@
         "title": "Short Length of Stay",
         "riskScore": 0.1,
         "confidenceInterval": { "low": 0.08, "high": 0.12 },
+        "absoluteRisk": 0.05,
+        "uncertaintyRange": { "low": 0.02, "high": 0.08 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.191, "value": 65.0 },
           { "title": "body mass index", "weight": 0.183, "value": 22.0 },
@@ -181,6 +209,8 @@
         "title": "Long Length of Stay",
         "riskScore": 0.8,
         "confidenceInterval": { "low": 0.75, "high": 0.85 },
+        "absoluteRisk": 0.7,
+        "uncertaintyRange": { "low": 0.6, "high": 0.8 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.206, "value": 65.0 },
           { "title": "body mass index", "weight": 0.188, "value": 22.0 },
@@ -196,6 +226,7 @@
     "patientId": "5678*",
     "roomNumber": 16,
     "timeStamp": 1719510500000,
+    "lengthOfStay": { "low": 12, "high": 18, "confidence": 0.93 },
     "lengthOfStayEstimate": 15,
     "lengthOfStayRange": "ProlongedLoS",
     "adverseEvents": [
@@ -203,6 +234,8 @@
         "title": "Renal Failure",
         "riskScore": 0.38,
         "confidenceInterval": { "low": 0.28, "high": 0.48 },
+        "absoluteRisk": 0.15,
+        "uncertaintyRange": { "low": 0.09, "high": 0.22 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.2, "value": 78.0 },
           { "title": "body mass index", "weight": 0.194, "value": 24.0 },
@@ -215,6 +248,8 @@
         "title": "Prolonged Ventilation",
         "riskScore": 0.45,
         "confidenceInterval": { "low": 0.35, "high": 0.55 },
+        "absoluteRisk": 0.17,
+        "uncertaintyRange": { "low": 0.11, "high": 0.24 },
         "contributions": [
           { "title": "chronic lung disease", "weight": 0.217, "value": 1 },
           { "title": "smoking status", "weight": 0.199, "value": 1 },
@@ -227,6 +262,8 @@
         "title": "Reoperation",
         "riskScore": 0.52,
         "confidenceInterval": { "low": 0.42, "high": 0.62 },
+        "absoluteRisk": 0.19,
+        "uncertaintyRange": { "low": 0.13, "high": 0.26 },
         "contributions": [
           { "title": "previous surgery", "weight": 0.222, "value": 1 },
           { "title": "age", "weight": 0.199, "value": 50 },
@@ -239,6 +276,8 @@
         "title": "Operative Mortality",
         "riskScore": 0.28,
         "confidenceInterval": { "low": 0.18, "high": 0.38 },
+        "absoluteRisk": 0.1,
+        "uncertaintyRange": { "low": 0.05, "high": 0.16 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.197, "value": 78.0 },
           { "title": "body mass index", "weight": 0.184, "value": 24.0 },
@@ -251,6 +290,8 @@
         "title": "Stroke",
         "riskScore": 0.35,
         "confidenceInterval": { "low": 0.25, "high": 0.45 },
+        "absoluteRisk": 0.13,
+        "uncertaintyRange": { "low": 0.07, "high": 0.2 },
         "contributions": [
           { "title": "cerebrovascular disease", "weight": 0.217, "value": 1 },
           { "title": "age", "weight": 0.199, "value": 50 },
@@ -263,6 +304,8 @@
         "title": "Short Length of Stay",
         "riskScore": 0.2,
         "confidenceInterval": { "low": 0.18, "high": 0.22 },
+        "absoluteRisk": 0.08,
+        "uncertaintyRange": { "low": 0.05, "high": 0.12 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.191, "value": 78.0 },
           { "title": "age", "weight": 0.183, "value": 50 },
@@ -275,6 +318,8 @@
         "title": "Long Length of Stay",
         "riskScore": 0.78,
         "confidenceInterval": { "low": 0.72, "high": 0.82 },
+        "absoluteRisk": 0.65,
+        "uncertaintyRange": { "low": 0.55, "high": 0.75 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.2, "value": 78.0 },
           { "title": "age", "weight": 0.206, "value": 50 },
@@ -290,6 +335,7 @@
     "patientId": "9101*",
     "roomNumber": 17,
     "timeStamp": 1719511000000,
+    "lengthOfStay": { "low": 13, "high": 19, "confidence": 0.9 },
     "lengthOfStayEstimate": 18,
     "lengthOfStayRange": "ProlongedLoS",
     "adverseEvents": [
@@ -297,6 +343,8 @@
         "title": "Renal Failure",
         "riskScore": 0.8,
         "confidenceInterval": { "low": 0.7, "high": 0.9 },
+        "absoluteRisk": 0.28,
+        "uncertaintyRange": { "low": 0.2, "high": 0.37 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.199, "value": 95.0 },
           { "title": "body mass index", "weight": 0.188, "value": 28.0 },
@@ -309,6 +357,8 @@
         "title": "Prolonged Ventilation",
         "riskScore": 0.6,
         "confidenceInterval": { "low": 0.5, "high": 0.7 },
+        "absoluteRisk": 0.22,
+        "uncertaintyRange": { "low": 0.15, "high": 0.3 },
         "contributions": [
           { "title": "chronic lung disease", "weight": 0.218, "value": 1 },
           { "title": "smoking status", "weight": 0.207, "value": 1 },
@@ -321,6 +371,8 @@
         "title": "Reoperation",
         "riskScore": 0.3,
         "confidenceInterval": { "low": 0.2, "high": 0.4 },
+        "absoluteRisk": 0.12,
+        "uncertaintyRange": { "low": 0.06, "high": 0.19 },
         "contributions": [
           { "title": "previous surgery", "weight": 0.216, "value": 1 },
           { "title": "age", "weight": 0.199, "value": 65 },
@@ -333,6 +385,8 @@
         "title": "Operative Mortality",
         "riskScore": 0.25,
         "confidenceInterval": { "low": 0.15, "high": 0.35 },
+        "absoluteRisk": 0.09,
+        "uncertaintyRange": { "low": 0.04, "high": 0.15 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.194, "value": 95.0 },
           { "title": "body mass index", "weight": 0.188, "value": 28.0 },
@@ -345,6 +399,8 @@
         "title": "Stroke",
         "riskScore": 0.45,
         "confidenceInterval": { "low": 0.35, "high": 0.55 },
+        "absoluteRisk": 0.16,
+        "uncertaintyRange": { "low": 0.1, "high": 0.23 },
         "contributions": [
           { "title": "cerebrovascular disease", "weight": 0.212, "value": 1 },
           { "title": "age", "weight": 0.206, "value": 65 },
@@ -357,6 +413,8 @@
         "title": "Short Length of Stay",
         "riskScore": 0.1,
         "confidenceInterval": { "low": 0.08, "high": 0.12 },
+        "absoluteRisk": 0.04,
+        "uncertaintyRange": { "low": 0.02, "high": 0.07 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.217, "value": 95.0 },
           { "title": "body mass index", "weight": 0.2, "value": 28.0 },
@@ -369,6 +427,8 @@
         "title": "Long Length of Stay",
         "riskScore": 0.85,
         "confidenceInterval": { "low": 0.75, "high": 0.9 },
+        "absoluteRisk": 0.75,
+        "uncertaintyRange": { "low": 0.65, "high": 0.85 },
         "contributions": [
           { "title": "weight (kg)", "weight": 0.2, "value": 95.0 },
           { "title": "body mass index", "weight": 0.205, "value": 28.0 },
