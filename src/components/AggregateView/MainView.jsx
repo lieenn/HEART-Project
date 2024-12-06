@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Grid } from "@mui/material";
 import Patient from "./Patient";
-import ColorLegend from "../SharedComponents/ColorLegend";
+import Legend from "../SharedComponents/Legend";
 import { GetUniqueAdverseEvents } from "../Utils/FilterFunctions";
 import { SortByGiven, SortByHighest } from "../Utils/SortFunctions";
 import TableHeader from "./TableHeader";
@@ -12,6 +12,7 @@ export default function MainView({
   view,
   direction,
   borderline,
+  children,
 }) {
   const [selectedAdverseEvents, setSelectedAdverseEvents] = useState([]);
   const [sortingOption, setSortingOption] = useState("");
@@ -67,10 +68,18 @@ export default function MainView({
 
   return (
     <>
-      <ColorLegend riskRange={riskRange} />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Legend riskRange={riskRange} />
+        <Box>{children}</Box>
+      </Box>
       {direction === "horizontal" ? (
         // Horizontal Layout
-        <Box sx={{ border: "1.5px solid #000", m: 0 }}>
+        <Box sx={{ border: "1.5px solid #000", mt: 1 }}>
           <TableHeader
             setSortingOption={setSortingOption}
             showFilteredOutcomes={showFilteredOutcomes}

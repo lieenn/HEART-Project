@@ -33,7 +33,7 @@ export default function AdverseEvent({
       </Box>
       {riskLevel === "Minimal" ? (
         <>
-          <Grid item xs={5}>
+          <Grid item xs={borderline === "borderline3" ? 6 : 0}>
             <RiskScale
               adverseEvent={adverseEvent}
               isHighRisk={false}
@@ -44,6 +44,7 @@ export default function AdverseEvent({
           <RiskLabel
             adverseEvent={adverseEvent}
             isHighRisk={false}
+            isModal={false}
             riskLabel={riskLabel}
             riskRange={riskRange}
           />
@@ -59,6 +60,7 @@ export default function AdverseEvent({
           <RiskLabel
             adverseEvent={adverseEvent}
             isHighRisk={true}
+            isModal={false}
             riskLabel={riskLabel}
             riskRange={riskRange}
           />

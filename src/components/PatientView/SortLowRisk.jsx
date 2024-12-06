@@ -10,7 +10,12 @@ export default function ColorToggleButton({ sort, setSort }) {
 
   return (
     <Box
-      sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}
+      sx={{
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        mt: 2,
+      }}
     >
       <Typography sx={{ mr: 2 }}>Sort by:</Typography>
       <ToggleButtonGroup
@@ -24,12 +29,12 @@ export default function ColorToggleButton({ sort, setSort }) {
           "& .MuiToggleButton-root": {
             padding: "4px 10px",
             textTransform: "none",
-            height: "32px", // Explicitly set height
+            height: "32px",
           },
         }}
       >
-        <ToggleButton value="risk">Risk</ToggleButton>
-        <ToggleButton value="range">Range</ToggleButton>
+        <ToggleButton value="risk">Risk Score</ToggleButton>
+        <ToggleButton value="range">Uncertainty Range</ToggleButton>
       </ToggleButtonGroup>
     </Box>
   );

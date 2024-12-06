@@ -3,36 +3,40 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import Box from "@mui/material/Box";
+import FormLabel from "@mui/material/FormLabel";
+import Card from "@mui/material/Card";
 
-export default function BorderlineToggle({ view, setView }) {
+export default function BorderlineToggle({ borderline, setBorderline, view }) {
   return (
-    <Box sx={{ mb: 2 }}>
+    <Card sx={{ pl: 2 }}>
       <FormControl>
+        <FormLabel id="borderline-group">Borderline</FormLabel>
         <RadioGroup
           row
-          aria-labelledby="view-toggle-group-label"
-          name="view-toggle-group"
-          value={view}
-          onChange={(e) => setView(e.target.value)}
+          aria-labelledby="borderline-group"
+          name="borderline-toggle-group"
+          value={borderline}
+          onChange={(e) => setBorderline(e.target.value)}
         >
           <FormControlLabel
             value="borderline1"
             control={<Radio />}
-            label="Borderline 1"
+            label="Moderate"
           />
           <FormControlLabel
             value="borderline2"
             control={<Radio />}
-            label="Borderline 2"
+            label="Highest"
           />
-          <FormControlLabel
-            value="borderline3"
-            control={<Radio />}
-            label="Borderline 3"
-          />
+          {view !== "view4" && (
+            <FormControlLabel
+              value="borderline3"
+              control={<Radio />}
+              label="Range"
+            />
+          )}
         </RadioGroup>
       </FormControl>
-    </Box>
+    </Card>
   );
 }

@@ -8,7 +8,7 @@ const Controls = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Box sx={{ mb: 2 }}>
+    <>
       <Button
         onClick={() => setIsOpen(!isOpen)}
         variant="outlined"
@@ -23,9 +23,11 @@ const Controls = ({ children }) => {
       </Button>
 
       <Collapse in={isOpen}>
-        <Box sx={{ mt: 2 }}>{children}</Box>
+        <Box sx={{ mt: 2, display: "flex", flexDirection: "column", gap: 2 }}>
+          {children}
+        </Box>
       </Collapse>
-    </Box>
+    </>
   );
 };
 

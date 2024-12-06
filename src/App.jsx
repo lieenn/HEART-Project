@@ -43,7 +43,13 @@ export default function App() {
           <Route
             path="/"
             element={
-              <>
+              <MainView
+                riskRange={currentRiskRange}
+                patientData={aggregate.concat(fakeData)}
+                view={view}
+                direction={direction}
+                borderline={borderline}
+              >
                 <Controls>
                   <RiskRangeInput onChange={setCurrentRiskRange} />
                   <ViewToggle view={view} setView={setView} />
@@ -51,39 +57,38 @@ export default function App() {
                     direction={direction}
                     setDirection={setDirection}
                   />
-                  <BorderlineToggle view={borderline} setView={setBorderline} />
+                  <BorderlineToggle
+                    borderline={borderline}
+                    setBorderline={setBorderline}
+                    view={view}
+                  />
                 </Controls>
-                <MainView
-                  riskRange={currentRiskRange}
-                  patientData={aggregate.concat(fakeData)}
-                  view={view}
-                  direction={direction}
-                  borderline={borderline}
-                />
-              </>
+              </MainView>
             }
           />
           <Route
             path=":value"
             element={
-              <>
+              <DetailPage
+                riskRange={currentRiskRange}
+                patientData={patientView.concat(fakeData)}
+                borderline={borderline}
+                riskLabel={riskLabel}
+                los={los}
+              >
                 <Controls>
                   <RiskRangeInput onChange={setCurrentRiskRange} />
-                  <BorderlineToggle view={borderline} setView={setBorderline} />
+                  <BorderlineToggle
+                    borderline={borderline}
+                    setBorderline={setBorderline}
+                  />
                   <RiskLabelToggle
                     riskLabel={riskLabel}
                     setRiskLabel={setRiskLabel}
                   />
                   <LoSToggle los={los} setLos={setLos} />
                 </Controls>
-                <DetailPage
-                  riskRange={currentRiskRange}
-                  patientData={patientView.concat(fakeData)}
-                  borderline={borderline}
-                  riskLabel={riskLabel}
-                  los={los}
-                />
-              </>
+              </DetailPage>
             }
           />
         </Routes>

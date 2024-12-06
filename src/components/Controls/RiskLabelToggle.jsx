@@ -3,31 +3,33 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import Box from "@mui/material/Box";
+import FormLabel from "@mui/material/FormLabel";
+import Card from "@mui/material/Card";
 
 export default function RiskLabelToggle({ riskLabel, setRiskLabel }) {
   return (
-    <Box sx={{ mb: 2 }}>
+    <Card sx={{ pl: 2 }}>
       <FormControl>
+        <FormLabel id="risk-label-group">Risk Label</FormLabel>
         <RadioGroup
           row
-          aria-labelledby="view-toggle-group-label"
-          name="view-toggle-group"
+          aria-labelledby="risk-label-group"
+          name="risk-label-group"
           value={riskLabel}
           onChange={(e) => setRiskLabel(e.target.value)}
         >
           <FormControlLabel
             value="label1"
             control={<Radio />}
-            label="Risk Label 1"
+            label="Predicted Risk"
           />
           <FormControlLabel
             value="label2"
             control={<Radio />}
-            label="Risk Label 2"
+            label="Absolute Risk"
           />
         </RadioGroup>
       </FormControl>
-    </Box>
+    </Card>
   );
 }

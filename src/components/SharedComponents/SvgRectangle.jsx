@@ -51,7 +51,7 @@ const SvgRectangle = ({
     ? Math.max(
         Math.round((uncertaintyPercentage * baseSmallBoxWidth) / 100),
         12
-      ) // Also increased minimum width from 8 to 12
+      )
     : baseSmallBoxWidth;
   const gradientWidth = 12;
 

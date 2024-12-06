@@ -3,12 +3,14 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import Box from "@mui/material/Box";
+import FormLabel from "@mui/material/FormLabel";
+import Card from "@mui/material/Card";
 
 export default function ViewToggle({ view, setView }) {
   return (
-    <Box sx={{ mb: 2 }}>
+    <Card sx={{ pl: 2 }}>
       <FormControl>
+        <FormLabel>Uncertainty View</FormLabel>
         <RadioGroup
           row
           aria-labelledby="view-toggle-group-label"
@@ -16,12 +18,20 @@ export default function ViewToggle({ view, setView }) {
           value={view}
           onChange={(e) => setView(e.target.value)}
         >
-          <FormControlLabel value="view1" control={<Radio />} label="View 1" />
-          <FormControlLabel value="view2" control={<Radio />} label="View 2" />
-          <FormControlLabel value="view3" control={<Radio />} label="View 3" />
-          <FormControlLabel value="view4" control={<Radio />} label="View 4" />
+          <FormControlLabel value="view1" control={<Radio />} label="Dotted" />
+          <FormControlLabel
+            value="view2"
+            control={<Radio />}
+            label="Gradient"
+          />
+          <FormControlLabel
+            value="view3"
+            control={<Radio />}
+            label="Open Gradient"
+          />
+          <FormControlLabel value="view4" control={<Radio />} label="Precise" />
         </RadioGroup>
       </FormControl>
-    </Box>
+    </Card>
   );
 }
