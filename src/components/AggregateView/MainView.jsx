@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Collapse } from "@mui/material";
 import Patient from "./Patient";
 import Legend from "../SharedComponents/Legend";
 import { GetUniqueAdverseEvents } from "../Utils/FilterFunctions";
@@ -12,6 +12,7 @@ export default function MainView({
   view,
   direction,
   borderline,
+  isControlOpen,
   children,
 }) {
   const [selectedAdverseEvents, setSelectedAdverseEvents] = useState([]);
@@ -68,15 +69,19 @@ export default function MainView({
 
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <Legend riskRange={riskRange} />
-        <Box>{children}</Box>
-      </Box>
+      <Collapse in={!isControlOpen} timeout={300}>
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Legend riskRange={riskRange} />
+          <Box>{children}</Box>
+        </Box>
+      </Collapse>
+
+      <Collapse in={isControlOpen} timeout={300}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Box>{children}</Box>
+          <Legend riskRange={riskRange} />
+        </Box>
+      </Collapse>
       {direction === "horizontal" ? (
         // Horizontal Layout
         <Box sx={{ border: "1.5px solid #000", mt: 1 }}>

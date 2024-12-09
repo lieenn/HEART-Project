@@ -8,7 +8,7 @@
     "weightKG": 70.0,
     "heightCM": 167,
     "bmi": 25.0,
-    "lengthOfStay": { "low": 4, "high": 7, "confidence": 0.93 },
+    "lengthOfStay": { "low": 4, "high": 7, "confidence": 0.95 },
     "lengthOfStayEstimate": 4,
     "lengthOfStayRange": "shortLoS",
     "adverseEvents": [
@@ -117,7 +117,7 @@
     "patientId": "1234*",
     "roomNumber": 15,
     "timeStamp": 1719510000000,
-    "lengthOfStay": { "low": 19, "high": 45, "confidence": 0.93 },
+    "lengthOfStay": { "low": 19, "high": 45, "confidence": 0.95 },
     "lengthOfStayEstimate": 31,
     "lengthOfStayRange": "ProlongedLoS",
     "adverseEvents": [
@@ -226,7 +226,7 @@
     "patientId": "5678*",
     "roomNumber": 16,
     "timeStamp": 1719510500000,
-    "lengthOfStay": { "low": 12, "high": 18, "confidence": 0.93 },
+    "lengthOfStay": { "low": 12, "high": 18, "confidence": 0.95 },
     "lengthOfStayEstimate": 15,
     "lengthOfStayRange": "ProlongedLoS",
     "adverseEvents": [
@@ -335,7 +335,7 @@
     "patientId": "9101*",
     "roomNumber": 17,
     "timeStamp": 1719511000000,
-    "lengthOfStay": { "low": 13, "high": 19, "confidence": 0.9 },
+    "lengthOfStay": { "low": 13, "high": 19, "confidence": 0.95 },
     "lengthOfStayEstimate": 18,
     "lengthOfStayRange": "ProlongedLoS",
     "adverseEvents": [

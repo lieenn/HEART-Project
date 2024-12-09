@@ -8,7 +8,7 @@
     "weightKG": 81.6,
     "heightCM": 167.0,
     "bmi": 29.3,
-    "lengthOfStay": { "low": 6, "high": 11, "confidence": 0.93 },
+    "lengthOfStay": { "low": 6, "high": 11, "confidence": 0.95 },
     "lengthOfStayEstimate": 9,
     "lengthOfStayRange": "AvgLoS",
     "adverseEvents": [
@@ -2439,7 +2439,7 @@
     "weightKG": 61.7,
     "heightCM": 147.0,
     "bmi": 28.6,
-    "lengthOfStay": { "low": 6, "high": 11, "confidence": 0.93 },
+    "lengthOfStay": { "low": 6, "high": 11, "confidence": 0.95 },
     "lengthOfStayEstimate": 8,
     "lengthOfStayRange": "AvgLoS",
     "adverseEvents": [
@@ -4870,7 +4870,7 @@
     "weightKG": 114.1,
     "heightCM": 170.2,
     "bmi": 39.4,
-    "lengthOfStay": { "low": 9, "high": 14, "confidence": 0.96 },
+    "lengthOfStay": { "low": 9, "high": 14, "confidence": 0.95 },
     "lengthOfStayEstimate": 11,
     "lengthOfStayRange": "AvgLoS",
     "adverseEvents": [
@@ -7301,7 +7301,7 @@
     "weightKG": 87.9,
     "heightCM": 180.3,
     "bmi": 27.0,
-    "lengthOfStay": { "low": 7, "high": 12, "confidence": 0.93 },
+    "lengthOfStay": { "low": 7, "high": 12, "confidence": 0.95 },
     "lengthOfStayEstimate": 10,
     "lengthOfStayRange": "AvgLoS",
     "adverseEvents": [
@@ -9732,7 +9732,7 @@
     "weightKG": 76.5,
     "heightCM": 167.6,
     "bmi": 27.2,
-    "lengthOfStay": { "low": 9, "high": 14, "confidence": 0.92 },
+    "lengthOfStay": { "low": 9, "high": 14, "confidence": 0.95 },
     "lengthOfStayEstimate": 11,
     "lengthOfStayRange": "AvgLoS",
     "adverseEvents": [
@@ -12163,7 +12163,7 @@
     "weightKG": 74.4,
     "heightCM": 180.3,
     "bmi": 22.9,
-    "lengthOfStay": { "low": 7, "high": 12, "confidence": 0.94 },
+    "lengthOfStay": { "low": 7, "high": 12, "confidence": 0.95 },
     "lengthOfStayEstimate": 10,
     "lengthOfStayRange": "AvgLoS",
     "adverseEvents": [
@@ -14594,7 +14594,7 @@
     "weightKG": 38.5,
     "heightCM": 152.4,
     "bmi": 16.6,
-    "lengthOfStay": { "low": 6, "high": 10, "confidence": 0.92 },
+    "lengthOfStay": { "low": 6, "high": 10, "confidence": 0.95 },
     "lengthOfStayEstimate": 8,
     "lengthOfStayRange": "AvgLoS",
     "adverseEvents": [
@@ -17025,7 +17025,7 @@
     "weightKG": 87.4,
     "heightCM": 182.9,
     "bmi": 26.1,
-    "lengthOfStay": { "low": 9, "high": 14, "confidence": 0.94 },
+    "lengthOfStay": { "low": 9, "high": 14, "confidence": 0.95 },
     "lengthOfStayEstimate": 10,
     "lengthOfStayRange": "AvgLoS",
     "adverseEvents": [
@@ -19457,7 +19457,7 @@
     "weightKG": 46.8,
     "heightCM": 152.4,
     "bmi": 20.2,
-    "lengthOfStay": { "low": 5, "high": 9, "confidence": 0.93 },
+    "lengthOfStay": { "low": 5, "high": 9, "confidence": 0.95 },
     "lengthOfStayEstimate": 8,
     "lengthOfStayRange": "AvgLoS",
     "adverseEvents": [
@@ -21888,7 +21888,7 @@
     "weightKG": 80.0,
     "heightCM": 160.0,
     "bmi": 31.3,
-    "lengthOfStay": { "low": 11, "high": 17, "confidence": 0.92 },
+    "lengthOfStay": { "low": 11, "high": 17, "confidence": 0.95 },
     "lengthOfStayEstimate": 12,
     "lengthOfStayRange": "AvgLoS",
     "adverseEvents": [
@@ -24319,7 +24319,7 @@
     "weightKG": 66.7,
     "heightCM": 172.7,
     "bmi": 22.4,
-    "lengthOfStay": { "low": 11, "high": 17, "confidence": 0.96 },
+    "lengthOfStay": { "low": 11, "high": 17, "confidence": 0.95 },
     "lengthOfStayEstimate": 12,
     "lengthOfStayRange": "AvgLoS",
     "adverseEvents": [

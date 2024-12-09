@@ -35,6 +35,7 @@ export default function App() {
   const [borderline, setBorderline] = useState("borderline1");
   const [riskLabel, setRiskLabel] = useState("label1");
   const [los, setLos] = useState("los1");
+  const [isControlOpen, setIsControlOpen] = useState(false);
 
   return (
     <Container maxWidth="xl">
@@ -49,8 +50,12 @@ export default function App() {
                 view={view}
                 direction={direction}
                 borderline={borderline}
+                isControlOpen={isControlOpen}
               >
-                <Controls>
+                <Controls
+                  isControlOpen={isControlOpen}
+                  setIsControlOpen={setIsControlOpen}
+                >
                   <RiskRangeInput onChange={setCurrentRiskRange} />
                   <ViewToggle view={view} setView={setView} />
                   <DirectionToggle
@@ -75,8 +80,12 @@ export default function App() {
                 borderline={borderline}
                 riskLabel={riskLabel}
                 los={los}
+                isControlOpen={isControlOpen}
               >
-                <Controls>
+                <Controls
+                  isControlOpen={isControlOpen}
+                  setIsControlOpen={setIsControlOpen}
+                >
                   <RiskRangeInput onChange={setCurrentRiskRange} />
                   <BorderlineToggle
                     borderline={borderline}
