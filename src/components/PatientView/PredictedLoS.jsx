@@ -2,8 +2,9 @@ import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { Typography, Box, CardHeader, CardContent } from "@mui/material";
 import { color } from "../Utils/Calculator";
+import distributionData from "../../SampleData/losData.json";
 
-const PredictedLos = ({ patient, patientData, los }) => {
+const PredictedLos = ({ patient, los }) => {
   const { lengthOfStayEstimate, lengthOfStayRange } = patient;
   const svgRef = useRef();
 
@@ -18,43 +19,117 @@ const PredictedLos = ({ patient, patientData, los }) => {
       xScale,
       yScale,
       patient,
-      patientData,
       tooltip,
     } = options;
 
     const yAxisBottom = height - margin.bottom;
-    const predictionStart = xScale(patient.lengthOfStay.low);
-    const cappedHighBound = Math.min(patient.lengthOfStay.high, 21);
 
-    // Draw prediction range
-    svg
-      .append("rect")
-      .attr("x", predictionStart)
-      .attr("y", yAxisBottom - 7)
-      .attr("width", xScale(cappedHighBound) - predictionStart)
-      .attr("height", 12)
-      .attr("fill", rangeColors[lengthOfStayRange])
-      .attr("stroke", "none")
-      .on("mouseover", (event) => {
-        tooltip
-          .style("visibility", "visible")
-          .html(
-            `${patient.lengthOfStay.low}-${patient.lengthOfStay.high} days*`
+    // Draw segments for los3
+    // In the createDistributionVis function, replace the color mapping:
+
+    if (los === "los3") {
+      const segments = [
+        { start: 0, end: 3, label: "blue" },
+        { start: 3, end: 6, label: "yell" },
+        { start: 6, end: 14, label: "orn" },
+        { start: 14, end: 21, label: "red" },
+      ];
+
+      // Regular numeric axis
+      svg
+        .append("g")
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(xScale))
+        .style("font-size", "16px");
+
+      // Add the colored segments
+      segments.forEach((segment) => {
+        svg
+          .append("rect")
+          .attr("x", xScale(segment.start))
+          .attr("y", yAxisBottom - 20)
+          .attr("width", xScale(segment.end) - xScale(segment.start))
+          .attr("height", 20)
+          .attr(
+            "fill",
+            segment.label === "blue"
+              ? color.minimal.risk
+              : segment.label === "yell"
+              ? color.moderate.risk
+              : segment.label === "orn"
+              ? color.moderateHigh.risk
+              : color.high.risk
           )
-          .style("left", `${event.pageX + 10}px`)
-          .style("top", `${event.pageY - 10}px`);
-      })
-      .on("mousemove", (event) => {
-        tooltip
-          .style("left", `${event.pageX + 10}px`)
-          .style("top", `${event.pageY - 10}px`);
-      })
-      .on("mouseout", () => {
-        tooltip.style("visibility", "hidden");
+          .attr("stroke", "black")
+          .attr("stroke-width", 1);
       });
 
+      // Add horizontal range line
+      const rangeStart = xScale(patient.lengthOfStay.low);
+      const rangeEnd = xScale(Math.min(patient.lengthOfStay.high, 21));
+
+      svg
+        .append("line")
+        .attr("x1", rangeStart)
+        .attr("x2", rangeEnd)
+        .attr("y1", yAxisBottom - 10) // Same height as the dot
+        .attr("y2", yAxisBottom - 10)
+        .attr("stroke", "black")
+        .attr("stroke-width", 3);
+
+      // Add small vertical lines at ends of range
+      svg
+        .append("line")
+        .attr("x1", rangeStart)
+        .attr("x2", rangeStart)
+        .attr("y1", yAxisBottom - 13)
+        .attr("y2", yAxisBottom - 7)
+        .attr("stroke", "black")
+        .attr("stroke-width", 2);
+
+      svg
+        .append("line")
+        .attr("x1", rangeEnd)
+        .attr("x2", rangeEnd)
+        .attr("y1", yAxisBottom - 13)
+        .attr("y2", yAxisBottom - 7)
+        .attr("stroke", "black")
+        .attr("stroke-width", 2);
+    } else {
+      // Original prediction range rect for non-los3
+      const predictionStart = xScale(patient.lengthOfStay.low);
+      const cappedHighBound = Math.min(patient.lengthOfStay.high, 21);
+      svg
+        .append("rect")
+        .attr("x", predictionStart)
+        .attr("y", yAxisBottom - 7)
+        .attr("width", xScale(cappedHighBound) - predictionStart)
+        .attr("height", 12)
+        .attr("fill", rangeColors[lengthOfStayRange])
+        .attr("stroke", "none")
+        .on("mouseover", (event) => {
+          tooltip
+            .style("visibility", "visible")
+            .html(
+              `${patient.lengthOfStay.low}-${patient.lengthOfStay.high} days*`
+            )
+            .style("left", `${event.pageX + 10}px`)
+            .style("top", `${event.pageY - 10}px`);
+        })
+        .on("mousemove", (event) => {
+          tooltip
+            .style("left", `${event.pageX + 10}px`)
+            .style("top", `${event.pageY - 10}px`);
+        })
+        .on("mouseout", () => {
+          tooltip.style("visibility", "hidden");
+        });
+    }
+
     // Draw line
-    const lineData = bins.map((count, day) => ({ x: day, y: count }));
+    const lineData = bins
+      .map((count, day) => ({ x: day, y: count }))
+      .filter((d) => d.x <= 21);
     const line = d3
       .line()
       .x((d) => xScale(d.x))
@@ -102,18 +177,25 @@ const PredictedLos = ({ patient, patientData, los }) => {
       .text("Number of Patients");
 
     // Add metadata
+    const totalPatients = distributionData.reduce((sum, d) => sum + d.count, 0);
     svg
       .append("text")
       .attr("x", width - margin.right)
       .attr("y", margin.top)
       .attr("text-anchor", "end")
       .style("font-size", "14px")
-      .text(`Total Patients: ${patientData.length}`);
+      .text(`Total Patients: ${totalPatients}`);
 
+    // Add confidence text with adjusted position for los3
     svg
       .append("text")
       .attr("x", margin.left)
-      .attr("y", height - margin.bottom + 60)
+      .attr(
+        "y",
+        los === "los3"
+          ? height - margin.bottom + 90
+          : height - margin.bottom + 60
+      )
       .attr("fill", dotColors[lengthOfStayRange])
       .style("font-size", "16px")
       .style("font-weight", "bold")
@@ -124,33 +206,70 @@ const PredictedLos = ({ patient, patientData, los }) => {
     // Add patient marker
     const cappedEstimate = Math.min(patient.lengthOfStayEstimate, 21);
     if (patient.lengthOfStayEstimate > 21) {
-      svg
-        .append("polygon")
-        .attr(
-          "points",
-          `${xScale(21) - 5},${yAxisBottom - 5} ${xScale(21) - 5},${
-            yAxisBottom + 5
-          } ${xScale(21) + 5},${yAxisBottom}`
-        )
-        .attr("fill", dotColors[lengthOfStayRange]);
+      // Draw right-pointing arrow at day 21
+      if (los === "los3") {
+        svg
+          .append("path")
+          .attr(
+            "d",
+            `M ${xScale(21)},${yAxisBottom - 16}
+     L ${xScale(21) + 16},${yAxisBottom - 10}
+     L ${xScale(21)},${yAxisBottom - 4}
+     L ${xScale(21)},${yAxisBottom - 16}`
+          )
+          .attr("fill", "black");
 
-      svg
-        .append("text")
-        .style("font-size", "16px")
-        .style("font-weight", "bold")
-        .attr("x", xScale(21))
-        .attr("y", yAxisBottom - 15)
-        .attr("text-anchor", "middle")
-        .attr("fill", dotColors[lengthOfStayRange])
-        .text(`${patient.lengthOfStayEstimate} days`);
+        // Add exact prediction text above the arrow
+        svg
+          .append("text")
+          .style("font-size", "14px")
+          .style("font-weight", "bold")
+          .attr("x", xScale(21) + 50)
+          .attr("y", yAxisBottom - 5)
+          .attr("text-anchor", "middle")
+          .attr("fill", dotColors[lengthOfStayRange])
+          .text(`${patient.lengthOfStayEstimate} days`);
+      } else {
+        svg
+          .append("path")
+          .attr(
+            "d",
+            `M ${xScale(21)},${yAxisBottom - 6}
+         L ${xScale(21) + 16},${yAxisBottom}
+         L ${xScale(21)},${yAxisBottom + 6}
+         L ${xScale(21)},${yAxisBottom - 6}`
+          )
+          .attr("fill", dotColors[lengthOfStayRange]);
+
+        // Add exact prediction text above the arrow
+        svg
+          .append("text")
+          .style("font-size", "14px")
+          .style("font-weight", "bold")
+          .attr("x", xScale(21) + 50)
+          .attr("y", yAxisBottom + 5)
+          .attr("text-anchor", "middle")
+          .attr("fill", dotColors[lengthOfStayRange])
+          .text(`${patient.lengthOfStayEstimate} days`);
+      }
     } else {
-      svg
-        .append("circle")
-        .attr("cx", xScale(cappedEstimate))
-        .attr("cy", yAxisBottom)
-        .attr("r", 5)
-        .attr("fill", dotColors[lengthOfStayRange])
-        .attr("stroke-width", 1);
+      if (los === "los2") {
+        svg
+          .append("circle")
+          .attr("cx", xScale(cappedEstimate))
+          .attr("cy", yAxisBottom)
+          .attr("r", 5)
+          .attr("fill", dotColors[lengthOfStayRange])
+          .attr("stroke-width", 1);
+      } else {
+        svg
+          .append("circle")
+          .attr("cx", xScale(cappedEstimate))
+          .attr("cy", yAxisBottom - 10)
+          .attr("r", 5)
+          .attr("fill", "black")
+          .attr("stroke-width", 1);
+      }
     }
   };
 
@@ -260,7 +379,7 @@ const PredictedLos = ({ patient, patientData, los }) => {
     });
 
     // Add estimate marker
-    const cappedEstimate = Math.min(lengthOfStayEstimate, 21);
+    const cappedEstimate = Math.min(lengthOfStayEstimate, 31);
     const arrowX = margin.left + xScale(cappedEstimate);
 
     svg
@@ -311,7 +430,7 @@ const PredictedLos = ({ patient, patientData, los }) => {
 
     const width = 700;
     const margin = { top: 20, right: 30, bottom: 40, left: 50 };
-    const height = los === "los3" ? 250 : los === "los2" ? 200 : 150;
+    const height = los === "los3" || los === "los2" ? 250 : 150;
 
     const addTransparency = (hexColor, alpha) => {
       const r = parseInt(hexColor.slice(1, 3), 16);
@@ -332,18 +451,16 @@ const PredictedLos = ({ patient, patientData, los }) => {
       ProlongedLoS: color.high.line,
     };
 
-    const xScale = d3
-      .scaleLinear()
-      .domain([0, 21])
-      .range([0, width - margin.left - margin.right - 20]);
-
     if (los === "los1") {
       createLos1Vis(svg, {
         width,
         height,
         margin,
         rangeColors,
-        xScale,
+        xScale: d3
+          .scaleLinear()
+          .domain([0, 21])
+          .range([0, width - margin.left - margin.right - 20]),
         patient,
         tooltip,
       });
@@ -353,25 +470,16 @@ const PredictedLos = ({ patient, patientData, los }) => {
         .domain([0, 21])
         .range([margin.left, width - margin.right]);
 
-      let bins;
-      if (los === "los2") {
-        bins = Array(22).fill(0);
-        patientData.forEach((p) => {
-          const day = Math.min(Math.floor(p.lengthOfStayEstimate), 21);
-          bins[day]++;
-        });
-      } else {
-        bins = Array(22).fill(0);
-        patientData.forEach((p) => {
-          for (
-            let day = p.lengthOfStay.low;
-            day <= Math.min(p.lengthOfStay.high, 21);
-            day++
-          ) {
-            bins[day]++;
-          }
-        });
-      }
+      // Initialize bins with zeros
+      let bins = Array(32).fill(0);
+
+      // Fill bins using the distribution data
+      distributionData.forEach((d) => {
+        const index = d["predicted los"];
+        if (index >= 0 && index <= 31) {
+          bins[index] = d.count;
+        }
+      });
 
       const yScale = d3
         .scaleLinear()
@@ -388,7 +496,6 @@ const PredictedLos = ({ patient, patientData, los }) => {
         xScale: distributionXScale,
         yScale,
         patient,
-        patientData,
         tooltip,
       });
     }
@@ -396,7 +503,7 @@ const PredictedLos = ({ patient, patientData, los }) => {
     return () => {
       d3.selectAll(".tooltip").remove();
     };
-  }, [lengthOfStayEstimate, lengthOfStayRange, patient, patientData, los]);
+  }, [lengthOfStayEstimate, lengthOfStayRange, patient, los]);
 
   return (
     <>
@@ -429,10 +536,10 @@ const PredictedLos = ({ patient, patientData, los }) => {
         >
           <svg
             ref={svgRef}
-            width="800"
-            height={los === "los3" ? "300" : los === "los2" ? "250" : "150"}
-            viewBox={`0 0 750 ${
-              los === "los3" ? "300" : los === "los2" ? "250" : "150"
+            width="1200"
+            height={los === "los3" || los === "los2" ? "300" : "150"}
+            viewBox={`0 0 650 ${
+              los === "los3" || los === "los2" ? "300" : "150"
             }`}
             preserveAspectRatio="xMidYMid meet"
           />

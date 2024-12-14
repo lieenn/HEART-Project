@@ -1,7 +1,6 @@
 import React from "react";
-import { calculateColor, calculateRisk } from "../Utils/Calculator";
-import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-import { Box, IconButton, Avatar, Typography, Grid } from "@mui/material";
+import { calculateRisk } from "../Utils/Calculator";
+import { Box, Grid } from "@mui/material";
 import RiskScale from "./RiskScale";
 import SvgRectangle from "../SharedComponents/SvgRectangle";
 import ExplanationButton from "./Explanation/ExplanationButton";
@@ -12,10 +11,38 @@ export default function AdverseEvent({
   riskRange,
   borderline,
   riskLabel,
+  showUncertainty,
 }) {
   const rectWidth = 216;
   const rectHeight = 36;
   const riskLevel = calculateRisk(adverseEvent.riskScore, riskRange);
+  const isMinimalRisk = riskLevel === "Minimal";
+
+  const RiskComponents = ({ isHighRisk, wrapper }) => {
+    const components = (
+      <>
+        <RiskScale
+          adverseEvent={adverseEvent}
+          isHighRisk={isHighRisk}
+          riskRange={riskRange}
+          borderline={borderline}
+          showUncertainty={showUncertainty}
+        />
+        <RiskLabel
+          adverseEvent={adverseEvent}
+          isHighRisk={isHighRisk}
+          isModal={false}
+          riskLabel={riskLabel}
+          riskRange={riskRange}
+        />
+      </>
+    );
+
+    if (wrapper) {
+      return wrapper(components);
+    }
+    return components;
+  };
 
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
@@ -31,125 +58,28 @@ export default function AdverseEvent({
           <ExplanationButton risk={adverseEvent} riskRange={riskRange} />
         </SvgRectangle>
       </Box>
-      {riskLevel === "Minimal" ? (
-        <>
-          <Grid item xs={borderline === "borderline3" ? 6 : 0}>
-            <RiskScale
-              adverseEvent={adverseEvent}
-              isHighRisk={false}
-              riskRange={riskRange}
-              borderline={borderline}
-            />
-          </Grid>
-          <RiskLabel
-            adverseEvent={adverseEvent}
+
+      {isMinimalRisk ? (
+        borderline === "borderline3" ? (
+          <RiskComponents
             isHighRisk={false}
-            isModal={false}
-            riskLabel={riskLabel}
-            riskRange={riskRange}
+            wrapper={(children) => (
+              <Grid item xs={6}>
+                {children}
+              </Grid>
+            )}
           />
-        </>
+        ) : (
+          <RiskComponents
+            isHighRisk={false}
+            wrapper={(children) => (
+              <Box sx={{ display: "flex" }}>{children}</Box>
+            )}
+          />
+        )
       ) : (
-        <>
-          <RiskScale
-            adverseEvent={adverseEvent}
-            isHighRisk={true}
-            riskRange={riskRange}
-            borderline={borderline}
-          />
-          <RiskLabel
-            adverseEvent={adverseEvent}
-            isHighRisk={true}
-            isModal={false}
-            riskLabel={riskLabel}
-            riskRange={riskRange}
-          />
-        </>
+        <RiskComponents isHighRisk={true} />
       )}
     </Box>
   );
 }
-// import React from "react";
-// import { calculateRisk } from "../Utils/Calculator";
-// import { Box, Grid, Typography } from "@mui/material";
-// import RiskScale from "./RiskScale";
-// import SvgRectangle from "../SharedComponents/SvgRectangle";
-// import ExplanationButton from "./Explanation/ExplanationButton";
-
-// export default function AdverseEvent({ adverseEvent, riskRange, borderline }) {
-//   const rectWidth = 216;
-//   const rectHeight = 36;
-//   const riskLevel = calculateRisk(adverseEvent.riskScore, riskRange);
-
-//   return (
-//     <Grid container spacing={2}>
-//       {riskLevel === "Minimal" ? (
-//         <Grid item xs={12} sm={6}>
-//           <Box sx={{ display: "flex", flexDirection: "column" }}>
-//             <SvgRectangle
-//               risk={adverseEvent}
-//               riskRange={riskRange}
-//               width={rectWidth}
-//               height={rectHeight}
-//               text={adverseEvent.title}
-//               isPatientSpecific={true}
-//             >
-//               <ExplanationButton risk={adverseEvent} riskRange={riskRange} />
-//             </SvgRectangle>
-//             {/* <Box sx={{ display: "flex", alignItems: "center", gap: 2, ml: -3 }}> */}
-//             <Grid item container alignItems="center" wrap="nowrap" spacing={2}>
-//               <Grid item xs={8} sx={{ ml: -3 }}>
-//                 <RiskScale
-//                   adverseEvent={adverseEvent}
-//                   isHighRisk={false}
-//                   riskRange={riskRange}
-//                   borderline={borderline}
-//                 />
-//               </Grid>
-//               <Grid item xs={4}>
-//                 <Typography
-//                   fontWeight="bold"
-//                   color="black"
-//                   sx={{ whiteSpace: "nowrap" }}
-//                 >
-//                   Risk: {Math.round(adverseEvent.riskScore * 100)}%
-//                 </Typography>
-//               </Grid>
-//             </Grid>
-//             {/* </Box> */}
-//           </Box>
-//         </Grid>
-//       ) : (
-//         <>
-//           <Grid item xs={12} md={3}>
-//             <SvgRectangle
-//               risk={adverseEvent}
-//               riskRange={riskRange}
-//               width={rectWidth}
-//               height={rectHeight}
-//               text={adverseEvent.title}
-//               isPatientSpecific={true}
-//             >
-//               <ExplanationButton risk={adverseEvent} riskRange={riskRange} />
-//             </SvgRectangle>
-//           </Grid>
-//           <Grid item container xs={12} md={9} alignItems="center" wrap="nowrap">
-//             <Grid item>
-//               <RiskScale
-//                 adverseEvent={adverseEvent}
-//                 isHighRisk={true}
-//                 riskRange={riskRange}
-//                 borderline={borderline}
-//               />
-//             </Grid>
-//             <Grid item>
-//               <Typography fontWeight="bold" color="black">
-//                 Risk: {Math.round(adverseEvent.riskScore * 100)}%
-//               </Typography>
-//             </Grid>
-//           </Grid>
-//         </>
-//       )}
-//     </Grid>
-//   );
-// }

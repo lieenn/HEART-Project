@@ -18,8 +18,8 @@ const Legend = ({ riskRange = [0.4, 0.6, 0.8, 1] }) => {
     "Moderate Risk",
     "Moderate High Risk",
     "High Risk",
-    "Uncertainty",
-    "Size",
+    "Borderline Uncertainty",
+    "Range of Uncertainty",
   ];
 
   const getRangeDescription = (index) => {

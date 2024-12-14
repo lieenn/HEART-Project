@@ -13,10 +13,10 @@ export default function AdverseEventsList({
   borderline,
   isLowRisk,
   riskLabel,
+  showUncertainty,
 }) {
   const [sort, setSort] = React.useState("risk");
 
-  // Use useMemo to prevent unnecessary re-calculations
   const sortedRisks = useMemo(() => {
     const risks = FilterUnwantedAdverse(adverseEvents);
     const filteredRisks = riskFilter(risks, riskRange);
@@ -43,6 +43,7 @@ export default function AdverseEventsList({
                 riskRange={riskRange}
                 borderline={borderline}
                 riskLabel={riskLabel}
+                showUncertainty={showUncertainty}
               />
             </ListItem>
           ))}

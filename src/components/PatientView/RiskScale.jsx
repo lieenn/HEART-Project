@@ -10,6 +10,7 @@ export default function RiskScale({
   isHighRisk,
   borderline,
   isModal,
+  showUncertainty,
 }) {
   const isBorderline1 = borderline === "borderline1";
   const isBorderline3 = borderline === "borderline3";
@@ -160,6 +161,11 @@ export default function RiskScale({
   };
 
   const renderHorizontalLines = (bandStart, bandEnd) => {
+    // Don't render horizontal lines for non-high risk scales when showUncertainty is "noshow"
+    if (!isHighRisk && showUncertainty === "noshow") {
+      return null;
+    }
+
     return (
       <>
         <line
@@ -183,6 +189,11 @@ export default function RiskScale({
   };
 
   const renderVerticalLines = (bandStart, bandEnd, verticalLineHeight) => {
+    // Don't render vertical lines for non-high risk scales when showUncertainty is "noshow"
+    if (!isHighRisk && showUncertainty === "noshow") {
+      return null;
+    }
+
     return (
       <>
         <line
@@ -238,8 +249,6 @@ export default function RiskScale({
   return (
     <Box
       sx={{
-        // mt: isHighRisk && !isModal ? -0.5 : 0.5,
-        ml: !isHighRisk && isModal ? -3 : 0,
         mt: isHighRisk ? 1 : 0,
         ml: !isHighRisk ? -3.2 : 0,
       }}

@@ -4,6 +4,7 @@ import SortButton from "./Buttons/SortButton";
 import FilterButton from "./Buttons/FilterButton";
 import TableRow from "./TableRow";
 import SelectedChips from "./Buttons/SelectedChips";
+import HideUnpinButton from "./Buttons/HideUnpinButton";
 
 export default function TableHeader({
   setSortingOption,
@@ -11,6 +12,9 @@ export default function TableHeader({
   adverseEventsList,
   selectedAdverseEvents,
   setSelectedAdverseEvents,
+  showOnlyPinned,
+  onToggleShowPinned,
+  hasPinnedPatients,
 }) {
   const [activeButton, setActiveButton] = useState(null);
   const theme = useTheme();
@@ -39,12 +43,17 @@ export default function TableHeader({
         variant="h6"
         sx={{
           fontWeight: 700,
-          ml: 1,
-          fontSize: isMobile ? "1.25rem" : "1.3rem",
+          fontSize: isMobile ? "1rem" : "1.25rem",
         }}
       >
         Patient ID
       </Typography>
+      {hasPinnedPatients && (
+        <HideUnpinButton
+          showOnlyPinned={showOnlyPinned}
+          onToggleShowPinned={onToggleShowPinned}
+        />
+      )}
     </Box>
   );
 
@@ -56,7 +65,7 @@ export default function TableHeader({
         variant="h6"
         sx={{
           fontWeight: 600,
-          fontSize: isMobile ? "1rem" : "1.3rem",
+          fontSize: isMobile ? "1rem" : "1.25rem",
         }}
       >
         Predicted Adverse Events

@@ -9,7 +9,6 @@ import {
   CardHeader,
   Avatar,
   Box,
-  Collapse,
 } from "@mui/material";
 import AdverseEventsList from "./AdverseEventsList";
 import { GetHighRisks, GetLowRisks } from "../Utils/FilterFunctions";
@@ -22,7 +21,7 @@ export default function DetailPage({
   borderline,
   riskLabel,
   los,
-  isControlOpen,
+  showUncertainty,
   children,
 }) {
   const { value } = useParams();
@@ -71,19 +70,10 @@ export default function DetailPage({
             <Typography variant="body1">Room # {person.roomNumber}</Typography>
           </Box>
         </Box>
-        <Collapse in={!isControlOpen} timeout={300}>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Legend riskRange={riskRange} />
-            <Box>{children}</Box>
-          </Box>
-        </Collapse>
-
-        <Collapse in={isControlOpen} timeout={300}>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <Box>{children}</Box>
-            <Legend riskRange={riskRange} />
-          </Box>
-        </Collapse>
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Legend riskRange={riskRange} />
+          <Box>{children}</Box>
+        </Box>
       </Grid>
 
       <Grid container item xs={12} md={7} lg={8} spacing={3}>
@@ -166,6 +156,7 @@ export default function DetailPage({
               header="Low Risk Adverse Events"
               isLowRisk={true}
               riskLabel={riskLabel}
+              showUncertainty={showUncertainty}
             />
           </CardContent>
         </Card>

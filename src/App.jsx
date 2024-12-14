@@ -14,6 +14,7 @@ import DirectionToggle from "./components/Controls/DirectionToggle";
 import Controls from "./components/Controls/Controls";
 import RiskLabelToggle from "./components/Controls/RiskLabelToggle";
 import LoSToggle from "./components/Controls/LoSToggle";
+import UncertaintyToggle from "./components/Controls/UncertaintyToggle";
 
 /**
  * @constant {Array<number>} riskRange - Defines risk thresholds [minimal, moderate, moderate high, high].
@@ -35,8 +36,7 @@ export default function App() {
   const [borderline, setBorderline] = useState("borderline1");
   const [riskLabel, setRiskLabel] = useState("label1");
   const [los, setLos] = useState("los1");
-  const [isControlOpen, setIsControlOpen] = useState(false);
-
+  const [showUncertainty, setShowUncertainty] = useState("show");
   return (
     <Container maxWidth="xl">
       <Box sx={{ my: 4 }}>
@@ -50,22 +50,18 @@ export default function App() {
                 view={view}
                 direction={direction}
                 borderline={borderline}
-                isControlOpen={isControlOpen}
               >
-                <Controls
-                  isControlOpen={isControlOpen}
-                  setIsControlOpen={setIsControlOpen}
-                >
+                <Controls>
                   <RiskRangeInput onChange={setCurrentRiskRange} />
                   <ViewToggle view={view} setView={setView} />
-                  <DirectionToggle
-                    direction={direction}
-                    setDirection={setDirection}
-                  />
                   <BorderlineToggle
                     borderline={borderline}
                     setBorderline={setBorderline}
                     view={view}
+                  />
+                  <DirectionToggle
+                    direction={direction}
+                    setDirection={setDirection}
                   />
                 </Controls>
               </MainView>
@@ -80,12 +76,9 @@ export default function App() {
                 borderline={borderline}
                 riskLabel={riskLabel}
                 los={los}
-                isControlOpen={isControlOpen}
+                showUncertainty={showUncertainty}
               >
-                <Controls
-                  isControlOpen={isControlOpen}
-                  setIsControlOpen={setIsControlOpen}
-                >
+                <Controls>
                   <RiskRangeInput onChange={setCurrentRiskRange} />
                   <BorderlineToggle
                     borderline={borderline}
@@ -94,6 +87,10 @@ export default function App() {
                   <RiskLabelToggle
                     riskLabel={riskLabel}
                     setRiskLabel={setRiskLabel}
+                  />
+                  <UncertaintyToggle
+                    showUncertainty={showUncertainty}
+                    setShowUncertainty={setShowUncertainty}
                   />
                   <LoSToggle los={los} setLos={setLos} />
                 </Controls>

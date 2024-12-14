@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid, Collapse } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Patient from "./Patient";
 import Legend from "../SharedComponents/Legend";
 import { GetUniqueAdverseEvents } from "../Utils/FilterFunctions";
@@ -12,13 +12,15 @@ export default function MainView({
   view,
   direction,
   borderline,
-  isControlOpen,
   children,
 }) {
   const [selectedAdverseEvents, setSelectedAdverseEvents] = useState([]);
-  const [sortingOption, setSortingOption] = useState("");
+  const [sortingOption, setSortingOption] = useState("Overall highest");
   const [showFilteredOutcomes, setShowFilteredOutcomes] = useState(false);
   const [favoritePatients, setFavoritePatients] = useState([]);
+  const [showOnlyPinned, setShowOnlyPinned] = useState(false);
+
+  const hasPinnedPatients = favoritePatients.length > 0;
 
   const adverseEventsList = GetUniqueAdverseEvents(patientData);
 
@@ -30,6 +32,10 @@ export default function MainView({
         return [...prev, patientId];
       }
     });
+  };
+
+  const handleToggleShowPinned = () => {
+    setShowOnlyPinned(!showOnlyPinned);
   };
 
   let sortedData = [];
@@ -45,14 +51,18 @@ export default function MainView({
     sortedData = patientData;
   }
 
-  const finalSortedData = [
-    ...sortedData.filter((patient) =>
-      favoritePatients.includes(patient.patientId)
-    ),
-    ...sortedData.filter(
-      (patient) => !favoritePatients.includes(patient.patientId)
-    ),
-  ];
+  const finalSortedData = showOnlyPinned
+    ? sortedData.filter((patient) =>
+        favoritePatients.includes(patient.patientId)
+      )
+    : [
+        ...sortedData.filter((patient) =>
+          favoritePatients.includes(patient.patientId)
+        ),
+        ...sortedData.filter(
+          (patient) => !favoritePatients.includes(patient.patientId)
+        ),
+      ];
 
   useEffect(() => {
     const hasRelevantOutcomes = selectedAdverseEvents.length > 0;
@@ -69,28 +79,27 @@ export default function MainView({
 
   return (
     <>
-      <Collapse in={!isControlOpen} timeout={300}>
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Legend riskRange={riskRange} />
-          <Box>{children}</Box>
-        </Box>
-      </Collapse>
-
-      <Collapse in={isControlOpen} timeout={300}>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <Box>{children}</Box>
-          <Legend riskRange={riskRange} />
-        </Box>
-      </Collapse>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Legend riskRange={riskRange} />
+        <Box>{children}</Box>
+      </Box>
       {direction === "horizontal" ? (
         // Horizontal Layout
-        <Box sx={{ border: "1.5px solid #000", mt: 1 }}>
+        <Box sx={{ border: "1.5px solid #000", m: 0 }}>
           <TableHeader
             setSortingOption={setSortingOption}
             showFilteredOutcomes={showFilteredOutcomes}
             adverseEventsList={adverseEventsList}
             selectedAdverseEvents={selectedAdverseEvents}
             setSelectedAdverseEvents={setSelectedAdverseEvents}
+            showOnlyPinned={showOnlyPinned}
+            onToggleShowPinned={handleToggleShowPinned}
+            hasPinnedPatients={hasPinnedPatients}
           />
           {finalSortedData.map((patient) => (
             <Patient
@@ -116,6 +125,8 @@ export default function MainView({
             adverseEventsList={adverseEventsList}
             selectedAdverseEvents={selectedAdverseEvents}
             setSelectedAdverseEvents={setSelectedAdverseEvents}
+            showOnlyPinned={showOnlyPinned}
+            onToggleShowPinned={handleToggleShowPinned}
           />
           <Grid
             container
@@ -138,6 +149,7 @@ export default function MainView({
                     onToggleFavorite={handleToggleFavorite}
                     view={view}
                     direction={direction}
+                    hasPinnedPatients={hasPinnedPatients}
                   />
                 </Box>
               </Grid>

@@ -26,7 +26,7 @@ export default function RiskLabel({
     ) {
       d3.select(d3Container.current).selectAll("*").remove();
 
-      const width = 200;
+      const width = 180;
       const height = 50;
       const margin = { top: 20, right: 20, bottom: 20, left: 20 };
 

@@ -38,8 +38,7 @@ const SvgRectangle = ({
     calculateRisk(risk.confidenceInterval.high, riskRange) !== "Minimal";
 
   // Calculate uncertainty range as a percentage for gradient distribution
-  const uncertaintyRange =
-    risk.confidenceInterval.high - risk.confidenceInterval.low;
+  const uncertaintyRange = risk.confidenceInterval.high - riskRange[0];
   const totalRange = riskRange[riskRange.length - 1] - riskRange[0];
   const uncertaintyPercentage = Math.min(
     (uncertaintyRange / totalRange) * 100,
