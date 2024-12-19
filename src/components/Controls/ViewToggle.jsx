@@ -18,18 +18,26 @@ export default function ViewToggle({ view, setView }) {
           value={view}
           onChange={(e) => setView(e.target.value)}
         >
-          <FormControlLabel value="view1" control={<Radio />} label="Dotted" />
+          <FormControlLabel
+            value="view1"
+            control={<Radio />}
+            label="Dotted: fixed Size"
+          />
+          <FormControlLabel
+            value="view4"
+            control={<Radio />}
+            label="Dotted: variable Size"
+          />
           <FormControlLabel
             value="view2"
             control={<Radio />}
-            label="Gradient"
+            label="Gradient: closed"
           />
           <FormControlLabel
             value="view3"
             control={<Radio />}
-            label="Open Gradient"
+            label="Gradient: open"
           />
-          <FormControlLabel value="view4" control={<Radio />} label="Precise" />
         </RadioGroup>
       </FormControl>
     </Card>

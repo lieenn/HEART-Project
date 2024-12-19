@@ -68,13 +68,24 @@ const PredictedLos = ({ patient, los }) => {
       const rangeStart = xScale(patient.lengthOfStay.low);
       const rangeEnd = xScale(Math.min(patient.lengthOfStay.high, 21));
 
+      // Black outline line
       svg
         .append("line")
         .attr("x1", rangeStart)
         .attr("x2", rangeEnd)
-        .attr("y1", yAxisBottom - 10) // Same height as the dot
+        .attr("y1", yAxisBottom - 10)
         .attr("y2", yAxisBottom - 10)
         .attr("stroke", "black")
+        .attr("stroke-width", 5);
+
+      // Colored inner line
+      svg
+        .append("line")
+        .attr("x1", rangeStart)
+        .attr("x2", rangeEnd)
+        .attr("y1", yAxisBottom - 10)
+        .attr("y2", yAxisBottom - 10)
+        .attr("stroke", dotColors[lengthOfStayRange])
         .attr("stroke-width", 3);
 
       // Add small vertical lines at ends of range
@@ -82,19 +93,19 @@ const PredictedLos = ({ patient, los }) => {
         .append("line")
         .attr("x1", rangeStart)
         .attr("x2", rangeStart)
-        .attr("y1", yAxisBottom - 13)
-        .attr("y2", yAxisBottom - 7)
+        .attr("y1", yAxisBottom - 12.5)
+        .attr("y2", yAxisBottom - 7.5)
         .attr("stroke", "black")
-        .attr("stroke-width", 2);
+        .attr("stroke-width", 1);
 
       svg
         .append("line")
         .attr("x1", rangeEnd)
         .attr("x2", rangeEnd)
-        .attr("y1", yAxisBottom - 13)
-        .attr("y2", yAxisBottom - 7)
+        .attr("y1", yAxisBottom - 12.5)
+        .attr("y2", yAxisBottom - 7.5)
         .attr("stroke", "black")
-        .attr("stroke-width", 2);
+        .attr("stroke-width", 1);
     } else {
       // Original prediction range rect for non-los3
       const predictionStart = xScale(patient.lengthOfStay.low);
@@ -279,7 +290,8 @@ const PredictedLos = ({ patient, los }) => {
     const yPos = height / 2;
 
     const highlightRanges = {
-      shortLoS: [0, 6],
+      pathwayLoS: [0, 3], // Added new range
+      shortLoS: [3, 6], // Updated start point
       AvgLoS: [6, 14],
       ProlongedLoS: [14, 21],
     };
@@ -301,9 +313,7 @@ const PredictedLos = ({ patient, los }) => {
             `Range: ${patient.lengthOfStay.low}-${
               patient.lengthOfStay.high
             } days<br/>
-                Confidence: ${Math.round(
-                  patient.lengthOfStay.confidence * 100
-                )}%`
+            Confidence: ${Math.round(patient.lengthOfStay.confidence * 100)}%`
           )
           .style("left", `${event.pageX + 10}px`)
           .style("top", `${event.pageY - 10}px`);
@@ -318,15 +328,27 @@ const PredictedLos = ({ patient, los }) => {
       });
 
     // Draw timeline segments
+    // First segment (0-3 days)
     svg
       .append("line")
       .attr("x1", margin.left)
+      .attr("x2", margin.left + xScale(3))
+      .attr("y1", yPos)
+      .attr("y2", yPos)
+      .attr("stroke", "black")
+      .attr("stroke-width", 2);
+
+    // Second segment (3-6 days)
+    svg
+      .append("line")
+      .attr("x1", margin.left + xScale(3))
       .attr("x2", margin.left + xScale(6))
       .attr("y1", yPos)
       .attr("y2", yPos)
       .attr("stroke", "black")
       .attr("stroke-width", 2);
 
+    // Middle segment (6-14 days)
     svg
       .append("line")
       .attr("x1", margin.left + xScale(6))
@@ -337,6 +359,7 @@ const PredictedLos = ({ patient, los }) => {
       .attr("stroke-width", 2)
       .attr("stroke-dasharray", "6 3");
 
+    // Last segment (14-21 days)
     svg
       .append("line")
       .attr("x1", margin.left + xScale(14))
@@ -357,8 +380,8 @@ const PredictedLos = ({ patient, los }) => {
       )
       .attr("fill", "black");
 
-    // Add markers and labels
-    [6, 14].forEach((day) => {
+    // Add markers and labels for all segment boundaries
+    [3, 6, 14].forEach((day) => {
       svg
         .append("line")
         .attr("x1", margin.left + xScale(day))
@@ -440,13 +463,15 @@ const PredictedLos = ({ patient, los }) => {
     };
 
     const rangeColors = {
-      shortLoS: addTransparency(color.minimal.risk, 0.5),
+      pathwayLoS: addTransparency(color.minimal.risk, 0.5),
+      shortLoS: addTransparency(color.moderate.risk, 0.5),
       AvgLoS: addTransparency(color.moderateHigh.risk, 0.5),
       ProlongedLoS: addTransparency(color.high.risk, 0.5),
     };
 
     const dotColors = {
-      shortLoS: color.minimal.line,
+      pathwayLoS: color.minimal.line,
+      shortLoS: color.moderate.line,
       AvgLoS: color.moderateHigh.line,
       ProlongedLoS: color.high.line,
     };

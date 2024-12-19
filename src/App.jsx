@@ -16,20 +16,10 @@ import RiskLabelToggle from "./components/Controls/RiskLabelToggle";
 import LoSToggle from "./components/Controls/LoSToggle";
 import UncertaintyToggle from "./components/Controls/UncertaintyToggle";
 
-/**
- * @constant {Array<number>} riskRange - Defines risk thresholds [minimal, moderate, moderate high, high].
- */
 export const riskRange = [0.4, 0.6, 0.8, 1];
 
-/**
- * Main application component.
- * @returns {JSX.Element} The rendered application
- */
 export default function App() {
-  /**
-   * @constant {Array<number>} currentRiskRange - Current risk range state.
-   * @constant {function} setCurrentRiskRange - Function to update currentRiskRange.
-   */
+  // Existing state
   const [currentRiskRange, setCurrentRiskRange] = useState(riskRange);
   const [view, setView] = useState("view1");
   const [direction, setDirection] = useState("horizontal");
@@ -37,6 +27,27 @@ export default function App() {
   const [riskLabel, setRiskLabel] = useState("label1");
   const [los, setLos] = useState("los1");
   const [showUncertainty, setShowUncertainty] = useState("show");
+
+  // MainView
+  const [selectedAdverseEvents, setSelectedAdverseEvents] = useState([]);
+  const [sortingOption, setSortingOption] = useState("Overall highest");
+  const [favoritePatients, setFavoritePatients] = useState([]);
+  const [showOnlyPinned, setShowOnlyPinned] = useState(false);
+
+  // Handler functions
+  const handleToggleFavorite = (patientId) => {
+    setFavoritePatients((prev) => {
+      if (prev.includes(patientId)) {
+        return prev.filter((id) => id !== patientId);
+      }
+      return [...prev, patientId];
+    });
+  };
+
+  const handleToggleShowPinned = () => {
+    setShowOnlyPinned(!showOnlyPinned);
+  };
+
   return (
     <Container maxWidth="xl">
       <Box sx={{ my: 4 }}>
@@ -50,6 +61,14 @@ export default function App() {
                 view={view}
                 direction={direction}
                 borderline={borderline}
+                selectedAdverseEvents={selectedAdverseEvents}
+                setSelectedAdverseEvents={setSelectedAdverseEvents}
+                sortingOption={sortingOption}
+                setSortingOption={setSortingOption}
+                favoritePatients={favoritePatients}
+                handleToggleFavorite={handleToggleFavorite}
+                showOnlyPinned={showOnlyPinned}
+                handleToggleShowPinned={handleToggleShowPinned}
               >
                 <Controls>
                   <RiskRangeInput onChange={setCurrentRiskRange} />
@@ -77,6 +96,8 @@ export default function App() {
                 riskLabel={riskLabel}
                 los={los}
                 showUncertainty={showUncertainty}
+                favoritePatients={favoritePatients}
+                handleToggleFavorite={handleToggleFavorite}
               >
                 <Controls>
                   <RiskRangeInput onChange={setCurrentRiskRange} />

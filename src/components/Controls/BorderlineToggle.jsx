@@ -21,18 +21,18 @@ export default function BorderlineToggle({ borderline, setBorderline, view }) {
           <FormControlLabel
             value="borderline1"
             control={<Radio />}
-            label="Moderate"
+            label="1 Color - Moderate"
           />
           <FormControlLabel
             value="borderline2"
             control={<Radio />}
-            label="Highest"
+            label="1 Color - Highest"
           />
           {view !== "view4" && (
             <FormControlLabel
               value="borderline3"
               control={<Radio />}
-              label="Range"
+              label="Multiple Colors"
             />
           )}
         </RadioGroup>

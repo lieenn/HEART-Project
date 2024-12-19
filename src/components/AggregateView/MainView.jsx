@@ -12,31 +12,19 @@ export default function MainView({
   view,
   direction,
   borderline,
+  selectedAdverseEvents,
+  setSelectedAdverseEvents,
+  sortingOption,
+  setSortingOption,
+  favoritePatients,
+  handleToggleFavorite,
+  showOnlyPinned,
+  handleToggleShowPinned,
   children,
 }) {
-  const [selectedAdverseEvents, setSelectedAdverseEvents] = useState([]);
-  const [sortingOption, setSortingOption] = useState("Overall highest");
   const [showFilteredOutcomes, setShowFilteredOutcomes] = useState(false);
-  const [favoritePatients, setFavoritePatients] = useState([]);
-  const [showOnlyPinned, setShowOnlyPinned] = useState(false);
-
   const hasPinnedPatients = favoritePatients.length > 0;
-
   const adverseEventsList = GetUniqueAdverseEvents(patientData);
-
-  const handleToggleFavorite = (patientId) => {
-    setFavoritePatients((prev) => {
-      if (prev.includes(patientId)) {
-        return prev.filter((id) => id !== patientId);
-      } else {
-        return [...prev, patientId];
-      }
-    });
-  };
-
-  const handleToggleShowPinned = () => {
-    setShowOnlyPinned(!showOnlyPinned);
-  };
 
   let sortedData = [];
   if (sortingOption === "Overall highest") {
