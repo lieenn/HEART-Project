@@ -18,32 +18,6 @@ export default function AdverseEvent({
   const riskLevel = calculateRisk(adverseEvent.riskScore, riskRange);
   const isMinimalRisk = riskLevel === "Minimal";
 
-  const RiskComponents = ({ isHighRisk, wrapper }) => {
-    const components = (
-      <>
-        <RiskScale
-          adverseEvent={adverseEvent}
-          isHighRisk={isHighRisk}
-          riskRange={riskRange}
-          borderline={borderline}
-          showUncertainty={showUncertainty}
-        />
-        <RiskLabel
-          adverseEvent={adverseEvent}
-          isHighRisk={isHighRisk}
-          isModal={false}
-          riskLabel={riskLabel}
-          riskRange={riskRange}
-        />
-      </>
-    );
-
-    if (wrapper) {
-      return wrapper(components);
-    }
-    return components;
-  };
-
   return (
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
       <Box sx={{ flexShrink: 0, mr: 3 }}>
@@ -61,24 +35,61 @@ export default function AdverseEvent({
 
       {isMinimalRisk ? (
         borderline === "borderline3" ? (
-          <RiskComponents
-            isHighRisk={false}
-            wrapper={(children) => (
-              <Grid item xs={6}>
-                {children}
-              </Grid>
-            )}
-          />
+          <Grid container spacing={0}>
+            <Grid item xs={6}>
+              <RiskScale
+                adverseEvent={adverseEvent}
+                isHighRisk={false}
+                riskRange={riskRange}
+                borderline={borderline}
+                showUncertainty={showUncertainty}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <RiskLabel
+                adverseEvent={adverseEvent}
+                isHighRisk={false}
+                isModal={false}
+                riskLabel={riskLabel}
+                riskRange={riskRange}
+              />
+            </Grid>
+          </Grid>
         ) : (
-          <RiskComponents
-            isHighRisk={false}
-            wrapper={(children) => (
-              <Box sx={{ display: "flex" }}>{children}</Box>
-            )}
-          />
+          <Box sx={{ display: "flex" }}>
+            <RiskScale
+              adverseEvent={adverseEvent}
+              isHighRisk={false}
+              riskRange={riskRange}
+              borderline={borderline}
+              showUncertainty={showUncertainty}
+            />
+            <RiskLabel
+              adverseEvent={adverseEvent}
+              isHighRisk={false}
+              isModal={false}
+              riskLabel={riskLabel}
+              riskRange={riskRange}
+            />
+          </Box>
         )
       ) : (
-        <RiskComponents isHighRisk={true} />
+        <Box sx={{ display: "flex" }}>
+          <RiskScale
+            adverseEvent={adverseEvent}
+            isHighRisk={true}
+            riskRange={riskRange}
+            borderline={borderline}
+            showUncertainty={showUncertainty}
+          />
+          <RiskLabel
+            adverseEvent={adverseEvent}
+            isHighRisk={true}
+            isModal={false}
+            riskLabel={riskLabel}
+            riskRange={riskRange}
+          />
+        </Box>
       )}
     </Box>
   );
